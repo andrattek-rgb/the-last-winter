@@ -1,0 +1,202 @@
+[gd_scene format=3 uid="uid://bm75fa2ae2np6"]
+
+[ext_resource type="Texture2D" uid="uid://ciw2jl83adlf4" path="res://assets/modelos/room_01/room1_wall_ceiling_layer.png" id="1_wall"]
+[ext_resource type="Texture2D" uid="uid://cbvekyofc7v1x" path="res://assets/modelos/room_01/room1_floor_layer.png" id="2_floor"]
+[ext_resource type="Texture2D" uid="uid://cawdyfa7wunj5" path="res://assets/modelos/room_01/room1_foreground_bunks.png" id="3_overlay"]
+[ext_resource type="Texture2D" uid="uid://d0vqsbrwa1khv" path="res://assets/modelos/room_01/room1_full_background.png" id="4_reference"]
+[ext_resource type="PackedScene" path="res://assets/modelos/room_01/bunk_bed.tscn" id="5_bunk"]
+[ext_resource type="PackedScene" path="res://assets/modelos/characters/player/player.tscn" id="6_player"]
+[ext_resource type="PackedScene" path="res://assets/modelos/characters/prisoners/prisoner_01.tscn" id="7_prisoner_1"]
+[ext_resource type="PackedScene" path="res://assets/modelos/characters/prisoners/prisoner_02.tscn" id="8_prisoner_2"]
+[ext_resource type="Script" uid="uid://l13rq4sdtr01" path="res://scripts/room_camera.gd" id="9_camera"]
+
+[sub_resource type="RectangleShape2D" id="Rectangle_horizontal"]
+size = Vector2(2186, 32)
+
+[sub_resource type="RectangleShape2D" id="Rectangle_vertical"]
+size = Vector2(32, 184)
+
+[node name="Room01" type="Node2D" unique_id=1295244451]
+y_sort_enabled = true
+
+[node name="Background" type="Node2D" parent="." unique_id=2078926019]
+z_index = -10
+
+[node name="WallAndCeiling" type="Sprite2D" parent="Background" unique_id=1910780760]
+texture = ExtResource("1_wall")
+centered = false
+
+[node name="Floor" type="Sprite2D" parent="Background" unique_id=1895934781]
+texture = ExtResource("2_floor")
+centered = false
+
+[node name="Environment" type="Node2D" parent="." unique_id=1225530455]
+y_sort_enabled = true
+
+[node name="BunkBeds" type="Node2D" parent="Environment" unique_id=384804692]
+y_sort_enabled = true
+
+[node name="BunkBed01" parent="Environment/BunkBeds" unique_id=2074940246 instance=ExtResource("5_bunk")]
+position = Vector2(58, 554)
+
+[node name="BunkBed03" parent="Environment/BunkBeds" unique_id=1044005216 instance=ExtResource("5_bunk")]
+position = Vector2(221, 556)
+
+[node name="BunkBed04" parent="Environment/BunkBeds" unique_id=1501729015 instance=ExtResource("5_bunk")]
+position = Vector2(398, 552)
+
+[node name="BunkBed05" parent="Environment/BunkBeds" unique_id=1434058301 instance=ExtResource("5_bunk")]
+position = Vector2(562, 552)
+
+[node name="BunkBed06" parent="Environment/BunkBeds" unique_id=709444211 instance=ExtResource("5_bunk")]
+position = Vector2(721, 552)
+
+[node name="BunkBed02" parent="Environment/BunkBeds" unique_id=393892494 instance=ExtResource("5_bunk")]
+position = Vector2(886, 552)
+
+[node name="BunkBed07" parent="Environment/BunkBeds" unique_id=947627708 instance=ExtResource("5_bunk")]
+position = Vector2(1052, 552)
+
+[node name="BunkBed08" parent="Environment/BunkBeds" unique_id=1734344331 instance=ExtResource("5_bunk")]
+position = Vector2(1219, 552)
+
+[node name="BunkBed09" parent="Environment/BunkBeds" unique_id=1618077869 instance=ExtResource("5_bunk")]
+position = Vector2(1386, 552)
+
+[node name="BunkBed10" parent="Environment/BunkBeds" unique_id=1245515654 instance=ExtResource("5_bunk")]
+position = Vector2(1548, 552)
+
+[node name="BunkBed11" parent="Environment/BunkBeds" unique_id=632229170 instance=ExtResource("5_bunk")]
+position = Vector2(1716, 552)
+
+[node name="BunkBed12" parent="Environment/BunkBeds" unique_id=344442885 instance=ExtResource("5_bunk")]
+position = Vector2(1882, 552)
+
+[node name="BunkBed13" parent="Environment/BunkBeds" unique_id=1979467569 instance=ExtResource("5_bunk")]
+position = Vector2(2044, 552)
+
+[node name="BunkBed14" parent="Environment/BunkBeds" unique_id=2019871274 instance=ExtResource("5_bunk")]
+position = Vector2(2205, 552)
+
+[node name="Props" type="Node2D" parent="Environment" unique_id=401789351]
+y_sort_enabled = true
+
+[node name="Characters" type="Node2D" parent="." unique_id=1164624583]
+y_sort_enabled = true
+
+[node name="Player" parent="Characters" unique_id=1010490052 instance=ExtResource("6_player")]
+position = Vector2(202, 613)
+
+[node name="Prisoners" type="Node2D" parent="Characters" unique_id=87175225]
+y_sort_enabled = true
+
+[node name="Prisoner01" parent="Characters/Prisoners" unique_id=841048016 instance=ExtResource("7_prisoner_1")]
+position = Vector2(314, 565)
+
+[node name="Prisoner02" parent="Characters/Prisoners" unique_id=299362276 instance=ExtResource("8_prisoner_2")]
+position = Vector2(733, 569)
+
+[node name="Foreground" type="Node2D" parent="." unique_id=1534927373]
+z_index = 10
+
+[node name="ForegroundBunks" type="Node2D" parent="Foreground" unique_id=790750274]
+
+[node name="ForegroundBunk01" type="Sprite2D" parent="Foreground/ForegroundBunks" unique_id=1484504755]
+position = Vector2(-30.000004, 605)
+scale = Vector2(0.615, 0.615)
+skew = 0.08726646
+texture = ExtResource("3_overlay")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 466, 654, 259)
+
+[node name="ForegroundBunk02" type="Sprite2D" parent="Foreground/ForegroundBunks" unique_id=697859134]
+position = Vector2(354, 618)
+scale = Vector2(0.615, 0.615)
+skew = -0.11868239
+texture = ExtResource("3_overlay")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 466, 654, 259)
+
+[node name="ForegroundBunk03" type="Sprite2D" parent="Foreground/ForegroundBunks" unique_id=697533653]
+position = Vector2(757.00006, 626)
+scale = Vector2(0.615, 0.615)
+skew = -0.010471975
+texture = ExtResource("3_overlay")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 466, 654, 259)
+
+[node name="ForegroundBunk04" type="Sprite2D" parent="Foreground/ForegroundBunks" unique_id=555938753]
+position = Vector2(1149, 626)
+scale = Vector2(0.615, 0.615)
+skew = -0.010471975
+texture = ExtResource("3_overlay")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 466, 654, 259)
+
+[node name="ForegroundBunk05" type="Sprite2D" parent="Foreground/ForegroundBunks" unique_id=1114742731]
+position = Vector2(1530.0001, 634.99994)
+scale = Vector2(0.615, 0.615)
+skew = -0.010471975
+texture = ExtResource("3_overlay")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 466, 654, 259)
+
+[node name="ForegroundBunk06" type="Sprite2D" parent="Foreground/ForegroundBunks" unique_id=1309782055]
+position = Vector2(1953, 637.00006)
+scale = Vector2(0.615, 0.615)
+skew = 0.18325958
+texture = ExtResource("3_overlay")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 466, 654, 259)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=297064511 node_paths=PackedStringArray("target")]
+position = Vector2(640, 362.5)
+process_callback = 0
+limit_left = 0
+limit_top = 0
+limit_right = 2170
+limit_bottom = 725
+position_smoothing_enabled = true
+editor_draw_limits = true
+script = ExtResource("9_camera")
+target = NodePath("../Characters/Player")
+
+[node name="WalkableArea" type="ReferenceRect" parent="." unique_id=2136976617]
+offset_left = 24.0
+offset_top = 516.0
+offset_right = 2146.0
+offset_bottom = 700.0
+mouse_filter = 2
+border_color = Color(0.36, 0.85, 0.7, 0.85)
+border_width = 2.0
+
+[node name="CollisionBoundaries" type="StaticBody2D" parent="." unique_id=1138057480]
+
+[node name="BackWall" type="CollisionShape2D" parent="CollisionBoundaries" unique_id=2076702541]
+position = Vector2(1085, 500)
+shape = SubResource("Rectangle_horizontal")
+
+[node name="FrontEdge" type="CollisionShape2D" parent="CollisionBoundaries" unique_id=688894703]
+position = Vector2(1086, 695)
+shape = SubResource("Rectangle_horizontal")
+
+[node name="LeftWall" type="CollisionShape2D" parent="CollisionBoundaries" unique_id=868495516]
+position = Vector2(8, 608)
+shape = SubResource("Rectangle_vertical")
+
+[node name="RightWall" type="CollisionShape2D" parent="CollisionBoundaries" unique_id=1706841624]
+position = Vector2(2162, 608)
+shape = SubResource("Rectangle_vertical")
+
+[node name="Reference" type="Sprite2D" parent="." unique_id=351033067]
+visible = false
+z_index = 20
+scale = Vector2(1.05957, 1.05957)
+texture = ExtResource("4_reference")
+centered = false

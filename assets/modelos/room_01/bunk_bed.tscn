@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/modelos/room_01/room1_bunk_bed_front_3levels.png" id="1_bunk"]
+
+[sub_resource type="RectangleShape2D" id="Rectangle_feet"]
+size = Vector2(144, 16)
+
+[node name="BunkBed" type="StaticBody2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_bunk")
+offset = Vector2(5, -720)
+
+[node name="FootCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("Rectangle_feet")

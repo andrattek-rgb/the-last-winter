@@ -1,0 +1,24 @@
+# Cache local do Godot e do editor
+/.godot/
+/.import/
+export_credentials.cfg
+/.vscode/
+
+# Builds, dependências e relatórios
+/dist/
+/node_modules/
+/playwright-report/
+/test-results/
+/.netlify/
+/supabase/.temp/
+
+# Configuração local e segredos
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Sistema operativo
+Thumbs.db
+.DS_Store

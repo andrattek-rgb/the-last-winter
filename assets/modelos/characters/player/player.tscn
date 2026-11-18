@@ -1,0 +1,24 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_movement"]
+[ext_resource type="Texture2D" path="res://assets/modelos/characters/player/player_idle_spritesheet.png" id="2_sheet"]
+
+[sub_resource type="AtlasTexture" id="Atlas_player"]
+atlas = ExtResource("2_sheet")
+region = Rect2(34, 5, 62, 153)
+filter_clip = true
+
+[sub_resource type="CircleShape2D" id="Circle_feet"]
+radius = 8.0
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_movement")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.86, 0.86)
+texture = SubResource("Atlas_player")
+offset = Vector2(-0.75, -73.75)
+
+[node name="FootCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("Circle_feet")
