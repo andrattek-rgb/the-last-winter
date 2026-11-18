@@ -1,6 +1,6 @@
 # The Last Winter
 
-Jogo narrativo 2D de exploração e furtividade. Durante a Segunda Guerra Mundial, uma criança presa num campo de concentração procura o pai. A Sala 1 do barracão já permite testar a movimentação e montar o cenário à mão. O tutorial e as animações fazem parte das próximas etapas.
+Jogo narrativo 2D de exploração e furtividade. Durante a Segunda Guerra Mundial, uma criança presa num campo de concentração procura o pai. A Sala 1 do barracão permite testar o movimento, montar o cenário à mão e observar o varredor a trabalhar.
 
 ## Executar localmente
 
@@ -18,7 +18,7 @@ Na máquina de desenvolvimento, o editor portátil está em `../../work/godot-4.
 ## Estrutura
 
 - `scenes/` contém as cenas Godot. `main.tscn` é o ponto de entrada e abre a Sala 1.
-- `assets/modelos/` reúne os PNGs utilizados e as cenas reutilizáveis. `room_01/` contém o cenário e o beliche. `characters/player/` e `characters/prisoners/` contêm os spritesheets e as cenas dos personagens.
+- `assets/modelos/` reúne os PNGs utilizados e as cenas reutilizáveis. `room_01/` contém o cenário e o beliche. `characters/` contém as cenas, os spritesheets e os fotogramas de animação do protagonista, dos prisioneiros e do varredor.
 - `export_presets.cfg` configura a exportação Web.
 - `AGENTS.md`, `DIARIO.md` e `PROMPTS.md` registam as regras de trabalho, o percurso real e os pedidos que definiram o projeto.
 - À medida que forem usados, `web/` receberá o código do browser, `supabase/migrations/` o esquema versionado e `tests/` os testes.
@@ -29,7 +29,8 @@ Na máquina de desenvolvimento, o editor portátil está em `../../work/godot-4.
 2. Para mover um beliche, seleciona-o em `Environment/BunkBeds`. Clica na ferramenta **Mover** na barra da vista 2D e arrasta o beliche pelo ponto junto aos pés. Podes também escrever as coordenadas no **Inspetor → Transform → Position**. Para redimensionar, edita **Scale** e mantém X e Y iguais para preservar a proporção.
 3. Para acrescentar um beliche, seleciona um existente e usa **Ctrl+D**. Também podes arrastar `assets/modelos/room_01/bunk_bed.tscn` para `BunkBeds` na árvore da cena. Para acrescentar um NPC, arrasta `prisoner_01.tscn` ou `prisoner_02.tscn`, em `assets/modelos/characters/prisoners/`, para **Characters → Prisoners**.
 4. Seleciona **Camera2D** para ver o retângulo inicial e os limites na vista 2D. `WalkableArea` desenha a guia verde. As formas em `CollisionBoundaries` determinam os limites físicos. `Background` contém a parede e o chão separados. Para ajustar os beliches mais próximos da câmara, move os nós em **Foreground → ForegroundBunks**. Cada nó usa uma região do mesmo PNG, tem posição independente e serve de sobreposição visual. Usa o ícone do olho de `Reference` para ver a imagem de fundo completa.
-5. Usa **Ctrl+S** para guardar, **F5** para iniciar o projeto ou **F6** para testar a cena aberta. Move o protagonista com **WASD** ou **setas**. Usa **F8** para voltar ao editor. A câmara acompanha o eixo horizontal e as posições dos objetos são as que guardaste na cena. Os personagens usam fotogramas parados nesta fase.
+5. Usa **Ctrl+S** para guardar, **F5** para iniciar o projeto ou **F6** para testar a cena aberta. Move o protagonista com **WASD** ou **setas**. Usa **F8** para voltar ao editor. O protagonista alterna entre repouso e movimento, e os dois prisioneiros têm animações em repouso.
+6. Em **Characters → Sweeper**, o Inspetor permite editar os pontos da rota, a velocidade e a duração de cada paragem para varrer. Em **FilmEffect → Filter → Material**, podes ajustar a exposição, o grão e a vinheta. O material `effects/character_light.tres` controla o realce partilhado pelos personagens.
 
 ## Primeira publicação
 
@@ -63,4 +64,4 @@ Prazo em Portugal continental: **26 de novembro de 2026, às 23h59**. Preparar o
 
 ## Créditos e referências
 
-Os cinco PNGs da Sala 1 e os três spritesheets usados foram fornecidos pelo responsável do projeto no pacote Last Winter. O ficheiro `Três beliches em madeira e tecido.png` foi importado como `room1_foreground_bunks.png`. Os PNGs copiados são idênticos aos originais. O Godot prepara uma textura de trabalho e mostra um recorte de um fotograma por personagem. Os restantes spritesheets estão no pacote original e podem ser importados nas subpastas de `assets/modelos/characters/` quando forem necessários. Registar aqui a autoria, as licenças e as fontes históricas conforme forem confirmadas.
+Os cinco PNGs da Sala 1 e os sete spritesheets usados foram fornecidos pelo responsável do projeto no pacote Last Winter. O ficheiro `Três beliches em madeira e tecido.png` foi importado como `room1_foreground_bunks.png`. Os PNGs copiados são idênticos aos originais. O Godot prepara texturas de trabalho e seleciona os fotogramas das animações por região. Os restantes spritesheets estão no pacote original. Registar aqui a autoria, as licenças e as fontes históricas conforme forem confirmadas.

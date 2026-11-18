@@ -9,12 +9,20 @@
 [ext_resource type="PackedScene" path="res://assets/modelos/characters/prisoners/prisoner_01.tscn" id="7_prisoner_1"]
 [ext_resource type="PackedScene" path="res://assets/modelos/characters/prisoners/prisoner_02.tscn" id="8_prisoner_2"]
 [ext_resource type="Script" uid="uid://l13rq4sdtr01" path="res://scripts/room_camera.gd" id="9_camera"]
+[ext_resource type="PackedScene" path="res://assets/modelos/characters/sweeper/sweeper.tscn" id="10_sweeper"]
+[ext_resource type="Shader" uid="uid://d3egfrec26" path="res://effects/old_film.gdshader" id="11_film"]
 
 [sub_resource type="RectangleShape2D" id="Rectangle_horizontal"]
 size = Vector2(2186, 32)
 
 [sub_resource type="RectangleShape2D" id="Rectangle_vertical"]
 size = Vector2(32, 184)
+
+[sub_resource type="ShaderMaterial" id="Material_film"]
+shader = ExtResource("11_film")
+shader_parameter/exposure = 0.83
+shader_parameter/grain = 0.035
+shader_parameter/vignette = 0.18
 
 [node name="Room01" type="Node2D" unique_id=1295244451]
 y_sort_enabled = true
@@ -45,9 +53,6 @@ position = Vector2(221, 556)
 [node name="BunkBed04" parent="Environment/BunkBeds" unique_id=1501729015 instance=ExtResource("5_bunk")]
 position = Vector2(398, 552)
 
-[node name="BunkBed05" parent="Environment/BunkBeds" unique_id=1434058301 instance=ExtResource("5_bunk")]
-position = Vector2(562, 552)
-
 [node name="BunkBed06" parent="Environment/BunkBeds" unique_id=709444211 instance=ExtResource("5_bunk")]
 position = Vector2(721, 552)
 
@@ -60,9 +65,6 @@ position = Vector2(1052, 552)
 [node name="BunkBed08" parent="Environment/BunkBeds" unique_id=1734344331 instance=ExtResource("5_bunk")]
 position = Vector2(1219, 552)
 
-[node name="BunkBed09" parent="Environment/BunkBeds" unique_id=1618077869 instance=ExtResource("5_bunk")]
-position = Vector2(1386, 552)
-
 [node name="BunkBed10" parent="Environment/BunkBeds" unique_id=1245515654 instance=ExtResource("5_bunk")]
 position = Vector2(1548, 552)
 
@@ -74,9 +76,6 @@ position = Vector2(1882, 552)
 
 [node name="BunkBed13" parent="Environment/BunkBeds" unique_id=1979467569 instance=ExtResource("5_bunk")]
 position = Vector2(2044, 552)
-
-[node name="BunkBed14" parent="Environment/BunkBeds" unique_id=2019871274 instance=ExtResource("5_bunk")]
-position = Vector2(2205, 552)
 
 [node name="Props" type="Node2D" parent="Environment" unique_id=401789351]
 y_sort_enabled = true
@@ -91,10 +90,19 @@ position = Vector2(202, 613)
 y_sort_enabled = true
 
 [node name="Prisoner01" parent="Characters/Prisoners" unique_id=841048016 instance=ExtResource("7_prisoner_1")]
-position = Vector2(314, 565)
+position = Vector2(391, 568)
+scale = Vector2(0.68055546, 0.721667)
 
 [node name="Prisoner02" parent="Characters/Prisoners" unique_id=299362276 instance=ExtResource("8_prisoner_2")]
-position = Vector2(733, 569)
+position = Vector2(741.14996, 568.134)
+scale = Vector2(0.8205554, 0.8743334)
+
+[node name="Sweeper" parent="Characters" unique_id=1933507209 instance=ExtResource("10_sweeper")]
+position = Vector2(550, 610)
+scale = Vector2(1.2, 1.2)
+patrol_points = PackedVector2Array(480, 610, 95, 590, 620, 587, 1160, 594, 1660, 586, 2090, 603, 2020, 663, 1440, 666, 800, 664, 160, 662)
+walk_speed = 75.464
+sweep_seconds = 3.349
 
 [node name="Foreground" type="Node2D" parent="." unique_id=1534927373]
 z_index = 10
@@ -103,7 +111,7 @@ z_index = 10
 
 [node name="ForegroundBunk01" type="Sprite2D" parent="Foreground/ForegroundBunks" unique_id=1484504755]
 position = Vector2(-30.000004, 605)
-scale = Vector2(0.615, 0.615)
+scale = Vector2(0.615, 0.72476566)
 skew = 0.08726646
 texture = ExtResource("3_overlay")
 centered = false
@@ -111,8 +119,8 @@ region_enabled = true
 region_rect = Rect2(0, 466, 654, 259)
 
 [node name="ForegroundBunk02" type="Sprite2D" parent="Foreground/ForegroundBunks" unique_id=697859134]
-position = Vector2(354, 618)
-scale = Vector2(0.615, 0.615)
+position = Vector2(350, 618)
+scale = Vector2(0.6211162, 0.6960158)
 skew = -0.11868239
 texture = ExtResource("3_overlay")
 centered = false
@@ -121,7 +129,7 @@ region_rect = Rect2(0, 466, 654, 259)
 
 [node name="ForegroundBunk03" type="Sprite2D" parent="Foreground/ForegroundBunks" unique_id=697533653]
 position = Vector2(757.00006, 626)
-scale = Vector2(0.615, 0.615)
+scale = Vector2(0.615, 0.6718515)
 skew = -0.010471975
 texture = ExtResource("3_overlay")
 centered = false
@@ -130,7 +138,7 @@ region_rect = Rect2(0, 466, 654, 259)
 
 [node name="ForegroundBunk04" type="Sprite2D" parent="Foreground/ForegroundBunks" unique_id=555938753]
 position = Vector2(1149, 626)
-scale = Vector2(0.615, 0.615)
+scale = Vector2(0.615, 0.69115776)
 skew = -0.010471975
 texture = ExtResource("3_overlay")
 centered = false
@@ -139,7 +147,7 @@ region_rect = Rect2(0, 466, 654, 259)
 
 [node name="ForegroundBunk05" type="Sprite2D" parent="Foreground/ForegroundBunks" unique_id=1114742731]
 position = Vector2(1530.0001, 634.99994)
-scale = Vector2(0.615, 0.615)
+scale = Vector2(0.6364375, 0.6525459)
 skew = -0.010471975
 texture = ExtResource("3_overlay")
 centered = false
@@ -147,8 +155,8 @@ region_enabled = true
 region_rect = Rect2(0, 466, 654, 259)
 
 [node name="ForegroundBunk06" type="Sprite2D" parent="Foreground/ForegroundBunks" unique_id=1309782055]
-position = Vector2(1953, 637.00006)
-scale = Vector2(0.615, 0.615)
+position = Vector2(1948.0001, 643)
+scale = Vector2(0.6209448, 0.5914398)
 skew = 0.18325958
 texture = ExtResource("3_overlay")
 centered = false
@@ -200,3 +208,15 @@ z_index = 20
 scale = Vector2(1.05957, 1.05957)
 texture = ExtResource("4_reference")
 centered = false
+
+[node name="FilmEffect" type="CanvasLayer" parent="." unique_id=2075613648]
+layer = 5
+
+[node name="Filter" type="ColorRect" parent="FilmEffect" unique_id=866513709]
+material = SubResource("Material_film")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

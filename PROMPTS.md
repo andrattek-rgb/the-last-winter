@@ -17,3 +17,9 @@ Paráfrase do pedido que definiu a edição manual da sala pelo responsável. A 
 > Quero que prepares o cenário, o enquadramento e a estrutura para que eu possa montar o mapa manualmente, arrastando e posicionando objetos no editor.
 
 O pedido definiu a vista lateral 16:9, a câmara que acompanha o jogador na horizontal, o movimento em quatro direções e a montagem inicial com os recursos originais. Cada elemento ficou numa instância editável e as posições são guardadas no editor.
+
+## 18 de novembro de 2026 — Filtro de filme antigo e varredor
+
+> Quero o filtro e as animações nos personagens. O NPC com a vassoura vai andar pela sala toda e varrê-la. Como o jogo vai ficar mais escuro, quero um realce subtil nos personagens.
+
+Paráfrase do pedido que definiu o tratamento visual da Sala 1 e distinguiu a rotina do varredor das animações em repouso dos outros prisioneiros.

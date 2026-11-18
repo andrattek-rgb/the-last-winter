@@ -1,0 +1,101 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://c8d5ym000jx1i"]
+
+[ext_resource type="Texture2D" uid="uid://c0oiypw02b6h1" path="res://assets/modelos/characters/prisoners/npc_prisoner_idle_02_spritesheet.png" id="idle"]
+
+[sub_resource type="AtlasTexture" id="Atlas_idle_000"]
+atlas = ExtResource("idle")
+region = Rect2(2, 3, 112, 154)
+margin = Rect2(34, 23, 68, 26)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_idle_012"]
+atlas = ExtResource("idle")
+region = Rect2(2, 163, 112, 154)
+margin = Rect2(34, 23, 68, 26)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_idle_024"]
+atlas = ExtResource("idle")
+region = Rect2(2, 323, 112, 154)
+margin = Rect2(34, 23, 68, 26)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_idle_036"]
+atlas = ExtResource("idle")
+region = Rect2(2, 483, 112, 154)
+margin = Rect2(34, 23, 68, 26)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_idle_048"]
+atlas = ExtResource("idle")
+region = Rect2(2, 643, 112, 154)
+margin = Rect2(34, 23, 68, 26)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_idle_060"]
+atlas = ExtResource("idle")
+region = Rect2(2, 803, 112, 154)
+margin = Rect2(34, 23, 68, 26)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_idle_072"]
+atlas = ExtResource("idle")
+region = Rect2(2, 963, 112, 154)
+margin = Rect2(34, 23, 68, 26)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_idle_084"]
+atlas = ExtResource("idle")
+region = Rect2(2, 1123, 112, 154)
+margin = Rect2(34, 23, 68, 26)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_idle_096"]
+atlas = ExtResource("idle")
+region = Rect2(2, 1283, 112, 154)
+margin = Rect2(34, 23, 68, 26)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_idle_108"]
+atlas = ExtResource("idle")
+region = Rect2(2, 1443, 112, 154)
+margin = Rect2(34, 23, 68, 26)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Atlas_idle_000")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_idle_012")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_idle_024")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_idle_036")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_idle_048")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_idle_060")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_idle_072")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_idle_084")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_idle_096")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_idle_108")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 6.0
+}]

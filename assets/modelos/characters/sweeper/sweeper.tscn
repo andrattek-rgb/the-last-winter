@@ -1,0 +1,23 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sweeper.gd" id="1_behavior"]
+[ext_resource type="SpriteFrames" path="res://assets/modelos/characters/sweeper/sweeper_frames.tres" id="2_frames"]
+[ext_resource type="Material" path="res://effects/character_light.tres" id="3_light"]
+
+[sub_resource type="CircleShape2D" id="Circle_feet"]
+radius = 8.0
+
+[node name="Sweeper" type="CharacterBody2D"]
+collision_layer = 0
+motion_mode = 1
+script = ExtResource("1_behavior")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+material = ExtResource("3_light")
+sprite_frames = ExtResource("2_frames")
+animation = &"idle"
+autoplay = "idle"
+offset = Vector2(0, -84)
+
+[node name="FootCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("Circle_feet")

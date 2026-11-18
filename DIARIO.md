@@ -32,3 +32,15 @@
 
 - Reunimos os oito PNGs e as quatro cenas reutilizáveis em `assets/modelos/`, com subpastas para o cenário, o protagonista e os prisioneiros. O SHA-256 dos oito PNGs coincide com o dos originais. A cena da sala manteve os ajustes guardados pelo responsável, com catorze instâncias de beliches ao fundo e seis sprites de beliches em primeiro plano.
 - **Testes aprovados.** Revimos os ficheiros selecionados para o commit e verificámos o diff com `git diff --cached --check`. Numa cópia criada a partir desses ficheiros, sem cache do projeto, o Godot importou os recursos, abriu a cena e exportou para Web. No Chrome, a tecla D moveu o jogador e a câmara sem erros na consola.
+
+### Filtro de filme antigo, animações e varredor
+
+- Aplicámos um filtro a preto e branco com redução de exposição, grão, vinheta e oscilação ligeira. Um material partilhado clareia suavemente os personagens. Preservámos a montagem que o responsável guardou no editor.
+- Importámos quatro folhas adicionais dos recursos originais e verificámos os SHA-256. O protagonista usa animações de repouso e movimento, e os prisioneiros sentados animam-se sem mudar de posição. O varredor usa as folhas de caminhar e varrer, com dez pontos editáveis e pausas de 2,5 segundos.
+- O primeiro teste de percurso encontrou um ponto para lá da colisão dianteira já guardada pelo responsável. Recuámos os pontos dianteiros para dentro da área caminhável.
+- **Testes aprovados.** Um teste automatizado no Godot confirmou a transição das animações do protagonista, o avanço dos fotogramas dos prisioneiros, as dez paragens do varredor e a sua imobilidade durante a varredura. Exportámos para Web e verificámos no Chrome a composição do filtro, o varredor a trabalhar e a deslocação do protagonista e da câmara, sem erros de consola.
+
+### Correção dos recortes das animações
+
+- Inspecionámos os fotogramas nas texturas importadas pelo Godot. Ajustámos as regiões dos quatro recursos de animação e compensámos as margens para preservar o alinhamento dos pés. Selecionámos poses sem blocos de fundo na corrida e com o contorno da vassoura visível na caminhada. Os sete PNGs de animação coincidem com os originais.
+- **Testes aprovados.** Revimos os 84 fotogramas usados, repetimos o teste de animações e das dez paragens do varredor com a velocidade ajustada pelo responsável e validámos o build Web no Chrome sem erros de consola.
