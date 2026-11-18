@@ -44,3 +44,20 @@
 
 - Inspecionámos os fotogramas nas texturas importadas pelo Godot. Ajustámos as regiões dos quatro recursos de animação e compensámos as margens para preservar o alinhamento dos pés. Selecionámos poses sem blocos de fundo na corrida e com o contorno da vassoura visível na caminhada. Os sete PNGs de animação coincidem com os originais.
 - **Testes aprovados.** Revimos os 84 fotogramas usados, repetimos o teste de animações e das dez paragens do varredor com a velocidade ajustada pelo responsável e validámos o build Web no Chrome sem erros de consola.
+
+### Sombra de avião na Sala 1
+
+- Aplicámos um shader ao chão que usa os vãos das janelas do PNG original para projetar faixas de luz. Uma silhueta de avião a hélice atravessa essas faixas da esquerda para a direita. A primeira passagem começa após três segundos e repete-se a cada 29 segundos.
+- **Testes aprovados.** Verificámos no Godot que a sombra entra, atravessa, sai da sala e repete o percurso. Inspecionámos fotogramas da exportação Web no Chrome com a sombra em posições diferentes, sem erros de consola.
+- Refinámos a silhueta com base na referência do responsável. A nova forma tem um só motor, uma hélice frontal e asas afuniladas. Acrescentámos um borrão escuro limitado aos vidros e sincronizado com a posição da sombra no chão. Confirmámos a sincronização por teste no Godot e nos fotogramas do Chrome.
+
+### Restantes prisioneiros da Sala 1
+
+- Importámos as sete folhas de sprites originais dos prisioneiros 03 a 09 e conferimos os SHA-256. Selecionámos 11 fotogramas em repouso por personagem, verificámos visualmente os recortes e mantivemos o alinhamento pelos pés.
+- Distribuímos os novos personagens perto da parede. Cada um está numa cena reutilizável e pode ser movido no editor. O varredor continua a ser o único NPC que muda de posição durante o jogo.
+- **Testes aprovados.** No Godot, confirmámos que os nove prisioneiros animam sem sair do lugar, que as regiões dos fotogramas ficam dentro das texturas e que o varredor se desloca. Inspecionámos as extremidades da sala no build Web, que correu no Chrome sem erros de consola.
+
+### Muro e lareira na Sala 1
+
+- Copiámos os dois PNGs fornecidos e conferimos os SHA-256. Instalámos a lareira num vão entre beliches e o muro de tijolo mais à direita, ambos como cenas reutilizáveis em `Environment/Props`. Mantivemos os ajustes já guardados no cenário e nos NPCs.
+- **Testes aprovados.** Verificámos no Godot que os dois objetos carregam, que o protagonista colide com as bases e que pode passar à frente. Confirmámos o enquadramento dos dois objetos no build Web sem erros de consola.

@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/modelos/room_01/room1_fireplace.png" id="1_fireplace"]
+
+[sub_resource type="RectangleShape2D" id="Rectangle_base"]
+size = Vector2(145, 18)
+
+[node name="Fireplace" type="StaticBody2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("1_fireplace")
+offset = Vector2(2, -673)
+
+[node name="BaseCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("Rectangle_base")

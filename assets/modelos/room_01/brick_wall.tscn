@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/modelos/room_01/room1_brick_wall.png" id="1_wall"]
+
+[sub_resource type="RectangleShape2D" id="Rectangle_base"]
+size = Vector2(105, 16)
+
+[node name="BrickWall" type="StaticBody2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("1_wall")
+offset = Vector2(0, -698)
+
+[node name="BaseCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("Rectangle_base")

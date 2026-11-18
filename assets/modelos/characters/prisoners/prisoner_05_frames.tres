@@ -1,0 +1,110 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://63es62mkr3i6"]
+
+[ext_resource type="Texture2D" uid="uid://bea1nk2kuau3q" path="res://assets/modelos/characters/prisoners/npc_prisoner_idle_05_spritesheet.png" id="1_sheet"]
+
+[sub_resource type="AtlasTexture" id="Atlas_002"]
+atlas = ExtResource("1_sheet")
+region = Rect2(144, 2, 62, 158)
+margin = Rect2(59, 16, 118, 22)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_013"]
+atlas = ExtResource("1_sheet")
+region = Rect2(74, 162, 62, 158)
+margin = Rect2(59, 16, 118, 22)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_024"]
+atlas = ExtResource("1_sheet")
+region = Rect2(4, 322, 62, 158)
+margin = Rect2(59, 16, 118, 22)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_035"]
+atlas = ExtResource("1_sheet")
+region = Rect2(774, 322, 62, 158)
+margin = Rect2(59, 16, 118, 22)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_046"]
+atlas = ExtResource("1_sheet")
+region = Rect2(704, 482, 62, 158)
+margin = Rect2(59, 16, 118, 22)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_057"]
+atlas = ExtResource("1_sheet")
+region = Rect2(634, 642, 62, 158)
+margin = Rect2(59, 16, 118, 22)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_068"]
+atlas = ExtResource("1_sheet")
+region = Rect2(564, 802, 62, 158)
+margin = Rect2(59, 16, 118, 22)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_079"]
+atlas = ExtResource("1_sheet")
+region = Rect2(494, 962, 62, 158)
+margin = Rect2(59, 16, 118, 22)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_090"]
+atlas = ExtResource("1_sheet")
+region = Rect2(424, 1122, 62, 158)
+margin = Rect2(59, 16, 118, 22)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_101"]
+atlas = ExtResource("1_sheet")
+region = Rect2(354, 1282, 62, 158)
+margin = Rect2(59, 16, 118, 22)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Atlas_112"]
+atlas = ExtResource("1_sheet")
+region = Rect2(284, 1442, 62, 158)
+margin = Rect2(59, 16, 118, 22)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Atlas_002")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_013")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_024")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_035")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_046")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_057")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_068")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_079")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_090")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_101")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_112")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 6.0
+}]

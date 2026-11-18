@@ -11,6 +11,29 @@
 [ext_resource type="Script" uid="uid://l13rq4sdtr01" path="res://scripts/room_camera.gd" id="9_camera"]
 [ext_resource type="PackedScene" path="res://assets/modelos/characters/sweeper/sweeper.tscn" id="10_sweeper"]
 [ext_resource type="Shader" uid="uid://d3egfrec26" path="res://effects/old_film.gdshader" id="11_film"]
+[ext_resource type="Shader" uid="uid://drlijmwrlwgd3" path="res://effects/window_flyover.gdshader" id="12_flyover_shader"]
+[ext_resource type="Script" uid="uid://c0wcpno3gr7vk" path="res://scripts/window_flyover.gd" id="13_flyover"]
+[ext_resource type="PackedScene" path="res://assets/modelos/characters/prisoners/prisoner_03.tscn" id="14_prisoner_3"]
+[ext_resource type="PackedScene" path="res://assets/modelos/characters/prisoners/prisoner_04.tscn" id="15_prisoner_4"]
+[ext_resource type="PackedScene" path="res://assets/modelos/characters/prisoners/prisoner_05.tscn" id="16_prisoner_5"]
+[ext_resource type="PackedScene" path="res://assets/modelos/characters/prisoners/prisoner_07.tscn" id="18_prisoner_7"]
+[ext_resource type="PackedScene" path="res://assets/modelos/characters/prisoners/prisoner_09.tscn" id="20_prisoner_9"]
+[ext_resource type="PackedScene" path="res://assets/modelos/room_01/brick_wall.tscn" id="21_brick_wall"]
+[ext_resource type="PackedScene" path="res://assets/modelos/room_01/fireplace.tscn" id="22_fireplace"]
+
+[sub_resource type="ShaderMaterial" id="Material_flyover"]
+resource_local_to_scene = true
+shader = ExtResource("12_flyover_shader")
+shader_parameter/window_source = ExtResource("1_wall")
+shader_parameter/airplane_x = -220.0
+shader_parameter/windows_only = false
+
+[sub_resource type="ShaderMaterial" id="Material_window_blur"]
+resource_local_to_scene = true
+shader = ExtResource("12_flyover_shader")
+shader_parameter/window_source = ExtResource("1_wall")
+shader_parameter/airplane_x = -220.0
+shader_parameter/windows_only = true
 
 [sub_resource type="RectangleShape2D" id="Rectangle_horizontal"]
 size = Vector2(2186, 32)
@@ -37,6 +60,22 @@ centered = false
 [node name="Floor" type="Sprite2D" parent="Background" unique_id=1895934781]
 texture = ExtResource("2_floor")
 centered = false
+
+[node name="WindowFlyover" type="ColorRect" parent="Background" unique_id=1750605706]
+material = SubResource("Material_flyover")
+offset_top = 519.0
+offset_right = 2170.0
+offset_bottom = 725.0
+mouse_filter = 2
+script = ExtResource("13_flyover")
+
+[node name="WindowBlur" type="ColorRect" parent="Background/WindowFlyover" unique_id=584024445]
+material = SubResource("Material_window_blur")
+layout_mode = 0
+offset_top = -266.0
+offset_right = 2170.0
+offset_bottom = -210.0
+mouse_filter = 2
 
 [node name="Environment" type="Node2D" parent="." unique_id=1225530455]
 y_sort_enabled = true
@@ -80,6 +119,14 @@ position = Vector2(2044, 552)
 [node name="Props" type="Node2D" parent="Environment" unique_id=401789351]
 y_sort_enabled = true
 
+[node name="BrickWall" parent="Environment/Props" unique_id=725753065 instance=ExtResource("21_brick_wall")]
+position = Vector2(1378, 545)
+scale = Vector2(-0.92084706, 0.9048431)
+
+[node name="Fireplace" parent="Environment/Props" unique_id=2102091197 instance=ExtResource("22_fireplace")]
+position = Vector2(559, 552)
+scale = Vector2(1.08, 1.04)
+
 [node name="Characters" type="Node2D" parent="." unique_id=1164624583]
 y_sort_enabled = true
 
@@ -96,6 +143,33 @@ scale = Vector2(0.68055546, 0.721667)
 [node name="Prisoner02" parent="Characters/Prisoners" unique_id=299362276 instance=ExtResource("8_prisoner_2")]
 position = Vector2(741.14996, 568.134)
 scale = Vector2(0.8205554, 0.8743334)
+
+[node name="Prisoner03" parent="Characters/Prisoners" unique_id=691172407 instance=ExtResource("14_prisoner_3")]
+position = Vector2(87.1, 566.60547)
+scale = Vector2(1.0988889, 1.118422)
+speed_scale = 0.87
+
+[node name="Prisoner04" parent="Characters/Prisoners" unique_id=2120039408 instance=ExtResource("15_prisoner_4")]
+position = Vector2(687.99994, 704)
+scale = Vector2(1.2222222, 1.161778)
+speed_scale = 0.93
+flip_h = true
+
+[node name="Prisoner05" parent="Characters/Prisoners" unique_id=1167236523 instance=ExtResource("16_prisoner_5")]
+position = Vector2(975.1, 626.48267)
+scale = Vector2(1.0433332, 1.1062219)
+speed_scale = 0.85
+
+[node name="Prisoner07" parent="Characters/Prisoners" unique_id=343384940 instance=ExtResource("18_prisoner_7")]
+position = Vector2(1379, 577)
+scale = Vector2(1.1988888, 1.1444445)
+speed_scale = 0.89
+
+[node name="Prisoner09" parent="Characters/Prisoners" unique_id=481648520 instance=ExtResource("20_prisoner_9")]
+position = Vector2(1465.7499, 573.00006)
+scale = Vector2(1.0694458, 1.1395557)
+speed_scale = 0.88
+flip_h = true
 
 [node name="Sweeper" parent="Characters" unique_id=1933507209 instance=ExtResource("10_sweeper")]
 position = Vector2(550, 610)

@@ -1,0 +1,12 @@
+[gd_scene format=3]
+
+[ext_resource type="SpriteFrames" path="res://assets/modelos/characters/prisoners/prisoner_03_frames.tres" id="1_frames"]
+[ext_resource type="Material" path="res://effects/character_light.tres" id="2_light"]
+
+[node name="Prisoner03" type="AnimatedSprite2D"]
+material = ExtResource("2_light")
+scale = Vector2(1.02, 1.02)
+sprite_frames = ExtResource("1_frames")
+animation = &"idle"
+autoplay = "idle"
+offset = Vector2(0, -84)
