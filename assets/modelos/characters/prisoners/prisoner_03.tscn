@@ -2,6 +2,7 @@
 
 [ext_resource type="SpriteFrames" path="res://assets/modelos/characters/prisoners/prisoner_03_frames.tres" id="1_frames"]
 [ext_resource type="Material" path="res://effects/character_light.tres" id="2_light"]
+[ext_resource type="PackedScene" path="res://effects/character_shadow.tscn" id="3_shadow"]
 
 [node name="Prisoner03" type="AnimatedSprite2D"]
 material = ExtResource("2_light")
@@ -10,3 +11,5 @@ sprite_frames = ExtResource("1_frames")
 animation = &"idle"
 autoplay = "idle"
 offset = Vector2(0, -84)
+
+[node name="GroundShadow" parent="." instance=ExtResource("3_shadow")]

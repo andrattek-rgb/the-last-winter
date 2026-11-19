@@ -61,3 +61,32 @@
 
 - Copiámos os dois PNGs fornecidos e conferimos os SHA-256. Instalámos a lareira num vão entre beliches e o muro de tijolo mais à direita, ambos como cenas reutilizáveis em `Environment/Props`. Mantivemos os ajustes já guardados no cenário e nos NPCs.
 - **Testes aprovados.** Verificámos no Godot que os dois objetos carregam, que o protagonista colide com as bases e que pode passar à frente. Confirmámos o enquadramento dos dois objetos no build Web sem erros de consola.
+
+### Sombras dos personagens
+
+- Criámos uma sombra de contacto reutilizável, com centro mais escuro e bordas suaves. Adicionámo-la ao protagonista, ao varredor e aos nove modelos de prisioneiros. As sombras dos personagens sentados são mais largas. A origem fica junto aos pés e a camada é desenhada acima do chão e abaixo dos objetos.
+- **Testes aprovados.** Confirmámos no Godot o alinhamento nos onze modelos e o seguimento do protagonista e do varredor em movimento. Verificámos a aparência no Chrome com o filtro de filme antigo, sem erros de consola.
+
+### Novas animações do varredor
+
+- Ligámos as três novas folhas fornecidas pelo responsável às animações de repouso, caminhada e varredura. Verificámos os SHA-256 e os recortes dos 49 fotogramas escolhidos. Mantivemos a origem junto aos pés e usámos texturas de importação de 1920 × 1920 a partir dos PNGs de 3840 × 3840.
+- **Testes aprovados.** Confirmámos a origem e reprodução dos fotogramas, as dez paragens do percurso e a sombra de contacto. A primeira exportação avisou sobre o identificador da animação após a troca do recurso. Restaurámos o identificador original e o novo build correu no Chrome sem erros de consola.
+
+### Câmara mais próxima
+
+- Aumentámos o zoom da câmara de 1,0× para 1,18×. Baixámos o centro do enquadramento para privilegiar o protagonista e o chão, mantendo a janela de jogo em 16:9.
+- **Testes aprovados.** Confirmámos no Godot que o protagonista fica dentro do enquadramento inicial e que a vista respeita os limites da sala à esquerda, ao centro e à direita. Verificámos o novo plano e o acompanhamento no build Web no Chrome.
+
+### Revisão da caminhada do varredor
+
+- Encontrámos uma nova versão da caminhada. Copiámos o PNG sem alterações e conferimos o SHA-256. As folhas de repouso e de varredura tinham os mesmos hashes das versões já usadas. Selecionámos 16 fotogramas da nova folha e alinhámos a base dos pés com a sombra.
+- **Testes aprovados.** Confirmámos no Godot as três animações, a origem dos fotogramas e as dez paragens do percurso. Verificámos a nova caminhada no Chrome, sem erros de consola.
+
+### Película e destaque dos personagens
+
+- Reforçámos o aspeto de película a preto e branco com uma curva de contraste, grão fino combinado com grão mais largo, vinheta suave e riscos e poeira ocasionais. Clareámos os meios-tons dos personagens e preservámos os contornos escuros. O protagonista tem um material ajustável à parte com um realce um pouco maior.
+- **Testes aprovados.** Confirmámos no Godot as sombras dos personagens e a sincronização da passagem do avião. Inspecionámos o novo contraste nas capturas do Chrome, com o build Web a correr sem erros de consola.
+
+### Regresso ao visual anterior
+
+- A pedido do responsável, repusemos o grão, a exposição e a vinheta anteriores, bem como o realce partilhado pelos personagens. Confirmámos o arranque no Godot e a exportação Web no Chrome sem erros.

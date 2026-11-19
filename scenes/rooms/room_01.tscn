@@ -132,6 +132,7 @@ y_sort_enabled = true
 
 [node name="Player" parent="Characters" unique_id=1010490052 instance=ExtResource("6_player")]
 position = Vector2(202, 613)
+scale = Vector2(1.1711999, 1.1600025)
 
 [node name="Prisoners" type="Node2D" parent="Characters" unique_id=87175225]
 y_sort_enabled = true
@@ -145,7 +146,7 @@ position = Vector2(741.14996, 568.134)
 scale = Vector2(0.8205554, 0.8743334)
 
 [node name="Prisoner03" parent="Characters/Prisoners" unique_id=691172407 instance=ExtResource("14_prisoner_3")]
-position = Vector2(87.1, 566.60547)
+position = Vector2(32, 658)
 scale = Vector2(1.0988889, 1.118422)
 speed_scale = 0.87
 
@@ -176,7 +177,7 @@ position = Vector2(550, 610)
 scale = Vector2(1.2, 1.2)
 patrol_points = PackedVector2Array(480, 610, 95, 590, 620, 587, 1160, 594, 1660, 586, 2090, 603, 2020, 663, 1440, 666, 800, 664, 160, 662)
 walk_speed = 75.464
-sweep_seconds = 3.349
+sweep_seconds = 5.442
 
 [node name="Foreground" type="Node2D" parent="." unique_id=1534927373]
 z_index = 10
@@ -238,7 +239,8 @@ region_enabled = true
 region_rect = Rect2(0, 466, 654, 259)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=297064511 node_paths=PackedStringArray("target")]
-position = Vector2(640, 362.5)
+position = Vector2(542.37, 420)
+zoom = Vector2(1.18, 1.18)
 process_callback = 0
 limit_left = 0
 limit_top = 0

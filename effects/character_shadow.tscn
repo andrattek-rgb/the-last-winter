@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://effects/character_shadow.gdshader" id="1_shader"]
+
+[sub_resource type="ShaderMaterial" id="Material_shadow"]
+shader = ExtResource("1_shader")
+
+[node name="GroundShadow" type="ColorRect"]
+z_index = -1
+material = SubResource("Material_shadow")
+offset_left = -37.0
+offset_top = -9.0
+offset_right = 37.0
+offset_bottom = 15.0
+pivot_offset = Vector2(37, 9)
+mouse_filter = 2
