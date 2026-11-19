@@ -5,23 +5,30 @@ Jogo narrativo 2D de exploração e furtividade. Durante a Segunda Guerra Mundia
 ## Executar localmente
 
 1. Abre `project.godot` no [Godot 4.7.2 standard](https://godotengine.org/download/windows/). O renderer Compatibility está configurado.
-2. Carrega em **F5** para ver a base visual da Sala 1. Usa **F6** com a cena da sala aberta para a ver isoladamente.
+2. Carrega em **F5** para começar na Sala 1. Segue para a direita até ao fim das beliches para sair junto à porta fechada do pátio. Atravessa o pátio e carrega em **W** ou **↑** em frente à porta aberta para entrar. Usa **F6** com `scenes/rooms/parte_de_fora.tscn` aberta para testar diretamente o exterior.
 3. Para confirmar o arranque sem interface gráfica, corre os comandos abaixo na raiz do projeto. Em Windows, `godot` pode ser substituído pelo caminho do executável com sufixo `_console.exe`.
 
 ```powershell
 godot --headless --path . --editor --import
 godot --headless --path . --quit-after 2
+godot --headless --path . --fixed-fps 60 --script res://tests/exterior_route.gd
 ```
 
 Na máquina de desenvolvimento, o editor portátil está em `../../work/godot-4.7.2/` a partir da raiz do projeto. Essa cópia já tem os modelos Web e pode ser executada sem instalar o editor no sistema.
 
 ## Estrutura
 
-- `scenes/` contém as cenas Godot. `main.tscn` é o ponto de entrada e abre a Sala 1.
+- `scenes/` contém as cenas Godot. `main.tscn` abre a Sala 1 e liga-a ao pátio em `scenes/rooms/parte_de_fora.tscn`.
 - `assets/modelos/` reúne os PNGs utilizados e as cenas reutilizáveis. `room_01/` contém o cenário e o beliche. `characters/` contém as cenas, os spritesheets e os fotogramas de animação do protagonista, dos prisioneiros e do varredor.
 - `export_presets.cfg` configura a exportação Web.
 - `AGENTS.md`, `DIARIO.md` e `PROMPTS.md` registam as regras de trabalho, o percurso real e os pedidos que definiram o projeto.
-- À medida que forem usados, `web/` receberá o código do browser, `supabase/migrations/` o esquema versionado e `tests/` os testes.
+- `tests/` contém a verificação automática do percurso entre o barracão e o pátio. `web/` receberá o código do browser e `supabase/migrations/` o esquema versionado.
+
+## Editar o exterior
+
+Em `parte_de_fora.tscn`, ajusta `ChegadaDoBarracao` junto à porta fechada e `EntradaPortaAberta` junto aos degraus da porta da direita. O filho `Limiar` marca o ponto a que o protagonista caminha ao entrar. Se moveres um barracão, ajusta também o polígono correspondente em `LimitesDoPatio` e testa com **F6**.
+
+Em `Neve`, a propriedade **Amount** controla a quantidade de flocos. O filtro de película está em `FilmeAntigo` e a textura nevada está em `Paisagem/Chao`. Para veres os limites do pátio durante um teste, ativa **Debug → Visible Collision Shapes** antes de carregar em **F6**.
 
 ## Montar a Sala 1 no editor
 

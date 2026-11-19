@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" path="res://assets/modelos/characters/prisoners/prisoner_09.tscn" id="20_prisoner_9"]
 [ext_resource type="PackedScene" path="res://assets/modelos/room_01/brick_wall.tscn" id="21_brick_wall"]
 [ext_resource type="PackedScene" path="res://assets/modelos/room_01/fireplace.tscn" id="22_fireplace"]
+[ext_resource type="Texture2D" uid="uid://cx07v0sy4e4h" path="res://assets/modelos/room_01/room1_foreground_ropes.png" id="23_ropes"]
 
 [sub_resource type="ShaderMaterial" id="Material_flyover"]
 resource_local_to_scene = true
@@ -40,6 +41,9 @@ size = Vector2(2186, 32)
 
 [sub_resource type="RectangleShape2D" id="Rectangle_vertical"]
 size = Vector2(32, 184)
+
+[sub_resource type="RectangleShape2D" id="Rectangle_exit"]
+size = Vector2(44, 184)
 
 [sub_resource type="ShaderMaterial" id="Material_film"]
 shader = ExtResource("11_film")
@@ -238,6 +242,18 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 466, 654, 259)
 
+[node name="ForegroundRopes" type="Sprite2D" parent="Foreground" unique_id=1935364199]
+position = Vector2(-25, -19)
+scale = Vector2(0.63628, 0.26174033)
+texture = ExtResource("23_ropes")
+centered = false
+
+[node name="ForegroundRopes" type="Sprite2D" parent="Foreground/ForegroundRopes" unique_id=727645169]
+position = Vector2(2212.8625, 531.06067)
+scale = Vector2(0.87264806, 0.84348285)
+texture = ExtResource("23_ropes")
+centered = false
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=297064511 node_paths=PackedStringArray("target")]
 position = Vector2(542.37, 420)
 zoom = Vector2(1.18, 1.18)
@@ -277,6 +293,15 @@ shape = SubResource("Rectangle_vertical")
 [node name="RightWall" type="CollisionShape2D" parent="CollisionBoundaries" unique_id=1706841624]
 position = Vector2(2162, 608)
 shape = SubResource("Rectangle_vertical")
+
+[node name="ExitToOutside" type="Area2D" parent="." unique_id=2117875164]
+position = Vector2(2152, 608)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="Trigger" type="CollisionShape2D" parent="ExitToOutside" unique_id=336805518]
+shape = SubResource("Rectangle_exit")
 
 [node name="Reference" type="Sprite2D" parent="." unique_id=351033067]
 visible = false

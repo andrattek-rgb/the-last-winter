@@ -1,7 +1,30 @@
 [gd_scene format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/rooms/room_01.tscn" id="1_room"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="2_main"]
+[ext_resource type="Shader" path="res://effects/exterior_slide.gdshader" id="3_slide"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_slide"]
+resource_local_to_scene = true
+shader = ExtResource("3_slide")
 
 [node name="Main" type="Node2D"]
+script = ExtResource("2_main")
 
 [node name="Room01" parent="." instance=ExtResource("1_room")]
+
+[node name="ExteriorTransition" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="SlideBuffer" type="BackBufferCopy" parent="ExteriorTransition"]
+copy_mode = 0
+
+[node name="Slide" type="ColorRect" parent="ExteriorTransition"]
+visible = false
+material = SubResource("ShaderMaterial_slide")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

@@ -1,0 +1,160 @@
+[gd_scene format=3 uid="uid://cbf1gdssjvuf3"]
+
+[ext_resource type="Texture2D" uid="uid://dj0tbacgooyew" path="res://assets/modelos/parte_de_fora/fundo_ceu_cercas.png" id="1_ceu"]
+[ext_resource type="Texture2D" uid="uid://bdbub0konugbd" path="res://assets/modelos/parte_de_fora/chao_nevado.png" id="2_chao"]
+[ext_resource type="Texture2D" uid="uid://dpc1qkjhss6gb" path="res://assets/modelos/parte_de_fora/barracao_01_esquerdo.png" id="3_esquerdo"]
+[ext_resource type="Texture2D" uid="uid://b5ph1hlawo0b3" path="res://assets/modelos/parte_de_fora/barracao_02_direito_porta_aberta.png" id="4_direito"]
+[ext_resource type="Script" uid="uid://dure7f3ay0g1l" path="res://scripts/parte_de_fora.gd" id="5_exterior"]
+[ext_resource type="PackedScene" path="res://assets/modelos/characters/player/player.tscn" id="6_player"]
+[ext_resource type="Script" uid="uid://l13rq4sdtr01" path="res://scripts/room_camera.gd" id="7_camera"]
+[ext_resource type="Shader" uid="uid://d3egfrec26" path="res://effects/old_film.gdshader" id="8_filme"]
+
+[sub_resource type="RectangleShape2D" id="Rectangle_door"]
+size = Vector2(176, 56)
+
+[sub_resource type="Gradient" id="Gradient_neve"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 0.9, 1, 1, 1, 0.56, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="Texture_neve"]
+gradient = SubResource("Gradient_neve")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="ShaderMaterial" id="Material_filme"]
+shader = ExtResource("8_filme")
+shader_parameter/exposure = 0.83
+shader_parameter/grain = 0.035
+shader_parameter/vignette = 0.18
+
+[node name="ParteDeFora" type="Node2D" unique_id=839086293]
+script = ExtResource("5_exterior")
+
+[node name="Paisagem" type="Node2D" parent="." unique_id=232291346]
+
+[node name="Chao" type="Sprite2D" parent="Paisagem" unique_id=1160747003]
+position = Vector2(-2.000001, 530)
+scale = Vector2(1.0287083, 0.77719295)
+texture = ExtResource("2_chao")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1672, 570)
+
+[node name="CeuECercas" type="Sprite2D" parent="Paisagem" unique_id=2127815612]
+position = Vector2(-183.00002, 106.999985)
+scale = Vector2(0.9028546, 1.0392562)
+texture = ExtResource("1_ceu")
+centered = false
+
+[node name="Barracoes" type="Node2D" parent="." unique_id=485268717]
+
+[node name="BarracaoEsquerdo" type="Sprite2D" parent="Barracoes" unique_id=83975242]
+position = Vector2(-30.999998, 373)
+scale = Vector2(0.69430894, 0.5393259)
+texture = ExtResource("3_esquerdo")
+centered = false
+
+[node name="BarracaoDireitoPortaAberta" type="Sprite2D" parent="Barracoes" unique_id=50407201]
+position = Vector2(1386, 359.00003)
+scale = Vector2(0.7785388, 0.55994356)
+texture = ExtResource("4_direito")
+centered = false
+
+[node name="ChegadaDoBarracao" type="Marker2D" parent="." unique_id=695099817]
+position = Vector2(255, 765)
+gizmo_extents = 18.0
+
+[node name="Personagens" type="Node2D" parent="." unique_id=2113999865]
+y_sort_enabled = true
+
+[node name="Player" parent="Personagens" unique_id=926311062 instance=ExtResource("6_player")]
+position = Vector2(255, 765)
+scale = Vector2(1.1711999, 1.1600025)
+
+[node name="LimitesDoPatio" type="StaticBody2D" parent="." unique_id=277100759]
+
+[node name="Perimetro" type="CollisionPolygon2D" parent="LimitesDoPatio" unique_id=673331820]
+position = Vector2(-6.1035156e-05, 58.62036)
+scale = Vector2(0.99999994, 0.9043246)
+build_mode = 1
+polygon = PackedVector2Array(1.0000612, 728.03467, 218.00009, 704.8129, 293.0001, 728.03467, 1112.0002, 746.8332, 1432.0002, 742.41003, 1432.0002, 680.48535, 1573.0004, 698.1781, 1727.0004, 711.4477, 1721.0004, 938.1362, 1208.0002, 928.184, 6.103516e-05, 914.9144)
+
+[node name="BarracaoEsquerdo" type="CollisionPolygon2D" parent="LimitesDoPatio" unique_id=2054185501]
+position = Vector2(-5.7375183, 90.75275)
+scale = Vector2(0.96656466, 0.8956025)
+polygon = PackedVector2Array(0, 400, 427.01492, 465.88443, 411.49603, 650.118, 331.83246, 660.16705, 10.074358, 698.1303)
+
+[node name="BarracaoDireito" type="CollisionPolygon2D" parent="LimitesDoPatio" unique_id=35495090]
+position = Vector2(-565, 14)
+polygon = PackedVector2Array(1996, 491, 2281, 366, 2292, 702, 2236, 696, 2158, 735, 2033, 715)
+
+[node name="EntradaPortaAberta" type="Area2D" parent="." unique_id=342565683]
+position = Vector2(1526, 718)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="ZonaDaPorta" type="CollisionShape2D" parent="EntradaPortaAberta" unique_id=962140521]
+position = Vector2(64, 6)
+shape = SubResource("Rectangle_door")
+
+[node name="Limiar" type="Marker2D" parent="EntradaPortaAberta" unique_id=410735913]
+position = Vector2(20, -34)
+gizmo_extents = 15.0
+
+[node name="CameraPrevisualizacao" type="Camera2D" parent="." unique_id=1179790961 node_paths=PackedStringArray("target")]
+position = Vector2(558.37, 610)
+zoom = Vector2(1.18, 1.18)
+process_callback = 0
+limit_left = 16
+limit_top = 0
+limit_right = 1717
+limit_bottom = 919
+position_smoothing_enabled = true
+editor_draw_limits = true
+script = ExtResource("7_camera")
+target = NodePath("../Personagens/Player")
+
+[node name="Neve" type="CPUParticles2D" parent="." unique_id=546812937]
+z_index = 4
+position = Vector2(865, 89)
+amount = 68
+texture = SubResource("Texture_neve")
+lifetime = 13.0
+preprocess = 13.0
+emission_shape = 3
+emission_rect_extents = Vector2(950, 50)
+direction = Vector2(0.2, 1)
+spread = 13.0
+gravity = Vector2(0.35, 3)
+initial_velocity_min = 45.0
+initial_velocity_max = 60.0
+scale_amount_min = 0.39
+scale_amount_max = 0.88
+
+[node name="FilmeAntigo" type="CanvasLayer" parent="." unique_id=875298690]
+layer = 5
+
+[node name="Filtro" type="ColorRect" parent="FilmeAntigo" unique_id=316709996]
+material = SubResource("Material_filme")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="FimDoPercurso" type="CanvasLayer" parent="." unique_id=1153504994]
+layer = 6
+
+[node name="Escurecimento" type="ColorRect" parent="FimDoPercurso" unique_id=357987947]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.025, 0.023, 0.022, 0)

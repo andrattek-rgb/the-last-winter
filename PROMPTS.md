@@ -23,3 +23,17 @@ O pedido definiu a vista lateral 16:9, a câmara que acompanha o jogador na hori
 > Quero o filtro e as animações nos personagens. O NPC com a vassoura vai andar pela sala toda e varrê-la. Como o jogo vai ficar mais escuro, quero um realce subtil nos personagens.
 
 Paráfrase do pedido que definiu o tratamento visual da Sala 1 e distinguiu a rotina do varredor das animações em repouso dos outros prisioneiros.
+
+## 19 de novembro de 2026 — Montar a parte de fora antes da transição
+
+> Antes de fazer isso eu quero que você monte o mapa e depois me deixe editar.
+
+O pedido definiu a ordem de trabalho. Primeiro, montar o cenário exterior com os assets fornecidos para edição manual. Depois da aprovação, ligar o extremo direito da Sala 1 ao exterior com uma transição lateral desfocada.
+
+> Ele tem ir pra fora a partir da porta que esta fechada, e depois ele entra na porta que esta aberta.
+
+A correção definiu a direção do percurso pelo pátio ampliado. A porta fechada à esquerda é o ponto de chegada e a porta aberta à direita é o destino.
+
+> A transição da sala 1 pra parte de fora esta muito seca e sem blur […] adicione o filtro de desenho antigo nessa parte, e coloque neve caindo do lado de fora, não muita neve […] pro jogador não poder pisar em cima [das poças].
+
+O pedido acrescentou um desfoque mais visível na transição, a película da Sala 1 no exterior, neve leve e colisões nos contornos das poças.

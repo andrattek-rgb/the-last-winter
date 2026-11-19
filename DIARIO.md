@@ -90,3 +90,35 @@
 ### Regresso ao visual anterior
 
 - A pedido do responsável, repusemos o grão, a exposição e a vinheta anteriores, bem como o realce partilhado pelos personagens. Confirmámos o arranque no Godot e a exportação Web no Chrome sem erros.
+
+## 19 de novembro de 2026 — Montagem inicial da parte de fora
+
+- Copiámos os quatro PNGs da pasta do responsável e confirmámos que os ficheiros copiados têm os mesmos SHA-256 dos originais. Montámos céu e cercas, terreno e dois barracões como elementos independentes na cena `scenes/rooms/parte_de_fora.tscn`.
+- A cena tem uma câmara para pré-visualizar todo o exterior e um marcador de chegada perto da porta aberta. A colisão no fim da Sala 1, a mudança de cena e o deslize com desfoque aguardam a edição e aprovação do responsável.
+- O Godot importou a arte sem avisos. Inspecionámos uma captura renderizada do exterior e verificámos que a cena principal continuava a arrancar.
+
+### Percurso do barracão ao pátio
+
+- Aproveitámos a montagem ampliada pelo responsável. O extremo direito da Sala 1 ativa um deslize lateral de 0,65 segundos com desfoque. O protagonista aparece junto à porta fechada à esquerda do pátio.
+- A câmara acompanha a travessia do pátio. Em frente à porta aberta, avançar em profundidade leva o protagonista pelos degraus até ao limiar. A imagem escurece no fim do percurso.
+- O teste automático percorreu a Sala 1, verificou o ponto de chegada, os limites do pátio e a entrada pela direita. Inspecionámos o deslize e a entrada em capturas do Godot. No Chrome, o build Web abriu sem erros na consola e confirmou a saída para o pátio e os controlos no exterior.
+
+### Película, neve e poças no exterior
+
+- Aumentámos a transição para 1,10 segundos e reforçámos o desfoque horizontal. A transição lê a imagem do exterior depois do filtro para evitar um salto visual no fim.
+- Aplicámos a mesma película da Sala 1 ao pátio e acrescentámos flocos leves. Delineámos cinco poças com colisões editáveis e ajustámos o enquadramento, o perímetro e o limiar da porta à montagem mais estreita.
+- O teste automático confirmou as cinco colisões, o bloqueio do movimento na poça central e um caminho que contorna a água até à porta aberta. Inspecionámos o deslize, a neve e a entrada em capturas do Godot. O Chrome apresentou a saída para o pátio com o filtro e a neve e sem erros na consola.
+
+### Câmara mais próxima no exterior
+
+- Aplicámos o zoom de 1,18× da Sala 1 também ao pátio e baixámos o centro da câmara para manter o protagonista e o chão no enquadramento. Confirmámos a vista junto às duas portas em capturas do Godot e ajustámos o teste à versão guardada do perímetro do pátio. O percurso automático passou.
+
+### Novo chão do pátio
+
+- Importámos o PNG «Paisagem Nevada Vintage Monocromática» e verificámos que a cópia é idêntica ao original. O chão novo ocupa o mesmo espaço e deixou o percurso livre das colisões das antigas poças.
+- Ajustámos a zona de entrada aos degraus para que o protagonista a alcance antes de colidir com o barracão. O teste automático passou desde a Sala 1 até à porta aberta. Conferimos o aspeto do chão nos dois extremos do pátio no Godot.
+
+### Cordas em primeiro plano na Sala 1
+
+- Importámos o PNG original das cordas e pendurámo-lo num sprite independente na camada das beliches da frente. Confirmámos a sobreposição numa captura do Godot.
+- Durante o teste do percurso, repusemos a referência direta ao PNG do chão nevado, que o editor tinha guardado como referência à cache local. O percurso completo voltou a passar.
