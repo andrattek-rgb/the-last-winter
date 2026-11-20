@@ -12,6 +12,7 @@ Jogo narrativo 2D de exploração e furtividade. Durante a Segunda Guerra Mundia
 godot --headless --path . --editor --import
 godot --headless --path . --quit-after 2
 godot --headless --path . --fixed-fps 60 --script res://tests/exterior_route.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/laundry_stealth.gd
 ```
 
 Na máquina de desenvolvimento, o editor portátil está em `../../work/godot-4.7.2/` a partir da raiz do projeto. Essa cópia já tem os modelos Web e pode ser executada sem instalar o editor no sistema.
@@ -29,6 +30,14 @@ Na máquina de desenvolvimento, o editor portátil está em `../../work/godot-4.
 Em `parte_de_fora.tscn`, ajusta `ChegadaDoBarracao` junto à porta fechada e `EntradaPortaAberta` junto aos degraus da porta da direita. O filho `Limiar` marca o ponto a que o protagonista caminha ao entrar. Se moveres um barracão, ajusta também o polígono correspondente em `LimitesDoPatio` e testa com **F6**.
 
 Em `Neve`, a propriedade **Amount** controla a quantidade de flocos. O filtro de película está em `FilmeAntigo` e a textura nevada está em `Paisagem/Chao`. Para veres os limites do pátio durante um teste, ativa **Debug → Visible Collision Shapes** antes de carregar em **F6**.
+
+### Testar a furtividade
+
+- Abre `parte_de_fora.tscn` e usa **F6**. Mantém **C** premido para te agachares. Posiciona a pilha entre o guarda e o protagonista. Quando o carrinho estiver cheio, podes acompanhá-lo com **WASD** ou com as setas e usá-lo como cobertura. Uma deteção faz-te recomeçar junto ao primeiro barracão. Usa **W** ou **↑** junto à porta aberta para terminar o desafio.
+- Em **Personagens**, ajusta as posições da pilha, do trabalhador, do carrinho e do guarda. A propriedade **Size** da pilha e de **Carrinho → Cobertura** controla a área que interceta a visão do guarda.
+- Em **Desafio → Percurso**, edita a curva do trajeto. O primeiro ponto ancora a curva à posição inicial do carrinho. Em **Desafio**, ajusta **Pull Speed** quando o trabalhador puxa o carrinho cheio, **Travel Speed** para o regresso e **Guard Follow From X** para a linha branca. O marcador **Carrinho → Arte → Pegas** define onde as mãos encaixam.
+- Em **VisaoDoGuarda**, **Sight Start X** corresponde à linha azul. Também podes ajustar o alcance, o ângulo e o tempo de deteção. A carga cheia bloqueia a linha de visão em ambas as posturas.
+- Em **Desafio → Worker Load Scale**, ajusta apenas o tamanho do trabalhador durante `load_clothes`. Usa `1.0` para ver a animação à escala base ou `1.20` para a ampliar 20%.
 
 ## Montar a Sala 1 no editor
 

@@ -28,6 +28,7 @@ func _test_route() -> void:
 	var outside := game.get_node_or_null("ParteDeFora")
 	_check(outside != null and not game.has_node("Room01"), "Atravessar o extremo direito abre o exterior uma vez.")
 	if outside != null:
+		outside.get_node("Desafio/VisaoDoGuarda").sight_range = 0.0
 		var player: CharacterBody2D = outside.get_node("Personagens/Player")
 		var arrival: Marker2D = outside.get_node("ChegadaDoBarracao")
 		_check(player.global_position.is_equal_approx(arrival.global_position) and arrival.position.x < 575.0,
@@ -46,7 +47,8 @@ func _test_route() -> void:
 		await _hold(&"move_forward", 22)
 		_check(not player.test_move(player.global_transform, Vector2(510, 0)),
 			"É possível atravessar o chão onde ficava a poça central.")
-		await _hold(&"move_right", 238)
+		await _hold(&"move_forward", 40)
+		await _hold(&"move_right", 248)
 		_check(not outside.get("entering"), "Mover para a direita não ativa a porta aberta.")
 		await _hold(&"move_back", 160)
 		var threshold: Marker2D = outside.get_node("EntradaPortaAberta/Limiar")

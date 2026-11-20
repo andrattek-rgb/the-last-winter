@@ -8,6 +8,21 @@
 [ext_resource type="PackedScene" path="res://assets/modelos/characters/player/player.tscn" id="6_player"]
 [ext_resource type="Script" uid="uid://l13rq4sdtr01" path="res://scripts/room_camera.gd" id="7_camera"]
 [ext_resource type="Shader" uid="uid://d3egfrec26" path="res://effects/old_film.gdshader" id="8_filme"]
+[ext_resource type="Script" uid="uid://cmqlimt7ag5nw" path="res://scripts/laundry_convoy.gd" id="9_convoy"]
+[ext_resource type="Script" uid="uid://ctbwe6iubdawb" path="res://scripts/guard_vision.gd" id="10_vision"]
+[ext_resource type="Script" uid="uid://3xq0sae7xwqd" path="res://scripts/stealth_cover.gd" id="11_cover"]
+[ext_resource type="SpriteFrames" uid="uid://bxc1aon7jy3cs" path="res://assets/modelos/parte_de_fora/furtividade/trabalhador_frames.tres" id="12_worker"]
+[ext_resource type="SpriteFrames" uid="uid://d30xd6bm0xtm3" path="res://assets/modelos/parte_de_fora/furtividade/guarda_frames.tres" id="13_guard"]
+[ext_resource type="PackedScene" path="res://assets/modelos/parte_de_fora/furtividade/carrinho.tscn" id="14_cart"]
+[ext_resource type="Texture2D" uid="uid://dppgelsomi21o" path="res://assets/modelos/parte_de_fora/furtividade/pilha_pijamas.png" id="15_pile"]
+[ext_resource type="Material" path="res://effects/character_light.tres" id="16_light"]
+[ext_resource type="PackedScene" path="res://effects/character_shadow.tscn" id="17_shadow"]
+
+[sub_resource type="Curve2D" id="Curve_laundry"]
+_data = {
+"points": PackedVector2Array(-41.173553, -0.9173546, 41.173553, 0.9173546, 143, -41, 0, 0, 0, 0, 215, -41, -53.917355, -1.8347101, 53.917355, 1.8347101, 296, -42, -42, 5, 59, 0, 418, -43, -63.132233, -0.86776876, 63.132233, 0.86776876, 516, -40, -18.727274, 18.181816, 18.727274, -18.181816, 739, -71, -17.47934, 13.65289, 17.47934, -13.65289, 784, -104, -41.231403, 1.9917363, 41.231403, -1.9917363, 866, -125, -25, 5, 25, -5, 950, -126, -23, 4, 25, -4, 1015, -139, -24, -10, 28, 11, 1085, -128, -32, -16, 0, 0, 1182, -79)
+}
+point_count = 12
 
 [sub_resource type="RectangleShape2D" id="Rectangle_door"]
 size = Vector2(176, 56)
@@ -34,6 +49,7 @@ shader_parameter/vignette = 0.18
 script = ExtResource("5_exterior")
 
 [node name="Paisagem" type="Node2D" parent="." unique_id=232291346]
+z_index = -2
 
 [node name="Chao" type="Sprite2D" parent="Paisagem" unique_id=1160747003]
 position = Vector2(-2.000001, 530)
@@ -58,7 +74,7 @@ texture = ExtResource("3_esquerdo")
 centered = false
 
 [node name="BarracaoDireitoPortaAberta" type="Sprite2D" parent="Barracoes" unique_id=50407201]
-position = Vector2(1386, 359.00003)
+position = Vector2(1421, 451)
 scale = Vector2(0.7785388, 0.55994356)
 texture = ExtResource("4_direito")
 centered = false
@@ -71,8 +87,73 @@ gizmo_extents = 18.0
 y_sort_enabled = true
 
 [node name="Player" parent="Personagens" unique_id=926311062 instance=ExtResource("6_player")]
-position = Vector2(255, 765)
+position = Vector2(255, 772.00006)
 scale = Vector2(1.1711999, 1.1600025)
+crouch_enabled = true
+
+[node name="PilhaDePijamas" type="Node2D" parent="Personagens" unique_id=319134844]
+position = Vector2(410, 745)
+script = ExtResource("11_cover")
+size = Vector2(168, 46)
+
+[node name="Pijamas" type="Sprite2D" parent="Personagens/PilhaDePijamas" unique_id=1509268576]
+position = Vector2(35.999985, -42)
+scale = Vector2(0.11669784, 0.15075201)
+texture = ExtResource("15_pile")
+offset = Vector2(0, -399)
+
+[node name="Pijamas2" type="Sprite2D" parent="Personagens/PilhaDePijamas" unique_id=1290937705]
+position = Vector2(94.999985, 7.9999948)
+scale = Vector2(0.11669784, 0.15075201)
+texture = ExtResource("15_pile")
+offset = Vector2(0, -399)
+
+[node name="Pijamas3" type="Sprite2D" parent="Personagens/PilhaDePijamas" unique_id=1877497355]
+position = Vector2(-26.999977, 5.9999948)
+scale = Vector2(0.11669784, 0.15075201)
+texture = ExtResource("15_pile")
+offset = Vector2(0, -399)
+
+[node name="PrisioneiroTrabalhador" type="AnimatedSprite2D" parent="Personagens" unique_id=1138017739]
+material = ExtResource("16_light")
+position = Vector2(437, 776.00006)
+scale = Vector2(1.390625, 1.6966555)
+sprite_frames = ExtResource("12_worker")
+animation = &"load_clothes"
+offset = Vector2(37, -55)
+
+[node name="Carrinho" parent="Personagens" unique_id=279201130 instance=ExtResource("14_cart")]
+position = Vector2(606, 789)
+scale = Vector2(1.4506853, 1.3822052)
+
+[node name="Guarda" type="AnimatedSprite2D" parent="Personagens" unique_id=1473847185]
+material = ExtResource("16_light")
+position = Vector2(955.50006, 730.47565)
+scale = Vector2(1.5859375, 1.7771062)
+sprite_frames = ExtResource("13_guard")
+animation = &"guard_idle_impatient"
+offset = Vector2(0, -55)
+
+[node name="Sombra" parent="Personagens/Guarda" unique_id=146536918 instance=ExtResource("17_shadow")]
+scale = Vector2(0.63, 0.61)
+
+[node name="Desafio" type="Node2D" parent="." unique_id=74460049 node_paths=PackedStringArray("worker", "guard", "cart", "route", "pile", "building")]
+script = ExtResource("9_convoy")
+worker = NodePath("../Personagens/PrisioneiroTrabalhador")
+guard = NodePath("../Personagens/Guarda")
+cart = NodePath("../Personagens/Carrinho")
+route = NodePath("Percurso")
+pile = NodePath("../Personagens/PilhaDePijamas")
+building = NodePath("../Barracoes/BarracaoDireitoPortaAberta")
+
+[node name="Percurso" type="Path2D" parent="Desafio" unique_id=1712318943]
+position = Vector2(527, 810)
+curve = SubResource("Curve_laundry")
+
+[node name="VisaoDoGuarda" type="Node" parent="Desafio" unique_id=606736990 node_paths=PackedStringArray("convoy")]
+script = ExtResource("10_vision")
+convoy = NodePath("..")
+sight_range = 470.0
 
 [node name="LimitesDoPatio" type="StaticBody2D" parent="." unique_id=277100759]
 
@@ -88,17 +169,17 @@ scale = Vector2(0.96656466, 0.8956025)
 polygon = PackedVector2Array(0, 400, 427.01492, 465.88443, 411.49603, 650.118, 331.83246, 660.16705, 10.074358, 698.1303)
 
 [node name="BarracaoDireito" type="CollisionPolygon2D" parent="LimitesDoPatio" unique_id=35495090]
-position = Vector2(-565, 14)
-polygon = PackedVector2Array(1996, 491, 2281, 366, 2292, 702, 2236, 696, 2158, 735, 2033, 715)
+position = Vector2(-537, 108)
+polygon = PackedVector2Array(2007, 491, 2281, 366, 2292, 702, 2236, 696, 2158, 735, 2040, 707)
 
 [node name="EntradaPortaAberta" type="Area2D" parent="." unique_id=342565683]
-position = Vector2(1526, 718)
+position = Vector2(1561, 810)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
 [node name="ZonaDaPorta" type="CollisionShape2D" parent="EntradaPortaAberta" unique_id=962140521]
-position = Vector2(64, 6)
+position = Vector2(64, 18)
 shape = SubResource("Rectangle_door")
 
 [node name="Limiar" type="Marker2D" parent="EntradaPortaAberta" unique_id=410735913]
@@ -158,3 +239,20 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.025, 0.023, 0.022, 0)
+
+[node name="AvisoDetecao" type="Label" parent="FimDoPercurso" unique_id=466947126]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -97.0
+offset_right = 180.0
+offset_bottom = -61.0
+theme_override_colors/font_outline_color = Color(0.06, 0.06, 0.06, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 25
+text = "Foste visto"
+horizontal_alignment = 1

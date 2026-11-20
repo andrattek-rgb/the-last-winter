@@ -37,3 +37,17 @@ A correção definiu a direção do percurso pelo pátio ampliado. A porta fecha
 > A transição da sala 1 pra parte de fora esta muito seca e sem blur […] adicione o filtro de desenho antigo nessa parte, e coloque neve caindo do lado de fora, não muita neve […] pro jogador não poder pisar em cima [das poças].
 
 O pedido acrescentou um desfoque mais visível na transição, a película da Sala 1 no exterior, neve leve e colisões nos contornos das poças.
+
+## 20 de novembro de 2026 — Primeiro desafio de furtividade
+
+> O jogador pode sair do esconderijo inicial, agachar-se atrás do carrinho e acompanhar o movimento para a direita.
+
+O pedido e a imagem marcada definiram a colocação da pilha, do trabalhador, do guarda e do carrinho, bem como o percurso. O carrinho enche ao longo de seis segundos e regressa vazio após três segundos atrás do Barracão 2. A pilha e a carga cheia bloqueiam a linha de visão quando o jogador está agachado. O pedido também especificou a inversão temporal dos fotogramas da animação de puxar e a reutilização da entrada existente.
+
+> O pegador do carrinho tem que estar virado para direita […] eu quero que ele vá andando até lá e depois toca a animação dele arrastando o carrinho.
+
+A revisão pede que o trabalhador saia da posição de carregamento e encaixe nas pegas antes de recuar. Também pede um guarda mais afastado e um ritmo mais lento.
+
+> O guarda só consegue ver da linha azul pra frente […] só vai poder seguir o carrinho quando passar da linha branca.
+
+A imagem da revisão também identifica a curva a corrigir atrás do Barracão 2. O ritmo reduzido aplica-se à fase de puxar o carrinho cheio.

@@ -1,7 +1,89 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://b7kvjfi6of31p"]
 
+[ext_resource type="Texture2D" uid="uid://c5indba2fov31" path="res://assets/modelos/characters/player/player_crouch_idle_atlas.png" id="3_crouch_idle"]
+[ext_resource type="Texture2D" uid="uid://dha87eg7f7td6" path="res://assets/modelos/characters/player/player_crouch_walk_atlas.png" id="4_crouch_walk"]
 [ext_resource type="Texture2D" uid="uid://byyn7af3ej5uc" path="res://assets/modelos/characters/player/player_idle_spritesheet.png" id="idle"]
 [ext_resource type="Texture2D" uid="uid://dppaw5s4eoko4" path="res://assets/modelos/characters/player/player_run_spritesheet.png" id="run"]
+
+[sub_resource type="AtlasTexture" id="crouch_idle_0"]
+atlas = ExtResource("3_crouch_idle")
+region = Rect2(0, 0, 192, 192)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="crouch_idle_1"]
+atlas = ExtResource("3_crouch_idle")
+region = Rect2(192, 0, 192, 192)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="crouch_idle_2"]
+atlas = ExtResource("3_crouch_idle")
+region = Rect2(384, 0, 192, 192)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="crouch_idle_3"]
+atlas = ExtResource("3_crouch_idle")
+region = Rect2(576, 0, 192, 192)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="crouch_idle_4"]
+atlas = ExtResource("3_crouch_idle")
+region = Rect2(768, 0, 192, 192)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="crouch_idle_5"]
+atlas = ExtResource("3_crouch_idle")
+region = Rect2(960, 0, 192, 192)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="crouch_idle_6"]
+atlas = ExtResource("3_crouch_idle")
+region = Rect2(1152, 0, 192, 192)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="crouch_idle_7"]
+atlas = ExtResource("3_crouch_idle")
+region = Rect2(1344, 0, 192, 192)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="crouch_walk_0"]
+atlas = ExtResource("4_crouch_walk")
+region = Rect2(0, 0, 192, 192)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="crouch_walk_1"]
+atlas = ExtResource("4_crouch_walk")
+region = Rect2(192, 0, 192, 192)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="crouch_walk_2"]
+atlas = ExtResource("4_crouch_walk")
+region = Rect2(384, 0, 192, 192)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="crouch_walk_3"]
+atlas = ExtResource("4_crouch_walk")
+region = Rect2(576, 0, 192, 192)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="crouch_walk_4"]
+atlas = ExtResource("4_crouch_walk")
+region = Rect2(768, 0, 192, 192)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="crouch_walk_5"]
+atlas = ExtResource("4_crouch_walk")
+region = Rect2(960, 0, 192, 192)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="crouch_walk_6"]
+atlas = ExtResource("4_crouch_walk")
+region = Rect2(1152, 0, 192, 192)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="crouch_walk_7"]
+atlas = ExtResource("4_crouch_walk")
+region = Rect2(1344, 0, 192, 192)
+filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_000"]
 atlas = ExtResource("idle")
@@ -137,6 +219,64 @@ filter_clip = true
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("crouch_idle_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("crouch_idle_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("crouch_idle_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("crouch_idle_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("crouch_idle_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("crouch_idle_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("crouch_idle_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("crouch_idle_7")
+}],
+"loop": 1,
+"name": &"crouch_idle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("crouch_walk_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("crouch_walk_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("crouch_walk_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("crouch_walk_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("crouch_walk_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("crouch_walk_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("crouch_walk_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("crouch_walk_7")
+}],
+"loop": 1,
+"name": &"crouch_walk",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("Atlas_idle_000")

@@ -122,3 +122,28 @@
 
 - Importámos o PNG original das cordas e pendurámo-lo num sprite independente na camada das beliches da frente. Confirmámos a sobreposição numa captura do Godot.
 - Durante o teste do percurso, repusemos a referência direta ao PNG do chão nevado, que o editor tinha guardado como referência à cache local. O percurso completo voltou a passar.
+
+## 20 de novembro de 2026 — Primeiro desafio de furtividade no pátio
+
+- Converti as marcações da referência em posições para a pilha, o trabalhador, o carrinho e o guarda e numa curva editável. O terreno, os barracões e a câmara conservaram a montagem guardada.
+- Verifiquei os recortes das nove folhas. O trabalhador usa 134 fotogramas por animação, com 268 para empurrar. O guarda usa 107 em repouso e 134 ao andar. Cada folha das rodas tem 134. Os PNGs originais foram copiados sem alterações e as importações usam escala uniforme. As folhas PNG não trazem duração por fotograma. Configurei a reprodução entre 16 e 24 fps conforme o movimento, inverti a ordem temporal de puxar e preparei dois atlas de agachamento a partir das folhas do protagonista.
+- O carrinho enche em três etapas dentro dos seis segundos. O conjunto faz o percurso com as pegas alinhadas, passa atrás do Barracão 2 e espera três segundos. Regressa vazio e faz uma manobra curta de reposicionamento junto à pilha para iniciar outro ciclo.
+- Acrescentei cobertura por interseção da linha de visão com a pilha ou o carrinho cheio. Ao ser detetado, o jogador volta à saída do Barracão 1. A entrada aberta reaproveita a caminhada pelos degraus e o escurecimento.
+- Passaram os testes do percurso e da furtividade no Godot. Validei os tempos, o recorte dos fotogramas, a cobertura inicial, o acompanhamento manual agachado, a deteção e a chegada à porta. Em capturas do Godot conferi o carregamento, as pegas e a passagem atrás do barracão. A exportação Web abriu no Chrome, mostrou o ciclo e respondeu ao agachamento sem erros na consola.
+
+### Pegas à direita e ritmo do conjunto
+
+- Usei a montagem guardada pelo responsável e fixei as pegas à direita. Após carregar durante seis segundos, o trabalhador contorna o carrinho ainda imóvel, vira-se junto às pegas e recua para a direita. A posição das mãos acompanha um marcador no carrinho em ambos os sentidos.
+- Reduzi a velocidade de deslocação de 78 para 52 unidades por segundo e abrandei as animações do movimento. O guarda segue numa faixa mais afastada, com sombra de contacto, e passa atrás do barracão antes de reaparecer no regresso.
+- Os testes do percurso e da furtividade passaram. Inspecionei as capturas do contorno, da pega e dos movimentos de ida e regresso no Godot.
+
+### Escala própria para o carregamento
+
+- Acrescentei `Worker Load Scale` ao nó `Desafio`, com valor inicial de 1,20. O multiplicador só se aplica a `load_clothes`. O trabalhador recupera a escala base ao começar a caminhar.
+- Confirmei a escala em dois ciclos e inspecionei uma captura do carregamento. Os testes completos assinalaram um bloqueio na aproximação à porta do Barracão 2 na montagem guardada. A verificação da escala passou.
+
+### Limites do guarda e curva atrás do barracão
+
+- Usei a linha azul como limite inicial da visão e a branca como ponto onde o guarda começa a seguir. A carga cheia bloqueia a linha de visão do guarda em ambas as posturas. O percurso mantém um ritmo lento de 52 unidades por segundo a puxar e volta a 78 no regresso.
+- Substituí os pontos amontoados da curva final por uma trajetória contínua e usei a sobreposição da fachada para ocultar progressivamente cada elemento. Realinhei a zona de entrada e o limiar com a posição guardada da porta aberta.
+- Os dois testes automáticos passaram. As capturas do Godot mostraram o guarda a partir depois do carrinho e a passagem progressiva do conjunto atrás do edifício.
