@@ -33,10 +33,10 @@ Em `Neve`, a propriedade **Amount** controla a quantidade de flocos. O filtro de
 
 ### Testar a furtividade
 
-- Abre `parte_de_fora.tscn` e usa **F6**. Mantém **C** premido para te agachares. Posiciona a pilha entre o guarda e o protagonista. Quando o carrinho estiver cheio, podes acompanhá-lo com **WASD** ou com as setas e usá-lo como cobertura. Uma deteção faz-te recomeçar junto ao primeiro barracão. Usa **W** ou **↑** junto à porta aberta para terminar o desafio.
+- Abre `parte_de_fora.tscn` e usa **F6**. Mantém **C** premido para te agachares atrás da pilha. Usa **WASD** ou as setas para acompanhar o carrinho pelo lado de baixo do ecrã, dentro da largura da caixa. Uma deteção faz-te recomeçar junto ao primeiro barracão. Usa **W** ou **↑** junto à porta aberta para terminar o desafio.
 - Em **Personagens**, ajusta as posições da pilha, do trabalhador, do carrinho e do guarda. A propriedade **Size** da pilha e de **Carrinho → Cobertura** controla a área que interceta a visão do guarda.
 - Em **Desafio → Percurso**, edita a curva do trajeto. O primeiro ponto ancora a curva à posição inicial do carrinho. Em **Desafio**, ajusta **Pull Speed** quando o trabalhador puxa o carrinho cheio, **Travel Speed** para o regresso e **Guard Follow From X** para a linha branca. O marcador **Carrinho → Arte → Pegas** define onde as mãos encaixam.
-- Em **VisaoDoGuarda**, **Sight Start X** corresponde à linha azul. Também podes ajustar o alcance, o ângulo e o tempo de deteção. Com o carrinho cheio, a área **Carrinho → Cobertura** acompanha as rodas do lado da câmara e protege o jogador enquanto estiver dentro dela.
+- Em **VisaoDoGuarda**, **Sight Start X** define o início da vigilância no pátio. Também podes ajustar o alcance, o ângulo e o tempo de deteção. Em **Carrinho → Cobertura**, **Position** define a linha que acompanha o carrinho e **Size X** define a largura protegida abaixo dela, com o carrinho vazio ou cheio.
 - Em **Desafio**, **Idle Seconds** controla as pausas antes de carregar e de puxar. **Stop At X** e **Stop Seconds** controlam a paragem do carrinho. O marcador **ParagemGuarda** define onde o guarda espera.
 - Em **Desafio → Worker Load Scale**, ajusta apenas o tamanho do trabalhador durante `load_clothes`. Usa `1.0` para ver a animação à escala base ou `1.20` para a ampliar 20%.
 

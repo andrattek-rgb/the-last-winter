@@ -164,3 +164,20 @@
 - Fiz um backup dos modelos, cenas, scripts e testes. Recriei os atlas ativos do protagonista, dos prisioneiros da Sala 1, do varredor, do trabalhador, do guarda e do carrinho a partir dos ficheiros de origem. Os atlas de agachamento foram reconstruídos a partir dos recortes dos PNGs de origem. Reaproveitei a importação de maior resolução de `load_clothes`.
 - Retirei margens transparentes dos novos atlas para os compactar e conservei o alinhamento dos fotogramas no Godot. Verifiquei 45 PNGs existentes por SHA-256 e 1498 recortes quanto à ordem, aos tempos e às dimensões lógicas.
 - Passaram os testes de percurso e furtividade. Examinei a Sala 1 e a paragem do carrinho no Godot. A versão Web abriu no Chrome e executou o agachamento e o ciclo exterior sem erros na consola. O pacote de dados Web cresceu de cerca de 46 para 88 MiB.
+
+### Enchimento gradual do carrinho
+
+- Misturei progressivamente os desenhos dos quatro níveis de carga ao longo de 0,48 segundos por mudança. Alinhei as rodas entre os desenhos estáticos e animados para reduzir os contornos duplos. Mantive os tempos de carregamento.
+- Inspecionei os estados intermédios no Godot e confirmei em teste que a mistura termina com um único estado visível.
+
+### Sobreposição do guarda e do carrinho
+
+- Coloquei o guarda atrás do carrinho na ordem de desenho. A deteção passou a verificar a posição do guarda em relação ao barracão diretamente. Confirmei a sobreposição numa captura em movimento e os testes de percurso e furtividade passaram.
+
+### Linha de proteção do carrinho
+
+- A proteção acompanha o carrinho vazio ou cheio e cobre toda a faixa abaixo da linha da caixa, dentro da largura assinalada. Acima da linha, o guarda continua a aplicar as regras de visão. Passei os testes de percurso e furtividade com verificações dos dois lados da linha, dos limites laterais e do regresso.
+
+### Jogador do lado da câmara
+
+- Retirei a elevação da camada do carrinho quando o jogador está agachado. A posição dos pés determina a sobreposição. Confirmei em captura que as rodas já não cortam o jogador do lado da câmara. Os testes de percurso e furtividade passaram.

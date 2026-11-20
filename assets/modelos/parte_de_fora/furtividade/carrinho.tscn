@@ -22,19 +22,21 @@ offset = Vector2(68, -110)
 
 [node name="PoucaRoupa" type="Sprite2D" parent="Arte"]
 visible = false
-scale = Vector2(0.108, 0.108)
+position = Vector2(13, 3)
+scale = Vector2(0.102, 0.102)
 texture = ExtResource("3_small")
 centered = false
 offset = Vector2(-510, -1054)
 
 [node name="MeioCheio" type="Sprite2D" parent="Arte"]
 visible = false
-scale = Vector2(0.108, 0.108)
+position = Vector2(13, 3)
+scale = Vector2(0.102, 0.102)
 texture = ExtResource("4_half")
 centered = false
 offset = Vector2(-510, -1048)
 
 [node name="Cobertura" type="Node2D" parent="."]
-position = Vector2(0, 23)
+position = Vector2(5, -28)
 script = ExtResource("5_cover")
-size = Vector2(67, 42)
+size = Vector2(96, 42)

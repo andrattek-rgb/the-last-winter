@@ -67,4 +67,3 @@ func _walk_through_door() -> void:
 
 func _show_cover(cover: StealthCover) -> void:
 	pile_art.z_index = 1 if cover == vision.convoy.pile else 0
-	vision.convoy.cart.art.z_index = 1 if cover == vision.convoy.cart.cover and vision.convoy.cart.z_index == 0 else 0

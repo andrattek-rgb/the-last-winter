@@ -33,7 +33,7 @@ func can_see(target: Vector2, crouched: bool) -> bool:
 
 func cover_at(target: Vector2) -> StealthCover:
 	var origin := convoy.guard.global_position
-	if convoy.cart.load_level == LaundryCart.Load.FULL and convoy.cart.cover.contains_point(target):
+	if convoy.cart.visible and convoy.cart.cover.covers_below_line(target):
 		return convoy.cart.cover
 	if convoy.pile.blocks_sight(origin, target):
 		return convoy.pile

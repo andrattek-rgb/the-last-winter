@@ -3,8 +3,9 @@ extends Node2D
 
 @export var size := Vector2(150, 40)
 
-func contains_point(target: Vector2) -> bool:
-	return Rect2(-size * 0.5, size).has_point(to_local(target))
+func covers_below_line(target: Vector2) -> bool:
+	var point := to_local(target)
+	return absf(point.x) <= size.x * 0.5 and point.y >= 0.0
 
 
 func blocks_sight(origin: Vector2, target: Vector2) -> bool:

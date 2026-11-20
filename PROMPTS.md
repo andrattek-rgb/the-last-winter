@@ -55,3 +55,7 @@ A imagem da revisão também identifica a curva a corrigir atrás do Barracão 2
 > A seta verde vai ser o percurso do prisioneiro com o carrinho […] a seta vermelha é o percurso do guarda […] eu quero acompanhar o carrinho igual o quadrado roxo.
 
 A revisão acrescenta pausas antes de carregar e puxar, uma paragem conjunta de três segundos junto ao Barracão 2 e uma zona móvel de cobertura do lado da câmara.
+
+> Do limite vermelho pra baixo do carrinho o guarda não pode ver o player e do azul pra cima o guarda consegue ver.
+
+A nova referência define uma linha móvel na caixa. A proteção acompanha toda a faixa de baixo dentro da largura assinalada, mesmo com o carrinho vazio.

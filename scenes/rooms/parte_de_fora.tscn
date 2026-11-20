@@ -49,7 +49,7 @@ shader_parameter/vignette = 0.18
 script = ExtResource("5_exterior")
 
 [node name="Paisagem" type="Node2D" parent="." unique_id=232291346]
-z_index = -2
+z_index = -3
 
 [node name="Chao" type="Sprite2D" parent="Paisagem" unique_id=1160747003]
 position = Vector2(-2.000001, 439)
@@ -96,28 +96,28 @@ position = Vector2(410, 745)
 script = ExtResource("11_cover")
 size = Vector2(168, 46)
 
-[node name="Pijamas" type="Sprite2D" parent="Personagens/PilhaDePijamas" unique_id=1509268576]
-position = Vector2(36.000015, -26)
-scale = Vector2(0.11669784, 0.15075201)
+[node name="Pijamas" type="Sprite2D" parent="Personagens/PilhaDePijamas" unique_id=1290937705]
+position = Vector2(82.75547, 6.896701)
+scale = Vector2(0.13050224, 0.17554505)
 texture = ExtResource("15_pile")
 offset = Vector2(0, -399)
 
-[node name="Pijamas2" type="Sprite2D" parent="Personagens/PilhaDePijamas" unique_id=1290937705]
-position = Vector2(94.999985, 7.9999948)
-scale = Vector2(0.11669784, 0.15075201)
+[node name="Pijamas4" type="Sprite2D" parent="Personagens/PilhaDePijamas" unique_id=959338111]
+position = Vector2(82.75547, 6.896701)
+scale = Vector2(0.13050224, 0.17554505)
 texture = ExtResource("15_pile")
 offset = Vector2(0, -399)
 
 [node name="Pijamas3" type="Sprite2D" parent="Personagens/PilhaDePijamas" unique_id=1877497355]
-position = Vector2(-26.999977, 5.9999948)
-scale = Vector2(0.11669784, 0.15075201)
+position = Vector2(-3.5000029, 4.8465357)
+scale = Vector2(0.11668547, 0.17667246)
 texture = ExtResource("15_pile")
 offset = Vector2(0, -399)
 
 [node name="PrisioneiroTrabalhador" type="AnimatedSprite2D" parent="Personagens" unique_id=1138017739]
 material = ExtResource("16_light")
 position = Vector2(437, 776.00006)
-scale = Vector2(0.6953125, 0.84832775)
+scale = Vector2(0.6953125, 0.84832776)
 sprite_frames = ExtResource("12_worker")
 animation = &"load_clothes"
 offset = Vector2(74, -110)
@@ -127,6 +127,7 @@ position = Vector2(606, 789)
 scale = Vector2(1.6023461, 1.4622029)
 
 [node name="Guarda" type="AnimatedSprite2D" parent="Personagens" unique_id=1473847185]
+z_index = -1
 material = ExtResource("16_light")
 position = Vector2(874, 712)
 scale = Vector2(0.79296875, 0.8885531)
@@ -170,7 +171,7 @@ polygon = PackedVector2Array(1.0000612, 728.03467, 218.00009, 704.8129, 293.0001
 [node name="BarracaoEsquerdo" type="CollisionPolygon2D" parent="LimitesDoPatio" unique_id=2054185501]
 position = Vector2(-5.7375183, 90.75275)
 scale = Vector2(0.96656466, 0.8956025)
-polygon = PackedVector2Array(0, 400, 427.01492, 465.88443, 411.49603, 650.118, 331.83246, 660.16705, 10.074358, 698.1303)
+polygon = PackedVector2Array(-18.894217, 321.8473, 393.90796, 444.66965, 411.49603, 650.118, 371.14694, 667.98303, 335.97083, 699.2469, 310.10602, 704.8297, 235.61539, 674.68243, 98.01467, 692.5475, 121.81029, 728.27765, 44.21589, 742.793, -18.894217, 746.1427)
 
 [node name="BarracaoDireito" type="CollisionPolygon2D" parent="LimitesDoPatio" unique_id=35495090]
 position = Vector2(-534, 52)

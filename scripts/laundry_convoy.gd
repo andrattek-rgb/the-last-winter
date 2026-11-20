@@ -132,7 +132,7 @@ func look_direction() -> Vector2:
 
 
 func guard_is_exposed() -> bool:
-	return guard.visible and guard.z_index >= building.z_index
+	return guard.visible and not _guard_is_behind_barrack()
 
 
 func _reset_at_pile() -> void:
@@ -170,7 +170,7 @@ func _update_load() -> void:
 	elif time >= fill_at_seconds.x:
 		level = LaundryCart.Load.SMALL
 	if level != cart.load_level:
-		cart.set_load(level)
+		cart.set_load(level, false, true)
 	pile.get_node("Pijamas").scale = _pile_scale * lerpf(1.0, minimum_pile_scale, elapsed / load_seconds)
 
 
@@ -279,8 +279,12 @@ func _set_depth(behind: bool) -> void:
 	cart.z_index = depth
 	var worker_behind := distance > _stop_distance and (behind or building.to_local(worker.global_position).x >= -48.0)
 	worker.z_index = building.z_index - 1 if worker_behind else building.z_index
-	var guard_behind := building.to_local(guard.global_position).x >= -12.0
-	guard.z_index = building.z_index - 1 if guard_behind else building.z_index
+	var guard_depth := building.z_index - 1 if _guard_is_behind_barrack() else building.z_index
+	guard.z_index = mini(guard_depth, cart.z_index - 1)
+
+
+func _guard_is_behind_barrack() -> bool:
+	return building.to_local(guard.global_position).x >= -12.0
 
 
 func _set_visible(shown: bool) -> void:

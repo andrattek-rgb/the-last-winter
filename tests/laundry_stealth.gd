@@ -42,11 +42,20 @@ func _run() -> void:
 		"C agacha o jogador com a animação própria.")
 	Input.action_release(&"crouch")
 
-	var exposed := Vector2(vision.sight_start_x + 2.0, 872)
-	_check(not vision.can_see(exposed - Vector2(4, 0), false) and vision.can_see(exposed, false),
+	var at_blue_line := Vector2(vision.sight_start_x + 2.0, convoy.cart.cover.global_position.y - 24.0)
+	_check(not vision.can_see(at_blue_line - Vector2(4, 0), false) and vision.can_see(at_blue_line, false),
 		"A linha azul delimita a visão do guarda.")
 	convoy._physics_process(1.5)
 	_check(convoy.cart.load_level == LOAD.SMALL, "O primeiro nível de carga é visível.")
+	var fill_blend := convoy.cart._fill_tween
+	fill_blend.pause()
+	fill_blend.custom_step(convoy.cart.fill_transition_seconds * 0.50)
+	_check(convoy.cart.wheels.visible and convoy.cart.small_load.visible
+		and convoy.cart.small_load.modulate.a > 0.0 and convoy.cart.small_load.modulate.a < 1.0,
+		"A roupa aparece gradualmente e o carrinho continua visível.")
+	fill_blend.custom_step(convoy.cart.fill_transition_seconds)
+	_check(not convoy.cart.wheels.visible and is_equal_approx(convoy.cart.small_load.modulate.a, 1.0),
+		"A mistura termina com apenas o novo estado visível.")
 	convoy._physics_process(1.7)
 	_check(convoy.cart.load_level == LOAD.HALF, "O segundo nível de carga é visível.")
 	convoy._physics_process(2.79)
@@ -78,14 +87,20 @@ func _run() -> void:
 		and convoy.worker.flip_h and is_equal_approx(convoy.distance, 2.2 * convoy.pull_speed),
 		"O trabalhador recua à direita das pegas à velocidade de puxar.")
 
-	var cart_shadow := convoy.cart.cover.global_position - convoy.cart.global_position
+	var cart_shadow := convoy.cart.cover.to_global(Vector2(0, 52)) - convoy.cart.global_position
 	var behind_cart := convoy.cart.global_position + cart_shadow
 	_check(not vision.can_see(behind_cart, false) and not vision.can_see(behind_cart, true),
-		"O carrinho cheio bloqueia a visão em ambas as posturas.")
-	_check(vision.cover_at(behind_cart + Vector2(0, 60)) != convoy.cart.cover,
-		"A proteção termina fora da zona móvel.")
+		"O lado vermelho protege em ambas as posturas.")
+	scene._show_cover(convoy.cart.cover)
+	_check(convoy.cart.art.z_index == 0, "A furtividade conserva a profundidade visual do carrinho.")
+	var above_line := convoy.cart.cover.to_global(Vector2(0, -8))
+	_check(vision.can_see(above_line, false), "O guarda consegue ver do lado azul.")
+	_check(vision.cover_at(behind_cart + Vector2(0, 90)) == convoy.cart.cover
+		and vision.cover_at(convoy.cart.cover.to_global(Vector2(55, 52))) != convoy.cart.cover,
+		"A faixa vermelha estende-se para baixo e conserva os limites laterais.")
 	convoy.cart.set_load(LOAD.EMPTY)
-	_check(vision.can_see(behind_cart, true), "O carrinho vazio não bloqueia a visão.")
+	_check(not vision.can_see(behind_cart, true) and vision.can_see(above_line, true),
+		"O carrinho vazio mantém a mesma linha de visão.")
 	convoy.cart.set_load(LOAD.FULL, true)
 
 	player.global_position = behind_cart
@@ -117,7 +132,9 @@ func _run() -> void:
 		and convoy.guard.animation == &"guard_walk"
 		and convoy.guard.global_position.distance_to(convoy.worker.global_position) > 120.0,
 		"O guarda só sai ao cruzar a linha branca e acompanha de uma faixa afastada.")
-	player.global_position = convoy.cart.cover.global_position
+	_check(convoy.guard.z_index < convoy.cart.z_index and convoy.guard_is_exposed(),
+		"O guarda anda atrás da camada do carrinho e continua a vigiar o pátio.")
+	player.global_position = convoy.cart.cover.to_global(Vector2(0, 52))
 	Input.action_press(&"crouch")
 	var protected_to_stop := true
 	for tick in 260:
@@ -148,7 +165,8 @@ func _run() -> void:
 	convoy._physics_process((route_length - convoy.distance) / convoy.pull_speed)
 	_check(convoy.phase == PHASE.HIDDEN_BEHIND_BARRACK and not convoy.worker.visible
 		and not convoy.guard.visible and not convoy.cart.visible
-		and convoy.worker.z_index < convoy.building.z_index,
+		and convoy.worker.z_index < convoy.building.z_index
+		and convoy.guard.z_index < convoy.cart.z_index,
 		"O conjunto fica em profundidade atrás do barracão.")
 	convoy._physics_process(2.99)
 	_check(convoy.phase == PHASE.HIDDEN_BEHIND_BARRACK, "O conjunto espera os 3 s completos.")
@@ -159,6 +177,9 @@ func _run() -> void:
 	convoy._physics_process(0.5)
 	_check(is_equal_approx(route_length - convoy.distance, 0.5 * convoy.travel_speed)
 		and convoy.worker.get_playing_speed() == 1.0, "O regresso usa a velocidade normal.")
+	_check(vision.cover_at(convoy.cart.cover.to_global(Vector2(0, 52))) == convoy.cart.cover
+		and vision.cover_at(convoy.cart.cover.to_global(Vector2(0, -8))) != convoy.cart.cover,
+		"A divisão acompanha o carrinho vazio no regresso.")
 	convoy._physics_process(convoy.distance / convoy.travel_speed)
 	_check(convoy.phase == PHASE.POSITIONING and convoy.cart.global_position.is_equal_approx(cart_start),
 		"O carrinho volta ao lugar inicial sem salto de posição.")
@@ -171,7 +192,7 @@ func _run() -> void:
 	_check((convoy.worker.scale * convoy._load_frame_ratio).is_equal_approx(worker_base_scale * convoy.worker_load_scale),
 		"O tamanho de carregamento não acumula a cada ciclo.")
 
-	player.global_position = exposed
+	player.global_position = Vector2(720, 820)
 	scene.set_physics_process(true)
 	await _ticks(43)
 	_check(scene.get("caught"), "A exposição contínua deteta o jogador.")
