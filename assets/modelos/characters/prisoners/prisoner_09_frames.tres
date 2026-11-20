@@ -1,71 +1,71 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://ki58jvxv2c7l"]
 
-[ext_resource type="Texture2D" uid="uid://cma54bkpr7w57" path="res://assets/modelos/characters/prisoners/npc_prisoner_idle_09_spritesheet.png" id="1_sheet"]
+[ext_resource type="Texture2D" uid="uid://bcenhbyhor06n" path="res://assets/modelos/characters/prisoners/npc_prisoner_idle_09_spritesheet_hd_01.png" id="1_sheet_hd_1"]
 
 [sub_resource type="AtlasTexture" id="Atlas_002"]
-atlas = ExtResource("1_sheet")
-region = Rect2(191, 4, 56, 158)
-margin = Rect2(61, 18, 124, 22)
+atlas = ExtResource("1_sheet_hd_1")
+region = Rect2(2, 2, 111, 314)
+margin = Rect2(122, 37, 249, 46)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_013"]
-atlas = ExtResource("1_sheet")
-region = Rect2(103, 168, 56, 158)
-margin = Rect2(61, 18, 124, 22)
+atlas = ExtResource("1_sheet_hd_1")
+region = Rect2(117, 2, 111, 314)
+margin = Rect2(122, 37, 249, 46)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_024"]
-atlas = ExtResource("1_sheet")
-region = Rect2(15, 332, 57, 158)
-margin = Rect2(61, 18, 123, 22)
+atlas = ExtResource("1_sheet_hd_1")
+region = Rect2(232, 2, 112, 313)
+margin = Rect2(123, 38, 248, 47)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_035"]
-atlas = ExtResource("1_sheet")
-region = Rect2(983, 332, 58, 158)
-margin = Rect2(61, 18, 122, 22)
+atlas = ExtResource("1_sheet_hd_1")
+region = Rect2(348, 2, 112, 313)
+margin = Rect2(124, 38, 248, 47)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_046"]
-atlas = ExtResource("1_sheet")
-region = Rect2(895, 497, 58, 157)
-margin = Rect2(61, 19, 122, 23)
+atlas = ExtResource("1_sheet_hd_1")
+region = Rect2(464, 2, 113, 312)
+margin = Rect2(124, 39, 247, 48)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_057"]
-atlas = ExtResource("1_sheet")
-region = Rect2(807, 661, 58, 157)
-margin = Rect2(61, 19, 122, 23)
+atlas = ExtResource("1_sheet_hd_1")
+region = Rect2(581, 2, 113, 312)
+margin = Rect2(124, 39, 247, 48)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_068"]
-atlas = ExtResource("1_sheet")
-region = Rect2(719, 825, 58, 157)
-margin = Rect2(61, 19, 122, 23)
+atlas = ExtResource("1_sheet_hd_1")
+region = Rect2(698, 2, 113, 312)
+margin = Rect2(124, 39, 247, 48)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_079"]
-atlas = ExtResource("1_sheet")
-region = Rect2(631, 988, 57, 158)
-margin = Rect2(61, 18, 123, 22)
+atlas = ExtResource("1_sheet_hd_1")
+region = Rect2(815, 2, 112, 313)
+margin = Rect2(123, 38, 248, 47)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_090"]
-atlas = ExtResource("1_sheet")
-region = Rect2(543, 1152, 57, 158)
-margin = Rect2(61, 18, 123, 22)
+atlas = ExtResource("1_sheet_hd_1")
+region = Rect2(931, 2, 112, 314)
+margin = Rect2(122, 37, 248, 46)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_101"]
-atlas = ExtResource("1_sheet")
-region = Rect2(455, 1316, 56, 158)
-margin = Rect2(61, 18, 124, 22)
+atlas = ExtResource("1_sheet_hd_1")
+region = Rect2(1047, 2, 111, 314)
+margin = Rect2(122, 37, 249, 46)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_112"]
-atlas = ExtResource("1_sheet")
-region = Rect2(367, 1480, 56, 158)
-margin = Rect2(61, 18, 124, 22)
+atlas = ExtResource("1_sheet_hd_1")
+region = Rect2(1162, 2, 111, 314)
+margin = Rect2(122, 37, 249, 46)
 filter_clip = true
 
 [resource]

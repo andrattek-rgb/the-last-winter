@@ -142,36 +142,36 @@ y_sort_enabled = true
 
 [node name="Prisoner01" parent="Characters/Prisoners" unique_id=841048016 instance=ExtResource("7_prisoner_1")]
 position = Vector2(391, 568)
-scale = Vector2(0.68055546, 0.721667)
+scale = Vector2(0.34027773, 0.3608335)
 
 [node name="Prisoner02" parent="Characters/Prisoners" unique_id=299362276 instance=ExtResource("8_prisoner_2")]
 position = Vector2(741.14996, 568.134)
-scale = Vector2(0.8205554, 0.8743334)
+scale = Vector2(0.4102777, 0.4371667)
 
 [node name="Prisoner03" parent="Characters/Prisoners" unique_id=691172407 instance=ExtResource("14_prisoner_3")]
 position = Vector2(32, 658)
-scale = Vector2(1.0988889, 1.118422)
+scale = Vector2(0.54944444, 0.559211)
 speed_scale = 0.87
 
 [node name="Prisoner04" parent="Characters/Prisoners" unique_id=2120039408 instance=ExtResource("15_prisoner_4")]
 position = Vector2(687.99994, 704)
-scale = Vector2(1.2222222, 1.161778)
+scale = Vector2(0.6111111, 0.580889)
 speed_scale = 0.93
 flip_h = true
 
 [node name="Prisoner05" parent="Characters/Prisoners" unique_id=1167236523 instance=ExtResource("16_prisoner_5")]
 position = Vector2(975.1, 626.48267)
-scale = Vector2(1.0433332, 1.1062219)
+scale = Vector2(0.5216666, 0.55311096)
 speed_scale = 0.85
 
 [node name="Prisoner07" parent="Characters/Prisoners" unique_id=343384940 instance=ExtResource("18_prisoner_7")]
 position = Vector2(1379, 577)
-scale = Vector2(1.1988888, 1.1444445)
+scale = Vector2(0.5994444, 0.57222223)
 speed_scale = 0.89
 
 [node name="Prisoner09" parent="Characters/Prisoners" unique_id=481648520 instance=ExtResource("20_prisoner_9")]
 position = Vector2(1465.7499, 573.00006)
-scale = Vector2(1.0694458, 1.1395557)
+scale = Vector2(0.5347229, 0.56977785)
 speed_scale = 0.88
 flip_h = true
 
@@ -305,6 +305,10 @@ material = SubResource("Material_film")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 5.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

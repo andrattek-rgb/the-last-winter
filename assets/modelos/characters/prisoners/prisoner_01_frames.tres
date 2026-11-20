@@ -1,65 +1,65 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://dq63mxf22nskt"]
 
-[ext_resource type="Texture2D" uid="uid://do5g43axqlurd" path="res://assets/modelos/characters/prisoners/npc_prisoner_idle_01_spritesheet.png" id="idle"]
+[ext_resource type="Texture2D" uid="uid://bcsvl6bqypsup" path="res://assets/modelos/characters/prisoners/npc_prisoner_idle_01_spritesheet_hd_01.png" id="idle_hd_1"]
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_000"]
-atlas = ExtResource("idle")
-region = Rect2(2, 1, 167, 175)
-margin = Rect2(7, 1, 13, 5)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(2, 2, 321, 348)
+margin = Rect2(20, 4, 39, 12)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_011"]
-atlas = ExtResource("idle")
-region = Rect2(1879, 1, 167, 175)
-margin = Rect2(7, 1, 13, 5)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(327, 2, 320, 348)
+margin = Rect2(20, 4, 40, 12)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_024"]
-atlas = ExtResource("idle")
-region = Rect2(2, 350, 167, 175)
-margin = Rect2(7, 1, 13, 5)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(651, 2, 321, 349)
+margin = Rect2(20, 2, 39, 11)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_036"]
-atlas = ExtResource("idle")
-region = Rect2(2, 525, 167, 175)
-margin = Rect2(7, 1, 13, 5)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(976, 2, 321, 345)
+margin = Rect2(20, 7, 39, 15)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_047"]
-atlas = ExtResource("idle")
-region = Rect2(1879, 525, 167, 175)
-margin = Rect2(7, 1, 13, 5)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(1301, 2, 320, 345)
+margin = Rect2(20, 7, 40, 15)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_060"]
-atlas = ExtResource("idle")
-region = Rect2(2, 874, 167, 175)
-margin = Rect2(7, 1, 13, 5)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(1625, 2, 321, 349)
+margin = Rect2(20, 2, 39, 11)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_072"]
-atlas = ExtResource("idle")
-region = Rect2(2, 1049, 167, 175)
-margin = Rect2(7, 1, 13, 5)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(2, 355, 321, 348)
+margin = Rect2(20, 4, 39, 12)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_083"]
-atlas = ExtResource("idle")
-region = Rect2(1879, 1049, 167, 175)
-margin = Rect2(7, 1, 13, 5)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(327, 355, 320, 346)
+margin = Rect2(20, 6, 40, 14)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_096"]
-atlas = ExtResource("idle")
-region = Rect2(2, 1398, 167, 175)
-margin = Rect2(7, 1, 13, 5)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(651, 355, 321, 343)
+margin = Rect2(20, 8, 39, 17)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_108"]
-atlas = ExtResource("idle")
-region = Rect2(2, 1573, 167, 175)
-margin = Rect2(7, 1, 13, 5)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(976, 355, 321, 350)
+margin = Rect2(20, 2, 39, 10)
 filter_clip = true
 
 [resource]

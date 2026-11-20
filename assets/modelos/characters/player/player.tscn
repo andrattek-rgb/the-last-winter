@@ -18,11 +18,11 @@ scale = Vector2(0.83, 0.84)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 material = ExtResource("3_light")
-scale = Vector2(0.86, 0.86)
+scale = Vector2(0.43, 0.43)
 sprite_frames = ExtResource("2_frames")
 animation = &"idle"
 autoplay = "idle"
-offset = Vector2(0, -84)
+offset = Vector2(0, -168)
 
 [node name="FootCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("Circle_feet")

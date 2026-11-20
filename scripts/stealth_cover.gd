@@ -3,6 +3,9 @@ extends Node2D
 
 @export var size := Vector2(150, 40)
 
+func contains_point(target: Vector2) -> bool:
+	return Rect2(-size * 0.5, size).has_point(to_local(target))
+
 
 func blocks_sight(origin: Vector2, target: Vector2) -> bool:
 	var from := to_local(origin)

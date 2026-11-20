@@ -51,3 +51,7 @@ A revisão pede que o trabalhador saia da posição de carregamento e encaixe na
 > O guarda só consegue ver da linha azul pra frente […] só vai poder seguir o carrinho quando passar da linha branca.
 
 A imagem da revisão também identifica a curva a corrigir atrás do Barracão 2. O ritmo reduzido aplica-se à fase de puxar o carrinho cheio.
+
+> A seta verde vai ser o percurso do prisioneiro com o carrinho […] a seta vermelha é o percurso do guarda […] eu quero acompanhar o carrinho igual o quadrado roxo.
+
+A revisão acrescenta pausas antes de carregar e puxar, uma paragem conjunta de três segundos junto ao Barracão 2 e uma zona móvel de cobertura do lado da câmara.

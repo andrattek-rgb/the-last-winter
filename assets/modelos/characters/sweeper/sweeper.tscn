@@ -16,11 +16,12 @@ script = ExtResource("1_behavior")
 [node name="GroundShadow" parent="." instance=ExtResource("4_shadow")]
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 material = ExtResource("3_light")
 sprite_frames = ExtResource("2_frames")
 animation = &"idle"
 autoplay = "idle"
-offset = Vector2(0, -84)
+offset = Vector2(0, -168)
 
 [node name="FootCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("Circle_feet")

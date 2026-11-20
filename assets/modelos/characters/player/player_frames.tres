@@ -1,220 +1,236 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://b7kvjfi6of31p"]
 
-[ext_resource type="Texture2D" uid="uid://c5indba2fov31" path="res://assets/modelos/characters/player/player_crouch_idle_atlas.png" id="3_crouch_idle"]
-[ext_resource type="Texture2D" uid="uid://dha87eg7f7td6" path="res://assets/modelos/characters/player/player_crouch_walk_atlas.png" id="4_crouch_walk"]
-[ext_resource type="Texture2D" uid="uid://byyn7af3ej5uc" path="res://assets/modelos/characters/player/player_idle_spritesheet.png" id="idle"]
-[ext_resource type="Texture2D" uid="uid://dppaw5s4eoko4" path="res://assets/modelos/characters/player/player_run_spritesheet.png" id="run"]
+[ext_resource type="Texture2D" uid="uid://k1kimx8pac2v" path="res://assets/modelos/characters/player/player_crouch_idle_atlas_hd_01.png" id="3_crouch_idle_hd_1"]
+[ext_resource type="Texture2D" uid="uid://mn4jigwlne70" path="res://assets/modelos/characters/player/player_crouch_walk_atlas_hd_01.png" id="4_crouch_walk_hd_1"]
+[ext_resource type="Texture2D" uid="uid://dugtsqqjkhn11" path="res://assets/modelos/characters/player/player_idle_spritesheet_hd_01.png" id="idle_hd_1"]
+[ext_resource type="Texture2D" uid="uid://djm28vw6707ld" path="res://assets/modelos/characters/player/player_run_spritesheet_hd_01.png" id="run_hd_1"]
 
 [sub_resource type="AtlasTexture" id="crouch_idle_0"]
-atlas = ExtResource("3_crouch_idle")
-region = Rect2(0, 0, 192, 192)
+atlas = ExtResource("3_crouch_idle_hd_1")
+region = Rect2(2, 2, 109, 216)
+margin = Rect2(137, 144, 275, 168)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="crouch_idle_1"]
-atlas = ExtResource("3_crouch_idle")
-region = Rect2(192, 0, 192, 192)
+atlas = ExtResource("3_crouch_idle_hd_1")
+region = Rect2(115, 2, 109, 216)
+margin = Rect2(137, 144, 275, 168)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="crouch_idle_2"]
-atlas = ExtResource("3_crouch_idle")
-region = Rect2(384, 0, 192, 192)
+atlas = ExtResource("3_crouch_idle_hd_1")
+region = Rect2(228, 2, 109, 216)
+margin = Rect2(137, 144, 275, 168)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="crouch_idle_3"]
-atlas = ExtResource("3_crouch_idle")
-region = Rect2(576, 0, 192, 192)
+atlas = ExtResource("3_crouch_idle_hd_1")
+region = Rect2(341, 2, 109, 216)
+margin = Rect2(137, 144, 275, 168)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="crouch_idle_4"]
-atlas = ExtResource("3_crouch_idle")
-region = Rect2(768, 0, 192, 192)
+atlas = ExtResource("3_crouch_idle_hd_1")
+region = Rect2(454, 2, 109, 215)
+margin = Rect2(137, 145, 275, 169)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="crouch_idle_5"]
-atlas = ExtResource("3_crouch_idle")
-region = Rect2(960, 0, 192, 192)
+atlas = ExtResource("3_crouch_idle_hd_1")
+region = Rect2(567, 2, 109, 215)
+margin = Rect2(137, 145, 275, 169)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="crouch_idle_6"]
-atlas = ExtResource("3_crouch_idle")
-region = Rect2(1152, 0, 192, 192)
+atlas = ExtResource("3_crouch_idle_hd_1")
+region = Rect2(680, 2, 109, 215)
+margin = Rect2(137, 145, 275, 169)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="crouch_idle_7"]
-atlas = ExtResource("3_crouch_idle")
-region = Rect2(1344, 0, 192, 192)
+atlas = ExtResource("3_crouch_idle_hd_1")
+region = Rect2(793, 2, 109, 215)
+margin = Rect2(137, 145, 275, 169)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="crouch_walk_0"]
-atlas = ExtResource("4_crouch_walk")
-region = Rect2(0, 0, 192, 192)
+atlas = ExtResource("4_crouch_walk_hd_1")
+region = Rect2(2, 2, 111, 220)
+margin = Rect2(136, 140, 273, 164)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="crouch_walk_1"]
-atlas = ExtResource("4_crouch_walk")
-region = Rect2(192, 0, 192, 192)
+atlas = ExtResource("4_crouch_walk_hd_1")
+region = Rect2(117, 2, 111, 217)
+margin = Rect2(136, 143, 273, 167)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="crouch_walk_2"]
-atlas = ExtResource("4_crouch_walk")
-region = Rect2(384, 0, 192, 192)
+atlas = ExtResource("4_crouch_walk_hd_1")
+region = Rect2(232, 2, 113, 220)
+margin = Rect2(135, 140, 271, 164)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="crouch_walk_3"]
-atlas = ExtResource("4_crouch_walk")
-region = Rect2(576, 0, 192, 192)
+atlas = ExtResource("4_crouch_walk_hd_1")
+region = Rect2(349, 2, 111, 218)
+margin = Rect2(136, 142, 273, 166)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="crouch_walk_4"]
-atlas = ExtResource("4_crouch_walk")
-region = Rect2(768, 0, 192, 192)
+atlas = ExtResource("4_crouch_walk_hd_1")
+region = Rect2(464, 2, 111, 218)
+margin = Rect2(136, 142, 273, 166)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="crouch_walk_5"]
-atlas = ExtResource("4_crouch_walk")
-region = Rect2(960, 0, 192, 192)
+atlas = ExtResource("4_crouch_walk_hd_1")
+region = Rect2(579, 2, 111, 218)
+margin = Rect2(136, 142, 273, 166)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="crouch_walk_6"]
-atlas = ExtResource("4_crouch_walk")
-region = Rect2(1152, 0, 192, 192)
+atlas = ExtResource("4_crouch_walk_hd_1")
+region = Rect2(694, 2, 111, 218)
+margin = Rect2(136, 142, 273, 166)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="crouch_walk_7"]
-atlas = ExtResource("4_crouch_walk")
-region = Rect2(1344, 0, 192, 192)
+atlas = ExtResource("4_crouch_walk_hd_1")
+region = Rect2(809, 2, 111, 218)
+margin = Rect2(136, 142, 273, 166)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_000"]
-atlas = ExtResource("idle")
-region = Rect2(4, 3, 120, 155)
-margin = Rect2(30, 22, 60, 25)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(2, 2, 121, 301)
+margin = Rect2(121, 50, 239, 59)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_012"]
-atlas = ExtResource("idle")
-region = Rect2(4, 163, 120, 155)
-margin = Rect2(30, 22, 60, 25)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(127, 2, 121, 301)
+margin = Rect2(121, 50, 239, 59)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_024"]
-atlas = ExtResource("idle")
-region = Rect2(4, 323, 120, 155)
-margin = Rect2(30, 22, 60, 25)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(252, 2, 123, 304)
+margin = Rect2(118, 47, 237, 56)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_036"]
-atlas = ExtResource("idle")
-region = Rect2(4, 483, 120, 155)
-margin = Rect2(30, 22, 60, 25)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(379, 2, 123, 303)
+margin = Rect2(118, 48, 237, 57)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_048"]
-atlas = ExtResource("idle")
-region = Rect2(4, 643, 120, 155)
-margin = Rect2(30, 22, 60, 25)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(506, 2, 122, 300)
+margin = Rect2(121, 51, 238, 60)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_060"]
-atlas = ExtResource("idle")
-region = Rect2(4, 803, 120, 155)
-margin = Rect2(30, 22, 60, 25)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(632, 2, 123, 304)
+margin = Rect2(118, 47, 237, 56)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_072"]
-atlas = ExtResource("idle")
-region = Rect2(4, 963, 120, 155)
-margin = Rect2(30, 22, 60, 25)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(759, 2, 123, 303)
+margin = Rect2(118, 48, 237, 57)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_084"]
-atlas = ExtResource("idle")
-region = Rect2(4, 1123, 120, 155)
-margin = Rect2(30, 22, 60, 25)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(886, 2, 122, 300)
+margin = Rect2(121, 51, 238, 60)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_096"]
-atlas = ExtResource("idle")
-region = Rect2(4, 1283, 120, 155)
-margin = Rect2(30, 22, 60, 25)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(1012, 2, 122, 302)
+margin = Rect2(120, 49, 238, 58)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_idle_108"]
-atlas = ExtResource("idle")
-region = Rect2(4, 1443, 120, 155)
-margin = Rect2(30, 22, 60, 25)
+atlas = ExtResource("idle_hd_1")
+region = Rect2(1138, 2, 124, 304)
+margin = Rect2(117, 47, 236, 56)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_run_000"]
-atlas = ExtResource("run")
-region = Rect2(10, 2, 108, 156)
-margin = Rect2(36, 22, 72, 24)
+atlas = ExtResource("run_hd_1")
+region = Rect2(2, 2, 171, 278)
+margin = Rect2(91, 58, 189, 82)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_run_002"]
-atlas = ExtResource("run")
-region = Rect2(266, 2, 108, 156)
-margin = Rect2(36, 22, 72, 24)
+atlas = ExtResource("run_hd_1")
+region = Rect2(177, 2, 171, 278)
+margin = Rect2(91, 58, 189, 82)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_run_004"]
-atlas = ExtResource("run")
-region = Rect2(522, 2, 108, 156)
-margin = Rect2(36, 22, 72, 24)
+atlas = ExtResource("run_hd_1")
+region = Rect2(352, 2, 157, 287)
+margin = Rect2(101, 63, 203, 73)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_run_006"]
-atlas = ExtResource("run")
-region = Rect2(778, 2, 108, 156)
-margin = Rect2(36, 22, 72, 24)
+atlas = ExtResource("run_hd_1")
+region = Rect2(513, 2, 137, 284)
+margin = Rect2(115, 66, 223, 76)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_run_008"]
-atlas = ExtResource("run")
-region = Rect2(1034, 2, 108, 156)
-margin = Rect2(36, 22, 72, 24)
+atlas = ExtResource("run_hd_1")
+region = Rect2(654, 2, 123, 282)
+margin = Rect2(120, 67, 237, 78)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_run_010"]
-atlas = ExtResource("run")
-region = Rect2(1290, 2, 108, 156)
-margin = Rect2(36, 22, 72, 24)
+atlas = ExtResource("run_hd_1")
+region = Rect2(781, 2, 143, 290)
+margin = Rect2(99, 55, 217, 70)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_run_012"]
-atlas = ExtResource("run")
-region = Rect2(10, 162, 108, 156)
-margin = Rect2(36, 22, 72, 24)
+atlas = ExtResource("run_hd_1")
+region = Rect2(928, 2, 165, 276)
+margin = Rect2(93, 51, 195, 84)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_run_015"]
-atlas = ExtResource("run")
-region = Rect2(394, 162, 108, 156)
-margin = Rect2(36, 22, 72, 24)
+atlas = ExtResource("run_hd_1")
+region = Rect2(1097, 2, 185, 285)
+margin = Rect2(85, 56, 175, 75)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_run_016"]
-atlas = ExtResource("run")
-region = Rect2(522, 162, 108, 156)
-margin = Rect2(36, 22, 72, 24)
+atlas = ExtResource("run_hd_1")
+region = Rect2(1286, 2, 185, 285)
+margin = Rect2(85, 56, 175, 75)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_run_018"]
-atlas = ExtResource("run")
-region = Rect2(778, 162, 108, 156)
-margin = Rect2(36, 22, 72, 24)
+atlas = ExtResource("run_hd_1")
+region = Rect2(1475, 2, 139, 279)
+margin = Rect2(104, 67, 221, 81)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_run_020"]
-atlas = ExtResource("run")
-region = Rect2(1034, 162, 108, 156)
-margin = Rect2(36, 22, 72, 24)
+atlas = ExtResource("run_hd_1")
+region = Rect2(1618, 2, 132, 280)
+margin = Rect2(119, 64, 228, 80)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Atlas_run_022"]
-atlas = ExtResource("run")
-region = Rect2(1290, 162, 108, 156)
-margin = Rect2(36, 22, 72, 24)
+atlas = ExtResource("run_hd_1")
+region = Rect2(1754, 2, 143, 286)
+margin = Rect2(114, 56, 217, 74)
 filter_clip = true
 
 [resource]

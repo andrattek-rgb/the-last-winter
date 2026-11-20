@@ -6,10 +6,11 @@
 
 [node name="Prisoner09" type="AnimatedSprite2D"]
 material = ExtResource("2_light")
-scale = Vector2(1.02, 1.02)
+scale = Vector2(0.51, 0.51)
 sprite_frames = ExtResource("1_frames")
 animation = &"idle"
 autoplay = "idle"
-offset = Vector2(0, -84)
+offset = Vector2(0, -168)
 
 [node name="GroundShadow" parent="." instance=ExtResource("3_shadow")]
+scale = Vector2(2, 2)

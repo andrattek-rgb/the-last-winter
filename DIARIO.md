@@ -147,3 +147,20 @@
 - Usei a linha azul como limite inicial da visão e a branca como ponto onde o guarda começa a seguir. A carga cheia bloqueia a linha de visão do guarda em ambas as posturas. O percurso mantém um ritmo lento de 52 unidades por segundo a puxar e volta a 78 no regresso.
 - Substituí os pontos amontoados da curva final por uma trajetória contínua e usei a sobreposição da fachada para ocultar progressivamente cada elemento. Realinhei a zona de entrada e o limiar com a posição guardada da porta aberta.
 - Os dois testes automáticos passaram. As capturas do Godot mostraram o guarda a partir depois do carrinho e a passagem progressiva do conjunto atrás do edifício.
+
+### Paragem no pátio e cobertura móvel
+
+- Acrescentei duas pausas de 1,75 segundos ao trabalhador, antes de pegar na roupa e antes de puxar. O carrinho segue a marca verde, o guarda segue até à marca vermelha e os dois esperam três segundos com as rodas paradas antes de contornar o barracão.
+- A área de proteção segue o lado da câmara junto às rodas, conforme o retângulo roxo. O jogador acompanha-a com os controlos e a proteção fica ativa enquanto o carrinho estiver cheio.
+- Confirmei no Godot o acompanhamento manual até à paragem, os tempos das pausas e o percurso até à porta. Ajustei a posição da paragem numa captura para que o trabalhador ficasse visível antes da parede.
+
+### Teste de nitidez de `load_clothes`
+
+- Fiz uma cópia do PNG e dos ficheiros a alterar antes de testar. A importação do Godot passou de 1536 para 3072 píxeis e cada fotograma passou de 128 para 256, com compensação do tamanho e da origem no jogo. Confirmei que o PNG original continua byte a byte igual.
+- Comparei o mesmo fotograma em capturas do Godot. A alteração ficou confinada aos píxeis da animação e tornou mais nítidos os contornos da roupa e do chapéu. Os testes de percurso e furtividade passaram.
+
+### Nitidez dos restantes spritesheets
+
+- Fiz um backup dos modelos, cenas, scripts e testes. Recriei os atlas ativos do protagonista, dos prisioneiros da Sala 1, do varredor, do trabalhador, do guarda e do carrinho a partir dos ficheiros de origem. Os atlas de agachamento foram reconstruídos a partir dos recortes dos PNGs de origem. Reaproveitei a importação de maior resolução de `load_clothes`.
+- Retirei margens transparentes dos novos atlas para os compactar e conservei o alinhamento dos fotogramas no Godot. Verifiquei 45 PNGs existentes por SHA-256 e 1498 recortes quanto à ordem, aos tempos e às dimensões lógicas.
+- Passaram os testes de percurso e furtividade. Examinei a Sala 1 e a paragem do carrinho no Godot. A versão Web abriu no Chrome e executou o agachamento e o ciclo exterior sem erros na consola. O pacote de dados Web cresceu de cerca de 46 para 88 MiB.

@@ -15,10 +15,10 @@ script = ExtResource("1_cart")
 position = Vector2(103, -66)
 
 [node name="Rodas" type="AnimatedSprite2D" parent="Arte"]
-scale = Vector2(1.04, 1.04)
+scale = Vector2(0.52, 0.52)
 sprite_frames = ExtResource("2_frames")
 animation = &"empty_roll"
-offset = Vector2(34, -55)
+offset = Vector2(68, -110)
 
 [node name="PoucaRoupa" type="Sprite2D" parent="Arte"]
 visible = false
@@ -35,5 +35,6 @@ centered = false
 offset = Vector2(-510, -1048)
 
 [node name="Cobertura" type="Node2D" parent="."]
+position = Vector2(0, 23)
 script = ExtResource("5_cover")
-size = Vector2(99, 43)
+size = Vector2(67, 42)
