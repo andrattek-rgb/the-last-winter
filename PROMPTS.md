@@ -59,3 +59,29 @@ A revisão acrescenta pausas antes de carregar e puxar, uma paragem conjunta de 
 > Do limite vermelho pra baixo do carrinho o guarda não pode ver o player e do azul pra cima o guarda consegue ver.
 
 A nova referência define uma linha móvel na caixa. A proteção acompanha toda a faixa de baixo dentro da largura assinalada, mesmo com o carrinho vazio.
+
+## 23 de novembro de 2026 — Cozinha e serviço de comida
+
+> Quero conseguir reorganizar a cozinha inteira à mão, sem precisar de modificar código.
+
+O pedido definiu a cozinha editável, o circuito do mexedor pelos três caldeirões, comensais animados e uma interação de escolha de comida com os três clipes fornecidos.
+
+### Revisão da montagem e das animações
+
+> Melhorei o spritesheet de idle do balcão e editei a cozinha […] as animações das pessoas da cozinha estão meio travadas.
+
+O pedido definiu a montagem guardada no editor como ponto de partida para realinhar colisões e interações, incorporar o novo idle e suavizar as animações dos NPCs.
+
+> Volta ao spritesheet do mexedor e da mesa que só tem uma pessoa.
+
+O Michel preferiu o movimento original nestes dois casos e pediu para repor as respetivas animações.
+
+> O spritesheet do balcão está difícil de editar no editor do Godot pois o frame que aparece lá não tem no jogo.
+
+Comparei a vista da cozinha com a execução e corrigi o corte do balcão no limite da câmara.
+
+> Quero que no editor eu consiga mudar o tamanho do balcão sem ter que adivinhar.
+
+O pedido definiu a necessidade de ver os ajustes de escala no enquadramento do jogo enquanto se edita a cena.
+
+Uma captura enviada pelo Michel mostrou o protagonista inclinado junto à pilha de pijamas. Corrigi a rotação na cena exterior.

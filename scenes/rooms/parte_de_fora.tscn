@@ -25,7 +25,7 @@ _data = {
 point_count = 11
 
 [sub_resource type="RectangleShape2D" id="Rectangle_door"]
-size = Vector2(176, 56)
+size = Vector2(168.5, 65)
 
 [sub_resource type="Gradient" id="Gradient_neve"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -74,8 +74,8 @@ texture = ExtResource("3_esquerdo")
 centered = false
 
 [node name="BarracaoDireitoPortaAberta" type="Sprite2D" parent="Barracoes" unique_id=50407201]
-position = Vector2(1421, 379.00003)
-scale = Vector2(0.7785388, 0.661495)
+position = Vector2(1471, 379.00003)
+scale = Vector2(0.7305938, 0.68406206)
 texture = ExtResource("4_direito")
 centered = false
 
@@ -88,7 +88,7 @@ y_sort_enabled = true
 
 [node name="Player" parent="Personagens" unique_id=926311062 instance=ExtResource("6_player")]
 position = Vector2(255, 772.00006)
-scale = Vector2(1.1711999, 1.1600025)
+scale = Vector2(1.326, 1.315)
 crouch_enabled = true
 
 [node name="PilhaDePijamas" type="Node2D" parent="Personagens" unique_id=319134844]
@@ -103,8 +103,8 @@ texture = ExtResource("15_pile")
 offset = Vector2(0, -399)
 
 [node name="Pijamas4" type="Sprite2D" parent="Personagens/PilhaDePijamas" unique_id=959338111]
-position = Vector2(82.75547, 6.896701)
-scale = Vector2(0.13050224, 0.17554505)
+position = Vector2(132.99997, 6.896703)
+scale = Vector2(0.15558058, 0.17554505)
 texture = ExtResource("15_pile")
 offset = Vector2(0, -399)
 
@@ -123,8 +123,8 @@ animation = &"load_clothes"
 offset = Vector2(74, -110)
 
 [node name="Carrinho" parent="Personagens" unique_id=279201130 instance=ExtResource("14_cart")]
-position = Vector2(606, 789)
-scale = Vector2(1.6023461, 1.4622029)
+position = Vector2(585.00006, 789.00006)
+scale = Vector2(1.7014979, 1.8066196)
 
 [node name="Guarda" type="AnimatedSprite2D" parent="Personagens" unique_id=1473847185]
 z_index = -1
@@ -166,7 +166,7 @@ sight_range = 470.0
 position = Vector2(-6.1035156e-05, 58.62036)
 scale = Vector2(0.99999994, 0.9043246)
 build_mode = 1
-polygon = PackedVector2Array(1.0000612, 728.03467, 218.00009, 704.8129, 293.0001, 728.03467, 1112.0002, 746.8332, 1432.0002, 742.41003, 1432.0002, 680.48535, 1573.0004, 698.1781, 1727.0004, 711.4477, 1721.0004, 938.1362, 1208.0002, 928.184, 6.103516e-05, 914.9144)
+polygon = PackedVector2Array(1.0000612, 728.03467, 218.00009, 704.8129, 293.0001, 728.03467, 611.3208, 735.3411, 1112.0002, 746.8332, 1432.0002, 742.41003, 1432.0002, 680.48535, 1573.0004, 698.1781, 1727.0004, 711.4477, 1721.0004, 938.1362, 1208.0002, 928.184, 6.103516e-05, 914.9144)
 
 [node name="BarracaoEsquerdo" type="CollisionPolygon2D" parent="LimitesDoPatio" unique_id=2054185501]
 position = Vector2(-5.7375183, 90.75275)
@@ -175,7 +175,7 @@ polygon = PackedVector2Array(-18.894217, 321.8473, 393.90796, 444.66965, 411.496
 
 [node name="BarracaoDireito" type="CollisionPolygon2D" parent="LimitesDoPatio" unique_id=35495090]
 position = Vector2(-534, 52)
-polygon = PackedVector2Array(1991, 486, 2298, 328, 2292, 702, 2254, 691, 2250, 748, 2005, 725)
+polygon = PackedVector2Array(2043, 480, 2321, 334, 2347, 708, 2329, 721, 2327, 765, 2046, 716)
 
 [node name="EntradaPortaAberta" type="Area2D" parent="." unique_id=342565683]
 position = Vector2(1561, 810)
@@ -184,7 +184,7 @@ collision_mask = 2
 monitorable = false
 
 [node name="ZonaDaPorta" type="CollisionShape2D" parent="EntradaPortaAberta" unique_id=962140521]
-position = Vector2(26, -2)
+position = Vector2(70.25, 11)
 shape = SubResource("Rectangle_door")
 
 [node name="Limiar" type="Marker2D" parent="EntradaPortaAberta" unique_id=410735913]

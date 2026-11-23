@@ -1,0 +1,32 @@
+[gd_scene format=3]
+
+[ext_resource type="SpriteFrames" path="res://assets/modelos/cozinha/animacoes/cozinheiro_idle.tres" id="1"]
+
+[sub_resource type="RectangleShape2D" id="Balcao"]
+size = Vector2(308, 45)
+
+[sub_resource type="RectangleShape2D" id="Interacao"]
+resource_local_to_scene = true
+size = Vector2(310, 70)
+
+[node name="Balcao" type="StaticBody2D"]
+
+[node name="Servidor" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.51, 0.51)
+sprite_frames = ExtResource("1")
+animation = &"idle"
+autoplay = "idle"
+offset = Vector2(0, -225)
+
+[node name="ColisaoBalcao" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("Balcao")
+
+[node name="Interacao" type="Area2D" parent="."]
+position = Vector2(0, 47)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="Alcance" type="CollisionShape2D" parent="Interacao"]
+shape = SubResource("Interacao")

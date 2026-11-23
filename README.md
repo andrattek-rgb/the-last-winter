@@ -13,6 +13,7 @@ godot --headless --path . --editor --import
 godot --headless --path . --quit-after 2
 godot --headless --path . --fixed-fps 60 --script res://tests/exterior_route.gd
 godot --headless --path . --fixed-fps 60 --script res://tests/laundry_stealth.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/kitchen.gd
 ```
 
 Na máquina de desenvolvimento, o editor portátil está em `../../work/godot-4.7.2/` a partir da raiz do projeto. Essa cópia já tem os modelos Web e pode ser executada sem instalar o editor no sistema.
@@ -83,3 +84,12 @@ Prazo em Portugal continental: **26 de novembro de 2026, às 23h59**. Preparar o
 ## Créditos e referências
 
 Os PNGs de cenário e os spritesheets de personagens foram fornecidos pelo responsável do projeto no pacote Last Winter. O ficheiro `Três beliches em madeira e tecido.png` foi importado como `room1_foreground_bunks.png`. Os spritesheets ativos do varredor estão em `assets/modelos/characters/sweeper/`, com a caminhada ligada a `npc_velho_walk_spritesheet_v2.png`. Os PNGs copiados são idênticos aos originais. O Godot prepara texturas de trabalho e seleciona os fotogramas das animações por região. Registar aqui a autoria, as licenças e as fontes históricas conforme forem confirmadas.
+
+## Cozinha e refeitório
+
+A porta aberta do Barracão 2 leva à cozinha. Para testar diretamente no editor, abre `scenes/rooms/kitchen.tscn` e usa **F6**. Aproxima-te da frente do balcão e carrega em **E**. Escolhe **PÃO** ou **SOPA** com o rato ou com **←/→** e **Enter**. O controlo volta quando a entrega termina. As escolhas concluídas ficam na lista `received_food` da sessão da cozinha.
+
+- Em **EmCena**, podes mover as mesas, os três caldeirões, o mexedor e o balcão. Usa a propriedade **Z Index** para um ajuste manual de profundidade. A ordenação por Y está ativa.
+- Abre os filhos de cada caldeirão para mover **PontoDoCorredor** e **PontoDeParagem**. Mudar a posição do caldeirão move os dois pontos com ele. Em **Mexedor**, edita a lista de estações, **Walking Speed** e **Stir Seconds**.
+- Ajusta **Balcao → Interacao → Alcance**, as formas junto aos objetos e **Limites → Perimetro**. As cenas instanciadas já têm os filhos editáveis.
+- Em **KitchenInteraction**, podes trocar as três referências de vídeo e as respetivas pistas de som. A arte original de cada mesa já inclui os comensais e a do balcão já inclui o servidor. Cada composição move-se como uma peça. Os PNGs foram copiados intactos.

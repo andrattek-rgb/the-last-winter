@@ -37,6 +37,7 @@ func _enter_exterior() -> void:
 	room.queue_free()
 	var exterior := OUTSIDE.instantiate()
 	add_child(exterior)
+	exterior.kitchen_requested.connect(_enter_kitchen.bind(exterior), CONNECT_ONE_SHOT)
 	var player := exterior.get_node("Personagens/Player")
 	if slide.visible:
 		player.set_physics_process(false)
@@ -47,3 +48,10 @@ func _enter_exterior() -> void:
 		slide_buffer.copy_mode = BackBufferCopy.COPY_MODE_DISABLED
 		slide_material.set_shader_parameter(&"outgoing", null)
 		player.set_physics_process(true)
+
+
+func _enter_kitchen(exterior: Node2D) -> void:
+	var kitchen := load(exterior.KITCHEN_SCENE) as PackedScene
+	remove_child(exterior)
+	exterior.queue_free()
+	add_child(kitchen.instantiate())

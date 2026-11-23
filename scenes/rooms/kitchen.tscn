@@ -1,0 +1,226 @@
+[gd_scene format=3 uid="uid://bnwygnlplgm8h"]
+
+[ext_resource type="Script" uid="uid://dhscwjan3it7h" path="res://scripts/kitchen.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://0ie3v2keytng" path="res://assets/modelos/cozinha/cozinha_parede_teto.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bqfqyiu3ds1nd" path="res://assets/modelos/cozinha/cozinha_chao.png" id="3"]
+[ext_resource type="PackedScene" path="res://assets/modelos/cozinha/caldeirao.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://assets/modelos/cozinha/mexedor.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://assets/modelos/cozinha/balcao.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://assets/modelos/cozinha/comensal.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://assets/modelos/cozinha/dupla.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://assets/modelos/characters/player/player.tscn" id="9"]
+[ext_resource type="Script" uid="uid://l13rq4sdtr01" path="res://scripts/room_camera.gd" id="10"]
+[ext_resource type="Shader" uid="uid://d3egfrec26" path="res://effects/old_film.gdshader" id="11"]
+[ext_resource type="PackedScene" path="res://scenes/ui/kitchen_interaction.tscn" id="12"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlhyq"]
+resource_local_to_scene = true
+size = Vector2(100, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_714v7"]
+resource_local_to_scene = true
+size = Vector2(100, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sltsg"]
+resource_local_to_scene = true
+size = Vector2(100, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avos5"]
+resource_local_to_scene = true
+size = Vector2(282, 66)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33dcn"]
+resource_local_to_scene = true
+size = Vector2(235, 42)
+
+[sub_resource type="ShaderMaterial" id="Filme"]
+shader = ExtResource("11")
+shader_parameter/exposure = 0.83
+shader_parameter/grain = 0.035
+shader_parameter/vignette = 0.18
+
+[node name="Kitchen" type="Node2D" unique_id=2113606236]
+script = ExtResource("1")
+
+[node name="Fundo" type="Node2D" parent="." unique_id=1213175521]
+z_index = -2
+
+[node name="Chao" type="Sprite2D" parent="Fundo" unique_id=1185918987]
+scale = Vector2(1, 1.0584484)
+texture = ExtResource("3")
+centered = false
+
+[node name="ParedeTeto" type="Sprite2D" parent="Fundo" unique_id=2107329888]
+position = Vector2(0, 224)
+scale = Vector2(0.9988038, 0.75132835)
+texture = ExtResource("2")
+centered = false
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=292142189]
+position = Vector2(128, 775)
+
+[node name="EmCena" type="Node2D" parent="." unique_id=1670659849]
+y_sort_enabled = true
+
+[node name="Caldeirao01" parent="EmCena" unique_id=1722948893 instance=ExtResource("4")]
+position = Vector2(497, 717)
+
+[node name="Fogao" parent="EmCena/Caldeirao01" index="0"]
+scale = Vector2(0.8964845, 0.9227017)
+
+[node name="ComCozinheiro" parent="EmCena/Caldeirao01" index="1"]
+scale = Vector2(0.8964845, 0.9227017)
+
+[node name="ColisaoFogao" parent="EmCena/Caldeirao01" index="2"]
+shape = SubResource("RectangleShape2D_dlhyq")
+
+[node name="PontoDeParagem" parent="EmCena/Caldeirao01" index="3"]
+position = Vector2(-96, 0)
+
+[node name="PontoDoCorredor" parent="EmCena/Caldeirao01" index="4"]
+position = Vector2(-96, 42)
+
+[node name="Caldeirao02" parent="EmCena" unique_id=1225357897 instance=ExtResource("4")]
+position = Vector2(717, 719)
+
+[node name="Fogao" parent="EmCena/Caldeirao02" index="0"]
+scale = Vector2(0.89843744, 0.9124478)
+
+[node name="ComCozinheiro" parent="EmCena/Caldeirao02" index="1"]
+scale = Vector2(0.89843744, 0.9124478)
+
+[node name="ColisaoFogao" parent="EmCena/Caldeirao02" index="2"]
+shape = SubResource("RectangleShape2D_714v7")
+
+[node name="PontoDeParagem" parent="EmCena/Caldeirao02" index="3"]
+position = Vector2(-96, 0)
+
+[node name="PontoDoCorredor" parent="EmCena/Caldeirao02" index="4"]
+position = Vector2(-96, 42)
+
+[node name="Caldeirao03" parent="EmCena" unique_id=1701717778 instance=ExtResource("4")]
+position = Vector2(916, 710)
+
+[node name="Fogao" parent="EmCena/Caldeirao03" index="0"]
+scale = Vector2(0.85625, 0.88840806)
+
+[node name="ComCozinheiro" parent="EmCena/Caldeirao03" index="1"]
+scale = Vector2(0.85625, 0.88840806)
+
+[node name="ColisaoFogao" parent="EmCena/Caldeirao03" index="2"]
+shape = SubResource("RectangleShape2D_sltsg")
+
+[node name="PontoDeParagem" parent="EmCena/Caldeirao03" index="3"]
+position = Vector2(-92, 0)
+
+[node name="PontoDoCorredor" parent="EmCena/Caldeirao03" index="4"]
+position = Vector2(-92, 42)
+
+[node name="Mexedor" parent="EmCena" unique_id=7119686 node_paths=PackedStringArray("stations") instance=ExtResource("5")]
+position = Vector2(158, 735)
+scale = Vector2(1.1884722, 1.36)
+stations = [NodePath("../Caldeirao01"), NodePath("../Caldeirao02"), NodePath("../Caldeirao03")]
+
+[node name="Balcao" parent="EmCena" unique_id=952340420 instance=ExtResource("6")]
+position = Vector2(1468.1, 712.215)
+scale = Vector2(1.134, 1.098)
+
+[node name="Servidor" parent="EmCena/Balcao" index="0"]
+position = Vector2(9.469641, 1.2030528)
+scale = Vector2(0.53710914, 0.5163272)
+
+[node name="Alcance" parent="EmCena/Balcao/Interacao" index="0"]
+shape = SubResource("RectangleShape2D_avos5")
+
+[node name="MesaComensal" parent="EmCena" unique_id=166461299 instance=ExtResource("7")]
+position = Vector2(635, 887)
+scale = Vector2(1.3748708, 1.2988735)
+
+[node name="MesaDupla" parent="EmCena" unique_id=809371118 instance=ExtResource("8")]
+position = Vector2(1105.0001, 877)
+scale = Vector2(1.3535252, 1.4399977)
+
+[node name="Sprite" parent="EmCena/MesaDupla" index="0"]
+scale = Vector2(0.54765624, 0.6182813)
+
+[node name="ColisaoMesa" parent="EmCena/MesaDupla" index="1"]
+position = Vector2(4.8, -18.285467)
+shape = SubResource("RectangleShape2D_33dcn")
+
+[node name="Player" parent="EmCena" unique_id=1019784721 instance=ExtResource("9")]
+position = Vector2(128, 775)
+scale = Vector2(1.7785832, 1.8445137)
+crouch_enabled = true
+
+[node name="Limites" type="StaticBody2D" parent="." unique_id=401807488]
+
+[node name="Perimetro" type="CollisionPolygon2D" parent="Limites" unique_id=644992707]
+position = Vector2(-14, 5)
+build_mode = 1
+polygon = PackedVector2Array(16, 695, 1656, 695, 1656, 925, 16, 925)
+
+[node name="Camera" type="Camera2D" parent="." unique_id=2031117302 node_paths=PackedStringArray("target")]
+position = Vector2(660, 582)
+zoom = Vector2(1.04, 1.04)
+limit_left = 0
+limit_top = 0
+limit_right = 1672
+limit_bottom = 941
+position_smoothing_enabled = true
+editor_draw_limits = true
+script = ExtResource("10")
+target = NodePath("../EmCena/Player")
+
+[node name="Filme" type="CanvasLayer" parent="." unique_id=1760294391]
+layer = 5
+
+[node name="Filtro" type="ColorRect" parent="Filme" unique_id=336463936]
+material = SubResource("Filme")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Avisos" type="CanvasLayer" parent="." unique_id=1371861456]
+layer = 6
+
+[node name="Interagir" type="Label" parent="Avisos" unique_id=491329276]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -145.0
+offset_top = -78.0
+offset_right = 145.0
+offset_bottom = -38.0
+theme_override_colors/font_outline_color = Color(0.06, 0.06, 0.06, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+text = "[E] Interagir"
+horizontal_alignment = 1
+
+[node name="Chegada" type="ColorRect" parent="Avisos" unique_id=112582381]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -316.0
+offset_top = 966.0
+offset_right = -316.0
+offset_bottom = 966.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.025, 0.023, 0.022, 1)
+
+[node name="KitchenInteraction" parent="." unique_id=476304493 instance=ExtResource("12")]
+
+[editable path="EmCena/Caldeirao01"]
+[editable path="EmCena/Caldeirao02"]
+[editable path="EmCena/Caldeirao03"]
+[editable path="EmCena/Balcao"]
+[editable path="EmCena/MesaComensal"]
+[editable path="EmCena/MesaDupla"]

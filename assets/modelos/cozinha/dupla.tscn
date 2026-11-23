@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="SpriteFrames" path="res://assets/modelos/cozinha/animacoes/npc_dupla_comendo_sopa.tres" id="1"]
+[ext_resource type="Script" path="res://scripts/kitchen_diner.gd" id="2"]
+
+[sub_resource type="RectangleShape2D" id="Mesa"]
+size = Vector2(264, 42)
+
+[node name="Dupla" type="StaticBody2D"]
+script = ExtResource("2")
+start_frame = 21
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.65, 0.65)
+sprite_frames = ExtResource("1")
+animation = &"comer"
+autoplay = "comer"
+offset = Vector2(0, -151)
+
+[node name="ColisaoMesa" type="CollisionShape2D" parent="."]
+position = Vector2(0, -18)
+shape = SubResource("Mesa")

@@ -1,5 +1,9 @@
 extends Node2D
 
+signal kitchen_requested
+
+const KITCHEN_SCENE := "res://scenes/rooms/kitchen.tscn"
+
 @onready var player: CharacterBody2D = $Personagens/Player
 @onready var arrival: Marker2D = $ChegadaDoBarracao
 @onready var camera: Camera2D = $CameraPrevisualizacao
@@ -63,6 +67,10 @@ func _walk_through_door() -> void:
 	await entry.finished
 	sprite.stop()
 	player.hide()
+	if get_tree().current_scene == self:
+		get_tree().change_scene_to_file(KITCHEN_SCENE)
+	else:
+		kitchen_requested.emit()
 
 
 func _show_cover(cover: StealthCover) -> void:

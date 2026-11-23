@@ -31,6 +31,8 @@ func _test_route() -> void:
 		outside.get_node("Desafio/VisaoDoGuarda").sight_range = 0.0
 		var player: CharacterBody2D = outside.get_node("Personagens/Player")
 		var arrival: Marker2D = outside.get_node("ChegadaDoBarracao")
+		_check(is_zero_approx(player.global_rotation) and is_zero_approx(player.global_skew),
+			"O protagonista chega ao pátio direito, sem rotação ou inclinação.")
 		_check(player.global_position.is_equal_approx(arrival.global_position) and arrival.position.x < 575.0,
 			"O jogador aparece junto à porta fechada da esquerda.")
 		var ground: Sprite2D = outside.get_node("Paisagem/Chao")
@@ -51,9 +53,9 @@ func _test_route() -> void:
 		await _hold(&"move_right", 248)
 		_check(not outside.get("entering"), "Mover para a direita não ativa a porta aberta.")
 		await _hold(&"move_back", 160)
-		var threshold: Marker2D = outside.get_node("EntradaPortaAberta/Limiar")
-		_check(player.global_position.is_equal_approx(threshold.global_position) and not player.visible,
-			"Subir os degraus leva o jogador para dentro da porta aberta.")
+		var kitchen := game.get_node_or_null("Kitchen")
+		_check(kitchen != null and not game.has_node("ParteDeFora"),
+			"Subir os degraus abre a cozinha no jogo.")
 
 	for failure in failures:
 		push_error(failure)

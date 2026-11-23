@@ -181,3 +181,34 @@
 ### Jogador do lado da câmara
 
 - Retirei a elevação da camada do carrinho quando o jogador está agachado. A posição dos pés determina a sobreposição. Confirmei em captura que as rodas já não cortam o jogador do lado da câmara. Os testes de percurso e furtividade passaram.
+
+## 23 de novembro de 2026 — Cozinha e refeitório
+
+- Analisei a pasta cozinha em Last Winter. Encontrei duas camadas PNG de 1672 × 941, seis folhas RGBA de 2048 × 1280 com 16 fotogramas de 512 × 320 e três clipes MP4 H.264 de 3840 × 2160 a 30 fps, com áudio. Confirmei os oito PNGs copiados por SHA-256. Converti o vídeo para Theora de 960 × 540 e guardei as pistas originais de som em Vorbis para o Godot reproduzir em paralelo.
+- Montei a cozinha em cena editável. Liguei a porta do pátio à chegada na cozinha e reutilizei o jogador, a câmara e o filtro. O mexedor usa pontos de corredor e de paragem nos três caldeirões. As mesas com os comensais e o balcão com o servidor são composições dos próprios desenhos e têm instâncias e colisões editáveis.
+- A interação do balcão bloqueia o movimento, repete o clipe idle e reproduz uma vez a entrega escolhida. Testei a escolha por clique e por teclado, a devolução do controlo, o registo de cada alimento, o circuito repetido dos três caldeirões e as colisões. Os testes do percurso exterior, da furtividade e da cozinha passaram. A exportação Web foi gerada com sucesso.
+- Numa cópia de teste que inicia diretamente na cozinha, confirmei no Chrome a escolha por teclado, a reprodução da entrega de sopa e o regresso ao balcão. Surgiram avisos do driver WebGL, sem interromper a reprodução.
+
+### Revisão da montagem e das animações da cozinha
+
+- Usei a versão da cozinha guardada pelo Michel. Alinhei os nós dos caldeirões, do balcão e da mesa dupla com os desenhos para que as colisões, a zona de interação e os pontos de paragem acompanhem as instâncias editáveis. Ajustei o limite junto à parede, o enquadramento do teto e a cobertura do filtro e da transição.
+- Importei a folha de idle do balcão com 24 fotogramas de 640 × 450 e confirmei por SHA-256 que a cópia coincide com o PNG original. Preparei uma sequência de reprodução a 16 fps a partir desse material. Acrescentei fotogramas intermédios às sequências dos comensais, do mexedor e do vapor, mantendo a duração dos ciclos anteriores.
+- Os testes da cozinha, do percurso exterior e da furtividade passaram no Godot. Validei as colisões, o percurso pelos três caldeirões e as entregas de pão e sopa. A exportação Web foi gerada com sucesso.
+
+### Reposição de duas animações
+
+- Reativei os fotogramas e os ritmos originais da caminhada do mexedor, da animação de mexer a sopa e do comensal sentado sozinho. Arquivei os atlas intermédios dessas sequências fora do projeto.
+- Atualizei o teste da cozinha para seguir a posição atual do balcão e verificar as três sequências originais. O teste passou no Godot, incluindo o percurso do mexedor e as entregas de pão e sopa.
+
+### Enquadramento do balcão
+
+- Reproduzi no Godot o corte do balcão pelo limite direito da câmara. Desloquei a instância para a esquerda com a colisão e a zona de interação e ativei o desenho dos limites da câmara na vista 2D.
+- Confirmei numa captura que o balcão aparece inteiro e acrescentei ao teste da cozinha uma verificação do enquadramento. A interação e as duas entregas continuaram a passar.
+
+- Recarreguei o projeto depois de identificar que o Inspector ainda mostrava a animação antiga do balcão. Configurei a pré-visualização incorporada em 16:9 e confirmei que uma alteração de escala na árvore Local se reflete imediatamente no jogo. Desfiz a alteração de teste e deixei o balcão selecionado com o jogador à frente, apenas na execução aberta.
+
+### Orientação do protagonista no pátio
+
+- Removi a rotação de 34° da instância do protagonista na cena exterior. Confirmei no teste de percurso que ele chega direito ao pátio. Os testes de percurso e de furtividade passaram.
+
+- Validei os ficheiros preparados para o commit numa cópia limpa. Mantive a montagem do balcão guardada no editor e dei ao teste de enquadramento uma margem de dois píxeis. A importação, os testes de percurso, furtividade e cozinha e a exportação Web passaram. Arquivei fora do projeto o shader antigo do balcão, que já não tinha referências.
