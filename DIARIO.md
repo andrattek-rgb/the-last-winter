@@ -212,3 +212,31 @@
 - Removi a rotação de 34° da instância do protagonista na cena exterior. Confirmei no teste de percurso que ele chega direito ao pátio. Os testes de percurso e de furtividade passaram.
 
 - Validei os ficheiros preparados para o commit numa cópia limpa. Mantive a montagem do balcão guardada no editor e dei ao teste de enquadramento uma margem de dois píxeis. A importação, os testes de percurso, furtividade e cozinha e a exportação Web passaram. Arquivei fora do projeto o shader antigo do balcão, que já não tinha referências.
+
+## 24 de novembro de 2026 — Desempenho e segundo exterior
+
+- Abri primeiro a cozinha no editor. Medi as três cenas no Godot com o renderizador Compatibility, os monitores `Performance` e amostras do processo no Windows e da GPU no `nvidia-smi`.
+- Na Sala 1, o jogo corria a cerca de 240 FPS e mantinha as texturas do pátio residentes desde o arranque. Limitei a renderização a 60 FPS e passei a carregar o pátio em segundo plano ao aproximar da saída no desktop. A cozinha começa a carregar durante a caminhada pela porta. A versão Web sem threads carrega estas cenas ao mudar de zona.
+- Na medição local, o tempo até ao primeiro fotograma da Sala 1 baixou de 1,19 s para 0,34 s e as texturas residentes baixaram de 424 MiB para 109 MiB. A memória privada do processo foi de cerca de 565 MiB para 281 MiB nas amostras em regime estável. Na cozinha a resolução das texturas ficou intacta e o jogo manteve cerca de 60 FPS. Depois de descarregar as cenas testadas, a memória das texturas voltou a cerca de 9,5 MiB. A medição foi curta.
+- Os testes automáticos do percurso, da furtividade e da cozinha passaram. Também executei o percurso com renderização e confirmei as duas mudanças de cena.
+- Copiei os seis PNGs da pasta `parte de fora 2` e conferi os hashes. Criei uma cena de composição manual com o céu e a cerca do mesmo PNG, o chão, os dois barracões, a torre e duas instâncias independentes da caixa.
+
+- Guardei a montagem do Michel e substituí o chão com poças pela textura nevada do primeiro pátio. Ajustei a faixa visível do chão e coloquei o céu e a cerca acima dele na ordem de desenho. Validei a referência e a ordem das camadas no Godot e reabri a cena com os barracões, a torre e as três caixas nas posições guardadas.
+
+- Substituí a textura nevada da Parte de Fora 2 pela imagem de solo lamacento enviada pelo Michel. A cópia tem o mesmo hash do PNG original. Mantive as posições, as escalas e a ordem de desenho guardadas, validei a cena e confirmei a textura no editor.
+
+### Luz da torre de vigia
+
+- Usei a montagem guardada com quatro caixas. Acrescentei um feixe da torre, um círculo de luz no chão e sombras que seguem a geometria das caixas. A luz passa pelas caixas 4, 3, 2 e 1 e apaga brevemente antes de repetir.
+- Coloquei o marcador `LimiteSeguro` no x=660, estimado a partir da linha branca da captura. O jogador só acumula exposição dentro do círculo, fora da zona segura e sem uma caixa entre ele e a origem da sombra. Após deteção, o controlo regressa no ponto de chegada.
+- Testei o ciclo, a zona segura, a cobertura de cada caixa e o regresso após deteção. Confirmei o efeito em capturas no Godot com o renderizador Compatibility. Passaram também os testes de percurso, furtividade do primeiro pátio e cozinha.
+
+### Saída da cozinha e ambiente exterior
+
+- Liguei o extremo direito da cozinha à Parte de Fora 2. A transição começa ao andar para a direita na zona de saída e coloca o protagonista no marcador de chegada, antes do limite da luz.
+- Reutilizei o filtro de filme antigo e coloquei neve leve a cair no segundo pátio. Os testes do percurso completo, da cozinha executada isoladamente, da furtividade e da luz da torre passaram.
+
+### Travamentos no Windows
+
+- Reproduzi cerca de 12 FPS com VSync ativo, inclusive numa janela vazia e com o limite de FPS removido. Na Parte de Fora 2, desligar o filtro, a neve e a luz durante o diagnóstico não alterou esse resultado. O Gestor de Tarefas e os contadores do Windows mostraram cerca de 5 GiB de RAM disponíveis durante a medição.
+- Desativei o VSync na configuração do jogo para Windows e mantive o limite de 60 FPS. O percurso completo e as cutscenes de espera e de sopa correram a cerca de 60 FPS no teste gráfico. Registei um pico isolado de 56 ms na entrada do segundo pátio. Os quatro testes automáticos passaram.

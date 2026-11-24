@@ -33,6 +33,9 @@ size = Vector2(282, 66)
 resource_local_to_scene = true
 size = Vector2(235, 42)
 
+[sub_resource type="RectangleShape2D" id="Rectangle_saida"]
+size = Vector2(32, 182)
+
 [sub_resource type="ShaderMaterial" id="Filme"]
 shader = ExtResource("11")
 shader_parameter/exposure = 0.83
@@ -159,6 +162,15 @@ position = Vector2(-14, 5)
 build_mode = 1
 polygon = PackedVector2Array(16, 695, 1656, 695, 1656, 925, 16, 925)
 
+[node name="SaidaParaExterior" type="Area2D" parent="."]
+position = Vector2(1633, 815)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="ZonaDaSaida" type="CollisionShape2D" parent="SaidaParaExterior"]
+shape = SubResource("Rectangle_saida")
+
 [node name="Camera" type="Camera2D" parent="." unique_id=2031117302 node_paths=PackedStringArray("target")]
 position = Vector2(660, 582)
 zoom = Vector2(1.04, 1.04)
@@ -207,10 +219,6 @@ horizontal_alignment = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -316.0
-offset_top = 966.0
-offset_right = -316.0
-offset_bottom = 966.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

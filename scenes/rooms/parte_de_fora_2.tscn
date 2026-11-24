@@ -1,0 +1,279 @@
+[gd_scene format=4 uid="uid://satp82e88eox"]
+
+[ext_resource type="Texture2D" uid="uid://barjiqfcdxr68" path="res://assets/modelos/parte_de_fora_2/ceu_cerca_transparente.png" id="1_ceu"]
+[ext_resource type="Texture2D" uid="uid://cxxmf7bbfma31" path="res://assets/modelos/parte_de_fora_2/chao_lamacento.png" id="2_chao"]
+[ext_resource type="Texture2D" uid="uid://wuan576oisx3" path="res://assets/modelos/parte_de_fora_2/barracao_esquerdo.png" id="3_esquerdo"]
+[ext_resource type="Texture2D" uid="uid://csrd7bmgqvb57" path="res://assets/modelos/parte_de_fora_2/barracao_direito.png" id="4_direito"]
+[ext_resource type="Texture2D" uid="uid://dg0wk76qs2uo5" path="res://assets/modelos/parte_de_fora_2/torre_de_vigia.png" id="5_torre"]
+[ext_resource type="Texture2D" uid="uid://cb16jrjups35d" path="res://assets/modelos/parte_de_fora_2/caixa_madeira.png" id="6_caixa"]
+[ext_resource type="PackedScene" path="res://assets/modelos/characters/player/player.tscn" id="7_player"]
+[ext_resource type="Script" uid="uid://l13rq4sdtr01" path="res://scripts/room_camera.gd" id="8_camera"]
+[ext_resource type="Script" uid="uid://cn1i13hqa1q8n" path="res://scripts/watchtower_searchlight.gd" id="9_watch"]
+[ext_resource type="Shader" uid="uid://6vg3l73erdbf" path="res://effects/watchtower_spot.gdshader" id="10_spot"]
+[ext_resource type="Script" uid="uid://dis03lk0qsyl4" path="res://scripts/parte_de_fora_2.gd" id="11_yard"]
+[ext_resource type="Shader" uid="uid://d3egfrec26" path="res://effects/old_film.gdshader" id="12_filme"]
+
+[sub_resource type="RectangleShape2D" id="Rectangle_caixa"]
+size = Vector2(790, 165)
+
+[sub_resource type="ShaderMaterial" id="Material_spot"]
+resource_local_to_scene = true
+shader = ExtResource("10_spot")
+shader_parameter/spot_center = Vector2(0, 0)
+shader_parameter/spot_radius = Vector2(266, 205)
+shader_parameter/shadow_origin = Vector2(0, 0)
+shader_parameter/safe_x = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/cover_rects = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_lamp"]
+offsets = PackedFloat32Array(0, 0.24, 1)
+colors = PackedColorArray(1, 1, 1, 0.95, 0.95, 0.95, 0.95, 0.36, 0.9, 0.9, 0.9, 0)
+
+[sub_resource type="GradientTexture2D" id="Texture_lamp"]
+gradient = SubResource("Gradient_lamp")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_neve"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 0.9, 1, 1, 1, 0.56, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="Texture_neve"]
+gradient = SubResource("Gradient_neve")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="ShaderMaterial" id="Material_filme"]
+shader = ExtResource("12_filme")
+shader_parameter/exposure = 0.83
+shader_parameter/grain = 0.035
+shader_parameter/vignette = 0.18
+
+[node name="ParteDeFora2" type="Node2D" unique_id=748667440]
+script = ExtResource("11_yard")
+
+[node name="Terreno" type="Node2D" parent="." unique_id=2103259178]
+
+[node name="Chao" type="Sprite2D" parent="Terreno" unique_id=208430034]
+z_index = -3
+position = Vector2(-218.00002, 479)
+scale = Vector2(2.0562203, 3.780645)
+texture = ExtResource("2_chao")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1672, 310)
+
+[node name="CeuComCerca" type="Sprite2D" parent="Terreno" unique_id=1870091573]
+z_index = -2
+position = Vector2(-241.00002, -409)
+scale = Vector2(1.6904297, 1.5953078)
+texture = ExtResource("1_ceu")
+centered = false
+
+[node name="Edificios" type="Node2D" parent="." unique_id=1343278620]
+
+[node name="TorreDeVigia" type="Sprite2D" parent="Edificios" unique_id=559094708]
+z_index = -1
+position = Vector2(1620, 795.99994)
+scale = Vector2(0.5571288, 0.45377606)
+texture = ExtResource("5_torre")
+offset = Vector2(0, -736)
+
+[node name="Lampada" type="Marker2D" parent="Edificios/TorreDeVigia" unique_id=991766360]
+position = Vector2(4, -900)
+
+[node name="ProjecaoNoChao" type="Marker2D" parent="Edificios/TorreDeVigia" unique_id=1385945854]
+
+[node name="BarracaoEsquerdo" type="Sprite2D" parent="Edificios" unique_id=255626150]
+position = Vector2(106.37498, 1343.0001)
+scale = Vector2(1.1638914, 1.0362954)
+texture = ExtResource("3_esquerdo")
+offset = Vector2(0, -399.5)
+
+[node name="BarracaoDireito" type="Sprite2D" parent="Edificios" unique_id=127210349]
+position = Vector2(3111.9995, 1327.0001)
+scale = Vector2(1.0414273, 0.9901356)
+texture = ExtResource("4_direito")
+offset = Vector2(0, -405.5)
+
+[node name="Objetos" type="Node2D" parent="." unique_id=1574224214]
+y_sort_enabled = true
+
+[node name="Caixa01" type="Sprite2D" parent="Objetos" unique_id=176499020]
+position = Vector2(890, 1162)
+scale = Vector2(0.24431643, 0.3173829)
+texture = ExtResource("6_caixa")
+offset = Vector2(0, -512)
+
+[node name="Corpo" type="StaticBody2D" parent="Objetos/Caixa01" unique_id=1261866565]
+
+[node name="BaseDaCaixa" type="CollisionShape2D" parent="Objetos/Caixa01/Corpo" unique_id=1834824304]
+position = Vector2(0, -130)
+shape = SubResource("Rectangle_caixa")
+
+[node name="AlvoDaLuz" type="Marker2D" parent="Objetos/Caixa01" unique_id=53625547]
+position = Vector2(0, 140)
+
+[node name="Caixa02" type="Sprite2D" parent="Objetos" unique_id=1931348277]
+position = Vector2(1391.0001, 1397)
+scale = Vector2(0.27589196, 0.321289)
+texture = ExtResource("6_caixa")
+offset = Vector2(0, -512)
+
+[node name="Corpo" type="StaticBody2D" parent="Objetos/Caixa02" unique_id=1502341965]
+
+[node name="BaseDaCaixa" type="CollisionShape2D" parent="Objetos/Caixa02/Corpo" unique_id=1408357014]
+position = Vector2(0, -130)
+shape = SubResource("Rectangle_caixa")
+
+[node name="AlvoDaLuz" type="Marker2D" parent="Objetos/Caixa02" unique_id=299992593]
+position = Vector2(0, 140)
+
+[node name="Caixa03" type="Sprite2D" parent="Objetos" unique_id=1434294135]
+position = Vector2(1897, 1148)
+scale = Vector2(0.2679298, 0.31933597)
+texture = ExtResource("6_caixa")
+offset = Vector2(0, -512)
+
+[node name="Corpo" type="StaticBody2D" parent="Objetos/Caixa03" unique_id=1376046018]
+
+[node name="BaseDaCaixa" type="CollisionShape2D" parent="Objetos/Caixa03/Corpo" unique_id=720506982]
+position = Vector2(0, -130)
+shape = SubResource("Rectangle_caixa")
+
+[node name="AlvoDaLuz" type="Marker2D" parent="Objetos/Caixa03" unique_id=403624751]
+position = Vector2(0, 140)
+
+[node name="Caixa04" type="Sprite2D" parent="Objetos" unique_id=1989727943]
+position = Vector2(2553, 1305)
+scale = Vector2(0.29216805, 0.35546863)
+texture = ExtResource("6_caixa")
+offset = Vector2(0, -512)
+
+[node name="Corpo" type="StaticBody2D" parent="Objetos/Caixa04" unique_id=1530867589]
+
+[node name="BaseDaCaixa" type="CollisionShape2D" parent="Objetos/Caixa04/Corpo" unique_id=611650740]
+position = Vector2(0, -130)
+shape = SubResource("Rectangle_caixa")
+
+[node name="AlvoDaLuz" type="Marker2D" parent="Objetos/Caixa04" unique_id=1756333469]
+position = Vector2(0, 140)
+
+[node name="Player" parent="Objetos" unique_id=386165706 instance=ExtResource("7_player")]
+position = Vector2(475, 1378)
+scale = Vector2(2.9553192, 2.9872074)
+crouch_enabled = true
+
+[node name="Chegada" type="Marker2D" parent="." unique_id=266432852]
+position = Vector2(475, 1378)
+
+[node name="LimiteSeguro" type="Marker2D" parent="." unique_id=1435182320]
+position = Vector2(660, 1378)
+
+[node name="LimitesDoPatio" type="StaticBody2D" parent="." unique_id=1621885338]
+
+[node name="Perimetro" type="CollisionPolygon2D" parent="LimitesDoPatio" unique_id=1407752944]
+build_mode = 1
+polygon = PackedVector2Array(375, 1355, 660, 1100, 765, 955, 2050, 955, 2690, 1110, 2980, 1350, 2980, 1608, 375, 1608)
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1166204022 node_paths=PackedStringArray("target")]
+position = Vector2(1088, 916)
+zoom = Vector2(0.49, 0.49)
+limit_left = -218
+limit_top = 0
+limit_right = 3220
+limit_bottom = 1650
+position_smoothing_enabled = true
+editor_draw_limits = true
+script = ExtResource("8_camera")
+target = NodePath("../Objetos/Player")
+
+[node name="LuzDeVigia" type="Node2D" parent="." unique_id=455358596 node_paths=PackedStringArray("emitter", "shadow_origin", "safe_boundary", "sweep_points", "crate_footprints", "player", "spawn", "camera", "caught_notice")]
+script = ExtResource("9_watch")
+emitter = NodePath("../Edificios/TorreDeVigia/Lampada")
+shadow_origin = NodePath("../Edificios/TorreDeVigia/ProjecaoNoChao")
+safe_boundary = NodePath("../LimiteSeguro")
+sweep_points = [NodePath("../Objetos/Caixa04/AlvoDaLuz"), NodePath("../Objetos/Caixa03/AlvoDaLuz"), NodePath("../Objetos/Caixa02/AlvoDaLuz"), NodePath("../Objetos/Caixa01/AlvoDaLuz")]
+crate_footprints = [NodePath("../Objetos/Caixa01/Corpo/BaseDaCaixa"), NodePath("../Objetos/Caixa02/Corpo/BaseDaCaixa"), NodePath("../Objetos/Caixa03/Corpo/BaseDaCaixa"), NodePath("../Objetos/Caixa04/Corpo/BaseDaCaixa")]
+player = NodePath("../Objetos/Player")
+spawn = NodePath("../Chegada")
+camera = NodePath("../Camera")
+caught_notice = NodePath("../Avisos/Detetado")
+
+[node name="CirculoNoChao" type="ColorRect" parent="LuzDeVigia" unique_id=569287645]
+z_index = -1
+material = SubResource("Material_spot")
+mouse_filter = 2
+
+[node name="Feixe" type="Polygon2D" parent="LuzDeVigia" unique_id=1326011810]
+z_index = 1
+vertex_colors = PackedColorArray(0.96, 0.96, 0.96, 0, 0.96, 0.96, 0.96, 0, 0.96, 0.96, 0.96, 0.04, 0.96, 0.96, 0.96, 0, 0.96, 0.96, 0.96, 0, 0.96, 0.96, 0.96, 0.18)
+
+[node name="BrilhoDaLampada" type="Sprite2D" parent="LuzDeVigia" unique_id=291543479]
+visible = false
+z_index = 1
+scale = Vector2(0.63, 0.63)
+texture = SubResource("Texture_lamp")
+
+[node name="Neve" type="CPUParticles2D" parent="." unique_id=2076253307]
+z_index = 4
+position = Vector2(1460, 160)
+amount = 74
+texture = SubResource("Texture_neve")
+lifetime = 13.0
+preprocess = 13.0
+emission_shape = 3
+emission_rect_extents = Vector2(1890, 60)
+direction = Vector2(0.2, 1)
+spread = 13.0
+gravity = Vector2(0.7, 6)
+initial_velocity_min = 91.0
+initial_velocity_max = 118.0
+scale_amount_min = 0.78
+scale_amount_max = 1.76
+
+[node name="FilmeAntigo" type="CanvasLayer" parent="." unique_id=1068395546]
+layer = 5
+
+[node name="Filtro" type="ColorRect" parent="FilmeAntigo" unique_id=597318962]
+material = SubResource("Material_filme")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Avisos" type="CanvasLayer" parent="." unique_id=476317325]
+layer = 6
+
+[node name="Detetado" type="Label" parent="Avisos" unique_id=650965728]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -175.0
+offset_top = -104.0
+offset_right = 175.0
+offset_bottom = -64.0
+theme_override_colors/font_outline_color = Color(0.06, 0.06, 0.06, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+text = "A luz encontrou-te."
+horizontal_alignment = 1
+
+[node name="Transicao" type="ColorRect" parent="Avisos" unique_id=424191402]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.025, 0.023, 0.022, 1)

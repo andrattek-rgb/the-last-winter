@@ -52,10 +52,36 @@ func _test_route() -> void:
 		await _hold(&"move_forward", 40)
 		await _hold(&"move_right", 248)
 		_check(not outside.get("entering"), "Mover para a direita não ativa a porta aberta.")
-		await _hold(&"move_back", 160)
+		Input.action_press(&"move_back")
+		for tick in 160:
+			await physics_frame
+			if game.has_node("Kitchen"):
+				break
+		Input.action_release(&"move_back")
 		var kitchen := game.get_node_or_null("Kitchen")
 		_check(kitchen != null and not game.has_node("ParteDeFora"),
 			"Subir os degraus abre a cozinha no jogo.")
+		if kitchen != null:
+			Input.action_press(&"move_right")
+			for tick in 450:
+				await physics_frame
+				if not is_instance_valid(kitchen) or kitchen.leaving:
+					break
+			Input.action_release(&"move_right")
+			for tick in 120:
+				await process_frame
+				if game.has_node("ParteDeFora2"):
+					break
+			var yard := game.get_node_or_null("ParteDeFora2")
+			_check(yard != null and not game.has_node("Kitchen"), "Seguir até ao extremo direito da cozinha abre o segundo pátio.")
+			if yard != null:
+				var searchlight := yard.get_node("LuzDeVigia")
+				_check(yard.player.global_position.is_equal_approx(yard.arrival.global_position)
+					and yard.player.global_position.x < searchlight.safe_boundary.global_position.x,
+					"O jogador chega à zona segura do segundo pátio.")
+				_check(yard.get_node("Neve").emitting
+					and yard.get_node("FilmeAntigo/Filtro").material.shader.resource_path.ends_with("/old_film.gdshader"),
+					"O segundo pátio tem neve a cair e o filtro de filme antigo.")
 
 	for failure in failures:
 		push_error(failure)

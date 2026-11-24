@@ -12,6 +12,7 @@ func _initialize() -> void:
 func _run() -> void:
 	var kitchen := KITCHEN.instantiate()
 	root.add_child(kitchen)
+	current_scene = kitchen
 	var player: CharacterBody2D = kitchen.player
 	var interaction: KitchenInteraction = kitchen.interaction
 	var stirrer: Node2D = kitchen.get_node("EmCena/Mexedor")
@@ -115,10 +116,24 @@ func _run() -> void:
 				break
 	_check(visited.size() == 4 and visited[0] == visited[3], "O mexedor repete o circuito dos três caldeirões.")
 
+	Input.action_press(&"move_right")
+	for tick in 110:
+		await physics_frame
+		if not is_instance_valid(kitchen) or kitchen.leaving:
+			break
+	Input.action_release(&"move_right")
+	for tick in 120:
+		await process_frame
+		if current_scene != null and current_scene.name == &"ParteDeFora2":
+			break
+	_check(current_scene != null and current_scene.name == &"ParteDeFora2",
+		"A saída também funciona ao executar a cozinha isoladamente.")
+
 	for failure in failures:
 		push_error(failure)
 	print("Cozinha: %d falhas." % failures.size())
-	kitchen.queue_free()
+	if current_scene != null:
+		current_scene.queue_free()
 	await process_frame
 	await process_frame
 	quit(0 if failures.is_empty() else 1)

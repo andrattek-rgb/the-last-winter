@@ -1,6 +1,6 @@
 extends Node2D
 
-signal kitchen_requested
+signal kitchen_requested(scene: PackedScene)
 
 const KITCHEN_SCENE := "res://scenes/rooms/kitchen.tscn"
 
@@ -59,18 +59,36 @@ func _restart_after_detection() -> void:
 func _walk_through_door() -> void:
 	_show_cover(null)
 	player.set_physics_process(false)
+	var loading_kitchen := false
+	if DisplayServer.get_name() != "headless" and not OS.has_feature("web"):
+		loading_kitchen = ResourceLoader.load_threaded_request(KITCHEN_SCENE, "PackedScene") == OK
 	var sprite: AnimatedSprite2D = player.get_node("Sprite")
 	sprite.play(&"run")
 	var entry := create_tween()
 	entry.tween_property(player, "global_position", doorway.global_position, 0.48)
 	entry.parallel().tween_property(entry_fade, "color:a", 1.0, 0.40).set_delay(0.20)
 	await entry.finished
+	var kitchen_scene: PackedScene
+	if loading_kitchen:
+		while ResourceLoader.load_threaded_get_status(KITCHEN_SCENE) == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+			await get_tree().process_frame
+		kitchen_scene = ResourceLoader.load_threaded_get(KITCHEN_SCENE) as PackedScene
+	else:
+		kitchen_scene = ResourceLoader.load(KITCHEN_SCENE, "PackedScene") as PackedScene
+	if kitchen_scene == null:
+		push_error("Não foi possível carregar a cozinha.")
+		player.global_position = arrival.global_position
+		entry_fade.color.a = 0.0
+		player.set_physics_process(true)
+		entering = false
+		return
+
 	sprite.stop()
 	player.hide()
 	if get_tree().current_scene == self:
-		get_tree().change_scene_to_file(KITCHEN_SCENE)
+		get_tree().change_scene_to_packed(kitchen_scene)
 	else:
-		kitchen_requested.emit()
+		kitchen_requested.emit(kitchen_scene)
 
 
 func _show_cover(cover: StealthCover) -> void:

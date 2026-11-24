@@ -60,8 +60,8 @@ region_enabled = true
 region_rect = Rect2(0, 0, 1672, 570)
 
 [node name="CeuECercas" type="Sprite2D" parent="Paisagem" unique_id=2127815612]
-position = Vector2(-181, 26.999996)
-scale = Vector2(0.89088404, 0.84504133)
+position = Vector2(-149, 26.999996)
+scale = Vector2(0.86187845, 0.8491735)
 texture = ExtResource("1_ceu")
 centered = false
 
@@ -175,7 +175,7 @@ polygon = PackedVector2Array(-18.894217, 321.8473, 393.90796, 444.66965, 411.496
 
 [node name="BarracaoDireito" type="CollisionPolygon2D" parent="LimitesDoPatio" unique_id=35495090]
 position = Vector2(-534, 52)
-polygon = PackedVector2Array(2043, 480, 2321, 334, 2347, 708, 2329, 721, 2327, 765, 2046, 716)
+polygon = PackedVector2Array(2050, 493, 2328, 347, 2354, 721, 2336, 734, 2334, 778, 2053, 729)
 
 [node name="EntradaPortaAberta" type="Area2D" parent="." unique_id=342565683]
 position = Vector2(1561, 810)
@@ -188,7 +188,7 @@ position = Vector2(70.25, 11)
 shape = SubResource("Rectangle_door")
 
 [node name="Limiar" type="Marker2D" parent="EntradaPortaAberta" unique_id=410735913]
-position = Vector2(20, -34)
+position = Vector2(96, -26)
 gizmo_extents = 15.0
 
 [node name="CameraPrevisualizacao" type="Camera2D" parent="." unique_id=1179790961 node_paths=PackedStringArray("target")]

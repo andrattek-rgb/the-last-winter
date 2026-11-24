@@ -85,3 +85,21 @@ Comparei a vista da cozinha com a execução e corrigi o corte do balcão no lim
 O pedido definiu a necessidade de ver os ajustes de escala no enquadramento do jogo enquanto se edita a cena.
 
 Uma captura enviada pelo Michel mostrou o protagonista inclinado junto à pilha de pijamas. Corrigi a rotação na cena exterior.
+
+## 24 de novembro de 2026 — Desempenho e segundo exterior
+
+> Investiga a causa real deste problema antes de continuar o desenvolvimento […] Eu próprio vou montar e organizar o cenário manualmente.
+
+A ordem do pedido foi abrir a cozinha, medir e corrigir os travamentos e só depois preparar o segundo exterior com os assets separados e editáveis.
+
+> Troque o chão pelo mesmo chão que tem no lado de fora 1 […] quero que o céu e a cerca fiquem por cima do chão nas camadas.
+
+O pedido definiu a textura a reutilizar e a ordem de desenho do terreno.
+
+> A torre de vigia vai emitir uma luz […] o padrão da luz é começar da caixa 4 e ir até à caixa 1 e depois repetir.
+
+O pedido também definiu a linha branca como limite da zona segura e as caixas como cobertura com sombra visível.
+
+> Ao seguir em frente na cozinha dava acesso ao lado de fora 2 […] e coloque o filtro que usamos e também a neve.
+
+O pedido completou o percurso da cozinha ao segundo pátio e especificou o filtro e a neve a cair.
