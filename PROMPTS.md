@@ -103,3 +103,15 @@ O pedido também definiu a linha branca como limite da zona segura e as caixas c
 > Ao seguir em frente na cozinha dava acesso ao lado de fora 2 […] e coloque o filtro que usamos e também a neve.
 
 O pedido completou o percurso da cozinha ao segundo pátio e especificou o filtro e a neve a cair.
+
+> A luz tem que vir da marcação branca […] quando chegar no 1 vai do 1 pro 4, assim indo e voltando sem desaparecer.
+
+O pedido ajustou a origem do feixe e o ritmo da varredura.
+
+> A luz pode ser rápida na transição de uma caixa para outra mas em cada caixa fica parada por um segundo […] faz uma luz forte.
+
+O pedido especificou o contraste entre a deslocação rápida e as pausas e um holofote mais forte na cabine.
+
+> Agora vamos fazer o que falta, deve ser o login e a database, pode começar a fazer isso.
+
+O pedido fechou a fase de alterações ao conteúdo do jogo e iniciou a implementação de contas e progresso persistente no Supabase. O enunciado da Mindera foi consultado para confirmar os requisitos de autenticação, persistência entre sessões e testes automáticos.

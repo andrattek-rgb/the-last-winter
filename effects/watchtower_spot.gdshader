@@ -5,7 +5,6 @@ uniform vec2 spot_center;
 uniform vec2 spot_radius = vec2(266.0, 205.0);
 uniform vec2 shadow_origin;
 uniform float safe_x;
-uniform float intensity;
 uniform vec4 cover_rects[4];
 
 varying vec2 world_position;
@@ -34,5 +33,5 @@ void fragment() {
 	}
 	vec3 tone = shaded ? vec3(0.055) : vec3(0.97);
 	float power = shaded ? 0.24 : mix(0.55, 0.38, radius);
-	COLOR = vec4(tone, edge * cutoff * intensity * power);
+	COLOR = vec4(tone, edge * cutoff * power);
 }

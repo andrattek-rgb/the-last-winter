@@ -24,7 +24,7 @@ Na máquina de desenvolvimento, o editor portátil está em `../../work/godot-4.
 - `assets/modelos/` reúne os PNGs utilizados e as cenas reutilizáveis. `room_01/` contém o cenário e o beliche. `characters/` contém as cenas, os spritesheets e os fotogramas de animação do protagonista, dos prisioneiros e do varredor.
 - `export_presets.cfg` configura a exportação Web.
 - `AGENTS.md`, `DIARIO.md` e `PROMPTS.md` registam as regras de trabalho, o percurso real e os pedidos que definiram o projeto.
-- `tests/` contém a verificação automática do percurso entre o barracão e o pátio. `web/` receberá o código do browser e `supabase/migrations/` o esquema versionado.
+- `tests/` contém as verificações do jogo, da autenticação Web e da persistência. `web/` contém o portal de contas e `supabase/migrations/` o esquema versionado.
 
 ## Editar o exterior
 
@@ -51,20 +51,38 @@ Em `Neve`, a propriedade **Amount** controla a quantidade de flocos. O filtro de
 6. Em **Characters → Sweeper**, o Inspetor permite editar os pontos da rota, a velocidade e a duração de cada paragem para varrer. Em **FilmEffect → Filter → Material**, podes ajustar a exposição, o grão e a vinheta. O material `effects/character_light.tres` controla o realce partilhado pelos personagens.
 7. Em **Environment → Props**, podes mover o muro (`BrickWall`) e a lareira (`Fireplace`) separadamente. Cada modelo tem colisão na base.
 
-## Primeira publicação
+## Contas e progresso
 
-1. Instala os modelos de exportação da mesma versão do Godot. Em **Projeto → Exportar**, escolhe **Web** e usa `dist/index.html`. Com os modelos instalados, podes exportar pela linha de comandos.
+Na versão Web, cria uma conta com email e palavra-passe ou carrega em **Entrar**. Ao entrar numa zona, o jogo guarda automaticamente o ponto de controlo no Supabase. **Continuar** abre a entrada da última zona alcançada. Os pontos disponíveis são Sala 1, primeiro pátio, cozinha e segundo pátio. O progresso fica associado à conta. O Godot no editor continua a abrir diretamente o jogo para testes.
 
-   ```powershell
-   New-Item -ItemType Directory -Path dist -Force | Out-Null
-   godot --headless --path . --export-release Web dist/index.html
-   ```
+1. No projeto Supabase, aplica `supabase/migrations/202611240001_player_progress.sql` no **SQL Editor** e ativa o provider **Email** em **Authentication**. A migração limita a leitura ao dono do registo. A função de gravação valida a conta e só avança o ponto de controlo.
+2. Em **Authentication → URL Configuration**, configura o **Site URL** e os URLs de redirecionamento para os endereços que vão servir o jogo. Para disponibilizar confirmação de conta a jogadores externos, configura SMTP próprio. [Autenticação por palavra-passe](https://supabase.com/docs/guides/auth/passwords) · [SMTP do Supabase](https://supabase.com/docs/guides/auth/auth-smtp)
+3. Copia `.env.example` para `.env` e preenche o URL do projeto e a chave **Publishable**. Define `GODOT_BIN` caso o executável Godot não esteja no PATH. [Chaves do Supabase](https://supabase.com/docs/guides/getting-started/api-keys)
 
-2. Abre a exportação via HTTP local ou usa **Executar no browser** no Godot. Verifica a inicialização WebGL, o carregamento de `.wasm` e `.pck` e a consola do browser. O preset usa uma única thread para servir o build sem configurar cabeçalhos de isolamento. [Exportação Web do Godot](https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_web.html)
-3. Com autorização, publica apenas o conteúdo de `dist/` no Netlify e confirma a abertura por HTTPS numa janela privada. Faz a primeira publicação técnica cedo e substitui-a pela versão jogável quando estiver pronta. O Netlify serve os ficheiros exportados e o GitHub guarda as fontes. [Deploy manual do Netlify](https://docs.netlify.com/deploy/create-deploys/)
-4. Integra o Supabase no plano gratuito. A página Web trata do registo, login e logout com `supabase-js`. A página mantém a sessão, e o Godot comunica com ela via `JavaScriptBridge` para carregar e guardar o progresso. Testa a receção de emails num endereço externo se usarmos confirmação de conta, porque o SMTP incluído só entrega a membros da equipa do projeto. [Autenticação por palavra-passe](https://supabase.com/docs/guides/auth/passwords) · [SMTP do Supabase](https://supabase.com/docs/guides/auth/auth-smtp)
-5. Guarda um registo por jogador em `player_progress`, com `user_id` e o último ponto de controlo. Usa Row Level Security para limitar a leitura e a escrita ao utilizador autenticado dono do registo. Usa a chave publicável no browser e mantém chaves privilegiadas fora do build. [Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security) · [Chaves Supabase](https://supabase.com/docs/guides/getting-started/api-keys)
-6. Automatiza os testes de registo e login, gravação e recuperação após reabrir o browser e isolamento entre duas contas. Acrescenta testes Godot sem interface para os controlos e as colisões da Sala 1 quando forem implementados. Documenta os comandos e regista os resultados de cada execução.
+## Exportar e testar no browser
+
+Com Node.js 24 e os modelos de exportação da mesma versão do Godot instalados, corre na raiz do projeto:
+
+```powershell
+npm ci
+npm test
+node --env-file=.env web/build.mjs
+python -m http.server 8000 --directory dist
+```
+
+Abre `http://localhost:8000` no browser. A exportação usa o renderer Compatibility e uma única thread. Com autorização, publica o conteúdo de `dist/` no Netlify e verifica o registo, login e progresso com duas contas. [Exportação Web do Godot](https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_web.html) · [Deploy manual do Netlify](https://docs.netlify.com/deploy/create-deploys/)
+
+O teste de browser usa a exportação real e uma API Supabase simulada. Para o executar, usa estas variáveis apenas no terminal de teste e volta a exportar com a configuração real antes de publicar:
+
+```powershell
+$env:SUPABASE_URL = "https://test-winter.supabase.co"
+$env:SUPABASE_PUBLISHABLE_KEY = "sb_publishable_test_fixture"
+npm run build:web
+npx playwright install chromium
+npm run test:browser
+```
+
+Podes definir `TEST_CHROMIUM_BIN` para reutilizar um Chrome instalado. O `npm test` valida a migração com PostgreSQL local via PGlite e a recuperação de erros de gravação.
 
 ## GitHub
 

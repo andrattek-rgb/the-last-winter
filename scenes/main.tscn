@@ -1,6 +1,5 @@
 [gd_scene format=3]
 
-[ext_resource type="PackedScene" path="res://scenes/rooms/room_01.tscn" id="1_room"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="2_main"]
 [ext_resource type="Shader" path="res://effects/exterior_slide.gdshader" id="3_slide"]
 
@@ -10,8 +9,6 @@ shader = ExtResource("3_slide")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("2_main")
-
-[node name="Room01" parent="." instance=ExtResource("1_room")]
 
 [node name="ExteriorTransition" type="CanvasLayer" parent="."]
 layer = 10

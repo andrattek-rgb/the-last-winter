@@ -1,23 +1,58 @@
 extends Node2D
 
-const OUTSIDE_PATH := "res://scenes/rooms/parte_de_fora.tscn"
+enum Checkpoint { ROOM, OUTSIDE, KITCHEN, OUTSIDE_2 }
+
+const CHECKPOINT_SCENES := {
+	Checkpoint.ROOM: "res://scenes/rooms/room_01.tscn",
+	Checkpoint.OUTSIDE: "res://scenes/rooms/parte_de_fora.tscn",
+	Checkpoint.KITCHEN: "res://scenes/rooms/kitchen.tscn",
+	Checkpoint.OUTSIDE_2: "res://scenes/rooms/parte_de_fora_2.tscn",
+}
+const OUTSIDE_PATH: String = CHECKPOINT_SCENES[Checkpoint.OUTSIDE]
 const OUTSIDE_PRELOAD_DISTANCE := 480.0
 const SLIDE_DURATION := 1.10
 
-@onready var room: Node2D = $Room01
-@onready var exit_area: Area2D = room.get_node("ExitToOutside")
-@onready var inside_player: CharacterBody2D = room.get_node("Characters/Player")
 @onready var slide: ColorRect = $ExteriorTransition/Slide
 @onready var slide_buffer: BackBufferCopy = $ExteriorTransition/SlideBuffer
 @onready var slide_material: ShaderMaterial = slide.material
 
 var transitioning := false
 var loading_outside := false
+var room: Node2D
+var exit_area: Area2D
+var inside_player: CharacterBody2D
+var web_progress: JavaScriptObject
 
 
 func _ready() -> void:
-	exit_area.body_entered.connect(_on_exit_body_entered)
-	set_process(DisplayServer.get_name() != "headless" and not OS.has_feature("web"))
+	var checkpoint := Checkpoint.ROOM
+	if OS.has_feature("web"):
+		web_progress = JavaScriptBridge.get_interface("winterProgress")
+		if web_progress != null:
+			var saved := int(web_progress.startingCheckpoint)
+			if CHECKPOINT_SCENES.has(saved):
+				checkpoint = saved as Checkpoint
+	_mount_checkpoint(load(CHECKPOINT_SCENES[checkpoint]) as PackedScene, checkpoint)
+
+
+func _mount_checkpoint(packed: PackedScene, checkpoint: Checkpoint) -> Node2D:
+	var zone := packed.instantiate() as Node2D
+	add_child(zone)
+	set_process(false)
+	match checkpoint:
+		Checkpoint.ROOM:
+			room = zone
+			exit_area = room.get_node("ExitToOutside")
+			inside_player = room.get_node("Characters/Player")
+			exit_area.body_entered.connect(_on_exit_body_entered)
+			set_process(DisplayServer.get_name() != "headless" and not OS.has_feature("web"))
+		Checkpoint.OUTSIDE:
+			zone.kitchen_requested.connect(_enter_kitchen.bind(zone), CONNECT_ONE_SHOT)
+		Checkpoint.KITCHEN:
+			zone.outside_requested.connect(_enter_outside_2.bind(zone), CONNECT_ONE_SHOT)
+	if web_progress != null:
+		web_progress.checkpointReached(int(checkpoint))
+	return zone
 
 
 func _process(_delta: float) -> void:
@@ -66,9 +101,7 @@ func _enter_exterior() -> void:
 
 	remove_child(room)
 	room.queue_free()
-	var exterior := outside_scene.instantiate()
-	add_child(exterior)
-	exterior.kitchen_requested.connect(_enter_kitchen.bind(exterior), CONNECT_ONE_SHOT)
+	var exterior := _mount_checkpoint(outside_scene, Checkpoint.OUTSIDE)
 	var player := exterior.get_node("Personagens/Player")
 	if slide.visible:
 		player.set_physics_process(false)
@@ -82,14 +115,12 @@ func _enter_exterior() -> void:
 
 
 func _enter_kitchen(kitchen: PackedScene, exterior: Node2D) -> void:
-	var kitchen_room := kitchen.instantiate()
-	kitchen_room.outside_requested.connect(_enter_outside_2.bind(kitchen_room), CONNECT_ONE_SHOT)
 	remove_child(exterior)
 	exterior.queue_free()
-	add_child(kitchen_room)
+	_mount_checkpoint(kitchen, Checkpoint.KITCHEN)
 
 
 func _enter_outside_2(exterior: PackedScene, kitchen_room: Node2D) -> void:
 	remove_child(kitchen_room)
 	kitchen_room.queue_free()
-	add_child(exterior.instantiate())
+	_mount_checkpoint(exterior, Checkpoint.OUTSIDE_2)

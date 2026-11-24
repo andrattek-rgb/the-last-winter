@@ -240,3 +240,24 @@
 
 - Reproduzi cerca de 12 FPS com VSync ativo, inclusive numa janela vazia e com o limite de FPS removido. Na Parte de Fora 2, desligar o filtro, a neve e a luz durante o diagnóstico não alterou esse resultado. O Gestor de Tarefas e os contadores do Windows mostraram cerca de 5 GiB de RAM disponíveis durante a medição.
 - Desativei o VSync na configuração do jogo para Windows e mantive o limite de 60 FPS. O percurso completo e as cutscenes de espera e de sopa correram a cerca de 60 FPS no teste gráfico. Registei um pico isolado de 56 ms na entrada do segundo pátio. Os quatro testes automáticos passaram.
+
+### Varredura contínua da torre
+
+- Alinhei a lâmpada com a marca branca na cabine. A luz percorre as quatro caixas nos dois sentidos e desacelera nas extremidades. Reduzi a velocidade máxima de 330 para 190 unidades por segundo.
+- O painel de transição passou a ficar oculto no editor e aparece apenas durante a chegada ao pátio. Confirmei o alinhamento do feixe no Godot e testei a sequência de ida e volta, o limite seguro e as sombras. Os quatro testes automáticos passaram.
+
+### Pausas do holofote
+
+- Aumentei a velocidade entre caixas para 540 unidades por segundo e introduzi uma pausa de um segundo em cada caixa, desde o arranque e nos dois sentidos. O jogador continua sujeito à deteção durante as pausas.
+- Aumentei o halo e a intensidade do feixe na cabine, com o brilho centrado na lâmpada existente. Confirmei o resultado no Godot e os quatro testes automáticos passaram.
+
+- Aumentei em cerca de 15% a velocidade do protagonista na Parte de Fora 2. Medi a deslocação horizontal e em profundidade com os controlos do jogo. Os testes da luz e do percurso passaram.
+
+## 24 de novembro de 2026 — Contas e progresso Web
+
+- Consultei o enunciado da Mindera e implementei o registo, o início e o fim de sessão através do Supabase Auth na exportação Web.
+- Liguei o Godot ao portal Web para guardar e retomar o último ponto de controlo de cada conta. A migração protege os registos por utilizador e impede que uma gravação atrasada faça recuar o progresso.
+- Os quatro testes Godot (percurso, furtividade, cozinha e holofote) passaram, assim como os testes locais da fila de gravação e da migração PostgreSQL.
+- A exportação Web abriu no Chromium com a API Supabase simulada. O teste criou uma conta, jogou até ao primeiro pátio, fechou a página e retomou o pátio ao reabrir. Também verificou palavra-passe incorreta, novo login e uma segunda conta sem o progresso da primeira.
+- Apliquei a migração no projeto gratuito do Supabase criado pelo responsável e exportei o jogo com a configuração publicável real. A API confirmou que o registo por email está ativo e devolveu 401 às tentativas de leitura e gravação sem sessão. No Chromium, o formulário chamou o Supabase real e apresentou a mensagem esperada para credenciais inválidas.
+- A versão Web ficou disponível localmente na porta 3000. A confirmação de email, o login com uma conta real e a recuperação do progresso no projeto alojado ainda aguardam o teste do responsável.

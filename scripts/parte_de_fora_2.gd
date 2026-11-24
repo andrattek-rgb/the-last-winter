@@ -7,4 +7,6 @@ extends Node2D
 
 func _ready() -> void:
 	player.global_position = arrival.global_position
-	create_tween().tween_property(arrival_fade, "color:a", 0.0, 0.35)
+	arrival_fade.show()
+	await create_tween().tween_property(arrival_fade, "color:a", 0.0, 0.35).finished
+	arrival_fade.hide()

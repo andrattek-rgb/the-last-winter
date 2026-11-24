@@ -23,15 +23,19 @@ shader_parameter/spot_center = Vector2(0, 0)
 shader_parameter/spot_radius = Vector2(266, 205)
 shader_parameter/shadow_origin = Vector2(0, 0)
 shader_parameter/safe_x = 0.0
-shader_parameter/intensity = 0.0
 shader_parameter/cover_rects = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
+[sub_resource type="CanvasItemMaterial" id="Material_lamp"]
+blend_mode = 1
+
 [sub_resource type="Gradient" id="Gradient_lamp"]
-offsets = PackedFloat32Array(0, 0.24, 1)
-colors = PackedColorArray(1, 1, 1, 0.95, 0.95, 0.95, 0.95, 0.36, 0.9, 0.9, 0.9, 0)
+offsets = PackedFloat32Array(0, 0.13, 0.3, 0.62, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.98, 0.98, 0.98, 0.98, 0.65, 0.95, 0.95, 0.95, 0.24, 0.9, 0.9, 0.9, 0)
 
 [sub_resource type="GradientTexture2D" id="Texture_lamp"]
 gradient = SubResource("Gradient_lamp")
+width = 128
+height = 128
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
@@ -70,7 +74,7 @@ region_rect = Rect2(0, 0, 1672, 310)
 
 [node name="CeuComCerca" type="Sprite2D" parent="Terreno" unique_id=1870091573]
 z_index = -2
-position = Vector2(-241.00002, -409)
+position = Vector2(-218, -276)
 scale = Vector2(1.6904297, 1.5953078)
 texture = ExtResource("1_ceu")
 centered = false
@@ -85,7 +89,7 @@ texture = ExtResource("5_torre")
 offset = Vector2(0, -736)
 
 [node name="Lampada" type="Marker2D" parent="Edificios/TorreDeVigia" unique_id=991766360]
-position = Vector2(4, -900)
+position = Vector2(-42, -1105)
 
 [node name="ProjecaoNoChao" type="Marker2D" parent="Edificios/TorreDeVigia" unique_id=1385945854]
 
@@ -105,8 +109,8 @@ offset = Vector2(0, -405.5)
 y_sort_enabled = true
 
 [node name="Caixa01" type="Sprite2D" parent="Objetos" unique_id=176499020]
-position = Vector2(890, 1162)
-scale = Vector2(0.24431643, 0.3173829)
+position = Vector2(895.1825, 1162)
+scale = Vector2(0.2510645, 0.33300784)
 texture = ExtResource("6_caixa")
 offset = Vector2(0, -512)
 
@@ -120,8 +124,8 @@ shape = SubResource("Rectangle_caixa")
 position = Vector2(0, 140)
 
 [node name="Caixa02" type="Sprite2D" parent="Objetos" unique_id=1931348277]
-position = Vector2(1391.0001, 1397)
-scale = Vector2(0.27589196, 0.321289)
+position = Vector2(1399.5575, 1397)
+scale = Vector2(0.28703445, 0.36914065)
 texture = ExtResource("6_caixa")
 offset = Vector2(0, -512)
 
@@ -135,8 +139,8 @@ shape = SubResource("Rectangle_caixa")
 position = Vector2(0, 140)
 
 [node name="Caixa03" type="Sprite2D" parent="Objetos" unique_id=1434294135]
-position = Vector2(1897, 1148)
-scale = Vector2(0.2679298, 0.31933597)
+position = Vector2(1912.115, 1148)
+scale = Vector2(0.2876107, 0.3437499)
 texture = ExtResource("6_caixa")
 offset = Vector2(0, -512)
 
@@ -150,8 +154,8 @@ shape = SubResource("Rectangle_caixa")
 position = Vector2(0, 140)
 
 [node name="Caixa04" type="Sprite2D" parent="Objetos" unique_id=1989727943]
-position = Vector2(2553, 1305)
-scale = Vector2(0.29216805, 0.35546863)
+position = Vector2(2537.6926, 1305)
+scale = Vector2(0.31209964, 0.37988287)
 texture = ExtResource("6_caixa")
 offset = Vector2(0, -512)
 
@@ -167,6 +171,8 @@ position = Vector2(0, 140)
 [node name="Player" parent="Objetos" unique_id=386165706 instance=ExtResource("7_player")]
 position = Vector2(475, 1378)
 scale = Vector2(2.9553192, 2.9872074)
+horizontal_speed = 300.0
+depth_speed = 190.0
 crouch_enabled = true
 
 [node name="Chegada" type="Marker2D" parent="." unique_id=266432852]
@@ -212,12 +218,13 @@ mouse_filter = 2
 
 [node name="Feixe" type="Polygon2D" parent="LuzDeVigia" unique_id=1326011810]
 z_index = 1
-vertex_colors = PackedColorArray(0.96, 0.96, 0.96, 0, 0.96, 0.96, 0.96, 0, 0.96, 0.96, 0.96, 0.04, 0.96, 0.96, 0.96, 0, 0.96, 0.96, 0.96, 0, 0.96, 0.96, 0.96, 0.18)
+vertex_colors = PackedColorArray(0.96, 0.96, 0.96, 0, 0.96, 0.96, 0.96, 0, 0.96, 0.96, 0.96, 0.05, 0.96, 0.96, 0.96, 0, 0.96, 0.96, 0.96, 0, 0.96, 0.96, 0.96, 0.34)
 
 [node name="BrilhoDaLampada" type="Sprite2D" parent="LuzDeVigia" unique_id=291543479]
 visible = false
 z_index = 1
-scale = Vector2(0.63, 0.63)
+material = SubResource("Material_lamp")
+scale = Vector2(1.85, 1.5)
 texture = SubResource("Texture_lamp")
 
 [node name="Neve" type="CPUParticles2D" parent="." unique_id=2076253307]
@@ -270,6 +277,7 @@ text = "A luz encontrou-te."
 horizontal_alignment = 1
 
 [node name="Transicao" type="ColorRect" parent="Avisos" unique_id=424191402]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
