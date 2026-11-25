@@ -1,85 +1,85 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://c3fy8rpvf2jvq"]
 
-[ext_resource type="Texture2D" uid="uid://de6i1fnn7xfut" path="res://assets/modelos/cozinha/animacoes/npc_cozinheiro_caminhando_spritesheet.png" id="Original"]
+[ext_resource type="Texture2D" uid="uid://dpo73u82vjbk1" path="res://assets/modelos/cozinha/animacoes/atlas_atualizados/caminhar_npc_cozinheiro_caminhando_1.png" id="Atlas1"]
 
 [sub_resource type="AtlasTexture" id="Frame_00"]
-atlas = ExtResource("Original")
-region = Rect2(0, 0, 512, 320)
+atlas = ExtResource("Atlas1")
+region = Rect2(2, 2, 512, 320)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Frame_01"]
-atlas = ExtResource("Original")
-region = Rect2(512, 0, 512, 320)
+atlas = ExtResource("Atlas1")
+region = Rect2(518, 2, 512, 320)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Frame_02"]
-atlas = ExtResource("Original")
-region = Rect2(1024, 0, 512, 320)
+atlas = ExtResource("Atlas1")
+region = Rect2(1034, 2, 512, 320)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Frame_03"]
-atlas = ExtResource("Original")
-region = Rect2(1536, 0, 512, 320)
+atlas = ExtResource("Atlas1")
+region = Rect2(2, 326, 512, 320)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Frame_04"]
-atlas = ExtResource("Original")
-region = Rect2(0, 320, 512, 320)
+atlas = ExtResource("Atlas1")
+region = Rect2(518, 326, 512, 320)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Frame_05"]
-atlas = ExtResource("Original")
-region = Rect2(512, 320, 512, 320)
+atlas = ExtResource("Atlas1")
+region = Rect2(1034, 326, 512, 320)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Frame_06"]
-atlas = ExtResource("Original")
-region = Rect2(1024, 320, 512, 320)
+atlas = ExtResource("Atlas1")
+region = Rect2(2, 650, 512, 320)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Frame_07"]
-atlas = ExtResource("Original")
-region = Rect2(1536, 320, 512, 320)
+atlas = ExtResource("Atlas1")
+region = Rect2(518, 650, 512, 320)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Frame_08"]
-atlas = ExtResource("Original")
-region = Rect2(0, 640, 512, 320)
+atlas = ExtResource("Atlas1")
+region = Rect2(1034, 650, 512, 320)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Frame_09"]
-atlas = ExtResource("Original")
-region = Rect2(512, 640, 512, 320)
+atlas = ExtResource("Atlas1")
+region = Rect2(2, 974, 512, 320)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Frame_10"]
-atlas = ExtResource("Original")
-region = Rect2(1024, 640, 512, 320)
+atlas = ExtResource("Atlas1")
+region = Rect2(518, 974, 512, 320)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Frame_11"]
-atlas = ExtResource("Original")
-region = Rect2(1536, 640, 512, 320)
+atlas = ExtResource("Atlas1")
+region = Rect2(1034, 974, 512, 320)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Frame_12"]
-atlas = ExtResource("Original")
-region = Rect2(0, 960, 512, 320)
+atlas = ExtResource("Atlas1")
+region = Rect2(2, 1298, 512, 320)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Frame_13"]
-atlas = ExtResource("Original")
-region = Rect2(512, 960, 512, 320)
+atlas = ExtResource("Atlas1")
+region = Rect2(518, 1298, 512, 320)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Frame_14"]
-atlas = ExtResource("Original")
-region = Rect2(1024, 960, 512, 320)
+atlas = ExtResource("Atlas1")
+region = Rect2(1034, 1298, 512, 320)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="Frame_15"]
-atlas = ExtResource("Original")
-region = Rect2(1536, 960, 512, 320)
+atlas = ExtResource("Atlas1")
+region = Rect2(2, 1622, 512, 320)
 filter_clip = true
 
 [resource]
@@ -135,5 +135,5 @@ animations = [{
 }],
 "loop": 1,
 "name": &"caminhar",
-"speed": 3.582
+"speed": 12.0
 }]

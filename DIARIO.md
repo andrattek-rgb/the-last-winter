@@ -269,3 +269,42 @@
 - Apliquei o filtro de película ao vídeo da interação da cozinha, deixando os botões de escolha legíveis. Os testes locais do menu, da cozinha, do percurso, da furtividade, do holofote e da base de dados passaram.
 - No Chromium, inspecionei o menu, os cartões, o aviso e os créditos. O teste da exportação Web com a API simulada passou, incluindo iniciar pelo menu e retomar o primeiro pátio pelo aviso.
 - Traduzi a interação do balcão para `[E] Interact`, `BREAD` e `SOUP`. O teste da cozinha passou.
+
+### Publicação da demo
+
+- Enviei o commit `0ade92f` e o histórico local para o GitHub. Publiquei a exportação Web no plano gratuito do Netlify e coloquei o endereço público na página do repositório. Confirmei o acesso sem sessão Netlify, incluindo os ficheiros WASM e PCK. [Demo](https://the-last-winter.netlify.app)
+- O formulário público comunicou com o Supabase real e apresentou a resposta esperada para credenciais inválidas. A validação com uma conta real depende do teste de registo, confirmação e gravação de progresso do responsável.
+- Confirmei que o endpoint de verificação do Supabase já redireciona para o endereço público do jogo.
+- Num Chromium sem sessão Netlify, a demo descarregou os ficheiros do Godot e avançou do menu, pelo aviso, até à Sala 1 com uma conta simulada.
+
+### Holofote do segundo pátio
+
+- O holofote continua a arrancar na caixa 4, mas agora sorteia a ordem das paragens. Cada ronda cobre as quatro caixas, com pausas de 0,7 a 1,3 segundos. Recoloquei a velocidade padrão do protagonista no segundo pátio.
+- Os cinco testes automáticos do Godot passaram. O teste do holofote verificou a variação das rondas, a deslocação contínua, as sombras, a zona segura e o regresso ao ponto de partida quando o jogador é detetado.
+
+### Cão e perseguição no primeiro pátio
+
+- Preparei atlas de trabalho dos novos spritesheets fornecidos para o guarda e o cão. Separei o susto e a postura agressiva nos fotogramas do mesmo spritesheet de alerta do cão. Mantive os originais fornecidos.
+- O cão vigia enquanto o guarda acompanha o trabalhador. A cobertura do carrinho protege do cão e do guarda. Quando um deles deteta o jogador, reage, corre e só reinicia o pátio se o alcançar. Removi o aviso de deteção do primeiro pátio e traduzi os textos visíveis do segundo pátio e do portal Web.
+- Os cinco testes do Godot, os dois testes Node e o teste do browser passaram. O teste de furtividade verificou a travessia com a cobertura do carrinho, as duas perseguições, a captura e o retorno ao primeiro barracão.
+- Reproduzi o bloqueio do cão quando partia do posto acima da zona caminhável. Mantive a posição e o tamanho visual escolhidos no editor, separei a escala da arte da colisão e fiz o cão entrar no pátio antes de perseguir. O cão regressa ao posto quando o jogador se esconde atrás do carrinho. O teste passou com o posto atual, incluindo a saída para o pátio e o regresso durante uma perseguição.
+
+### Novos spritesheets da cozinha
+
+- Liguei as quatro folhas atualizadas fornecidas pelo autor ao balcão (51 fotogramas), à mesa de dois prisioneiros (62), à caminhada do mexedor (16) e à animação de mexer a sopa (19).
+- Preparei atlas de jogo sem deformar os desenhos, preservando o enquadramento dos objetos e excluindo os atlas substituídos da exportação Web. Os ficheiros anteriores estão preservados no projeto. O teste da cozinha passou e a exportação incluiu os 12 novos atlas.
+
+### Cobertura junto à entrada da cozinha
+
+- Integrei a caixa do primeiro pátio na ordenação por profundidade, preservando a posição, o tamanho e a colisão. A proteção atrás da caixa ativa-se quando o carrinho chega e interrompe a perseguição do guarda, que regressa ao percurso.
+- Os cinco testes do Godot passaram. O teste de furtividade verificou a ativação da cobertura, a exposição do lado da frente e o regresso do guarda depois de perder o jogador de vista.
+- Expus escalas independentes para o susto, a raiva e a corrida do guarda no Inspetor. A escala segue a animação selecionada no editor e no jogo.
+- Integrei o tamanho de corrida ajustado pelo autor no guarda de perseguição e reaproveitei o alinhamento relativamente ao guarda de patrulha. A colisão mantém a escala base. Atualizei os testes para seguirem a posição editada da caixa. Os cinco testes Godot passaram e exportei a versão Web local.
+- Mantive o percurso e as animações do trabalhador e do carrinho ativos nas perseguições. Quando o guarda persegue, só o seu sprite de patrulha fica oculto. O teste confirmou a ronda durante as perseguições do cão e do guarda e o regresso do guarda ao percurso em movimento.
+- Corrigi o deslocamento do filtro de película na Sala 1 e no primeiro pátio. O teste do percurso verifica a posição e a cobertura do ecrã.
+- Importei a mesa vazia fornecida pelo autor e coloquei-a no lado esquerdo da cozinha, em `EmCena/MesaVazia`. O PNG foi copiado sem alterações. A mesa tem colisão na base e segue a profundidade dos restantes móveis.
+
+### Preparação da atualização Web
+
+- Validei a exportação com o posto do cão e a posição da caixa editados pelo autor. O teste do cão posiciona agora o protagonista dentro do pátio mesmo quando o posto fica mais afastado da zona caminhável.
+- Reuni as alterações de furtividade, cozinha, filtros e interface em inglês para atualizar a demo pública.

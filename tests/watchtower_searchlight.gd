@@ -11,9 +11,13 @@ func _initialize() -> void:
 
 func _run() -> void:
 	var yard := YARD.instantiate()
-	root.add_child(yard)
 	var light := yard.get_node("LuzDeVigia")
+	light.random.seed = 1623
+	root.add_child(yard)
 	light.set_physics_process(false)
+	var player: CharacterBody2D = light.player
+	_check(player.get("horizontal_speed") == 260.0 and player.get("depth_speed") == 165.0,
+		"O jogador usa a velocidade padrão nos dois eixos.")
 	var first: Marker2D = light.sweep_points[0]
 	_check(first.get_parent().name == &"Caixa04" and light.spot_center == first.global_position,
 		"A luz começa na caixa 4.")
@@ -22,29 +26,41 @@ func _run() -> void:
 	_check(beam.to_global(beam.polygon[5]).is_equal_approx(light.emitter.global_position)
 		and lamp_glow.global_position.is_equal_approx(light.emitter.global_position),
 		"O feixe e o brilho partem da lâmpada na cabine.")
-	for index in range(4):
-		_check(light.sweep_points[index].get_parent().name == StringName("Caixa%02d" % (4 - index)),
-			"A ordem do percurso é 4, 3, 2, 1.")
+	var current := 0
+	var visited := {current: true}
 	var largest_step := 0.0
-	for index in [1, 2, 3, 2, 1, 0, 1]:
-		var point: Marker2D = light.sweep_points[index]
-		_check(light.destination == index, "A luz segue para a caixa %d." % (4 - index))
+	var jumps_a_box := false
+	var shortest_pause := 1.0
+	var longest_pause := 1.0
+	var step := 1.0 / 60.0
+	for stop in 15:
+		var index: int = light.destination
+		_check(not visited.has(index), "Cada ronda cobre todas as caixas sem repetir paragens.")
+		jumps_a_box = jumps_a_box or absi(index - current) > 1
+		var goal: Vector2 = light.sweep_points[index].global_position
 		var stopped_at: Vector2 = light.spot_center
-		for tick in 60:
-			light._advance_sweep(1.0 / 60.0)
-		_check(light.spot_center == stopped_at and is_zero_approx(light.hold_remaining),
-			"A luz permanece parada durante um segundo.")
-		light._advance_sweep(1.0 / 60.0)
-		_check(light.spot_center != stopped_at, "A luz volta a avançar após a pausa.")
-		for tick in 600:
+		var pause: float = light.hold_remaining
+		_check(pause >= 0.70 and pause <= 1.30, "As pausas respeitam a duração configurada.")
+		shortest_pause = minf(shortest_pause, pause)
+		longest_pause = maxf(longest_pause, pause)
+		light._advance_sweep(pause)
+		_check(light.spot_center == stopped_at, "O feixe fica parado durante a pausa sorteada.")
+		for tick in 420:
 			var previous: Vector2 = light.spot_center
-			light._advance_sweep(1.0 / 60.0)
+			light._advance_sweep(step)
 			largest_step = maxf(largest_step, previous.distance_to(light.spot_center))
-			if light.destination != index:
+			if light.spot_center == goal:
 				break
-		_check(light.spot_center == point.global_position, "A luz passa pela caixa %d." % (4 - index))
-	_check(largest_step > 8.9 and largest_step < 9.1,
-		"A luz move-se a 540 unidades por segundo entre caixas e percorre os dois sentidos.")
+		_check(light.spot_center == goal and light.destination != index,
+			"O feixe chega à caixa sorteada e escolhe outra paragem.")
+		current = index
+		visited[current] = true
+		if visited.size() == 4:
+			visited = {current: true}
+	_check(jumps_a_box and longest_pause - shortest_pause > 0.25,
+		"A rota e a duração das pausas variam ao longo das rondas.")
+	_check(absf(largest_step - light.sweep_speed * step) < 0.002,
+		"O feixe mantém a velocidade de deslocação sem saltar entre caixas.")
 
 	var safe: Vector2 = light.safe_boundary.global_position
 	light.spot_center = safe
@@ -66,9 +82,9 @@ func _run() -> void:
 			light.spot_center = exposed
 			_check(light.catches_at(exposed), "À frente da caixa o jogador continua exposto.")
 
-	var player: CharacterBody2D = light.player
 	player.global_position = safe + Vector2(22, 0)
 	light.spot_center = player.global_position
+	light.hold_remaining = light.detection_seconds + 0.1
 	light._physics_process(light.detection_seconds + 0.001)
 	_check(light.caught and light.caught_notice.visible and not player.is_physics_processing(),
 		"A exposição contínua ativa a deteção.")

@@ -1,4 +1,4 @@
-export const checkpoints = ["Sala 1", "Primeiro pátio", "Cozinha", "Segundo pátio"];
+export const checkpoints = ["Barracks", "First courtyard", "Kitchen", "Second courtyard"];
 
 export function isCheckpoint(value) {
   return Number.isInteger(value) && value >= 0 && value < checkpoints.length;
@@ -8,7 +8,7 @@ export async function readCheckpoint(client, userId) {
   const { data, error } = await client.from("player_progress").select("checkpoint")
     .eq("user_id", userId).maybeSingle();
   if (error) throw error;
-  if (data && !isCheckpoint(data.checkpoint)) throw new Error("Ponto de controlo desconhecido.");
+  if (data && !isCheckpoint(data.checkpoint)) throw new Error("Unknown checkpoint.");
   return data?.checkpoint ?? null;
 }
 
@@ -29,7 +29,7 @@ export function createProgressQueue(client, userId, initial, notify) {
           reached_checkpoint: reached,
         });
         if (error) throw error;
-        if (!isCheckpoint(data) || data < reached) throw new Error("Gravação não confirmada.");
+        if (!isCheckpoint(data) || data < reached) throw new Error("Save could not be confirmed.");
         saved = data;
       }
       notify("saved");

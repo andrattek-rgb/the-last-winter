@@ -35,6 +35,7 @@ enum Phase { WAITING_TO_LOAD, LOADING, APPROACHING_HANDLES, WAITING_AT_HANDLES, 
 var phase := Phase.WAITING_TO_LOAD
 var elapsed := 0.0
 var distance := 0.0
+var guard_detached := false
 var _length := 0.0
 var _start := Vector2.ZERO
 var _worker_scale := Vector2.ONE
@@ -133,6 +134,21 @@ func look_direction() -> Vector2:
 
 func guard_is_exposed() -> bool:
 	return guard.visible and not _guard_is_behind_barrack()
+
+
+func guard_is_escorting() -> bool:
+	return distance > _follow_distance
+
+
+func set_guard_detached(detached: bool) -> void:
+	guard_detached = detached
+	guard.visible = not detached and (worker.visible or _follow_distance >= _length)
+
+
+func restart_at_pile() -> void:
+	guard_detached = false
+	_set_visible(true)
+	_reset_at_pile()
 
 
 func _reset_at_pile() -> void:
@@ -289,7 +305,7 @@ func _guard_is_behind_barrack() -> bool:
 
 func _set_visible(shown: bool) -> void:
 	worker.visible = shown
-	guard.visible = shown or _follow_distance >= _length
+	guard.visible = not guard_detached and (shown or _follow_distance >= _length)
 	cart.visible = shown
 
 

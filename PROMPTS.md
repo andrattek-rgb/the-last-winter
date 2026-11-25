@@ -119,3 +119,11 @@ O pedido fechou a fase de alterações ao conteúdo do jogo e iniciou a implemen
 > Esse vai ser o menu do jogo […] New Game, Credits, Quit […] quando a pessoa já tem um progresso, aparece mais uma opção Continue.
 
 O pedido forneceu a arte do menu, a referência tipográfica e a dos cartões, o texto integral do aviso e a assinatura dos créditos. Também pediu cinco relatos reais em páginas separadas e o filtro de película no menu e na cutscene da sopa.
+
+> Nessa parte, deixe a movimentação da luz mais aleatória, acho que está muito fácil, e deixe o player em uma velocidade normal.
+
+O pedido ajustou a dificuldade do segundo pátio, com uma sequência menos previsível do holofote e a velocidade base do jogador.
+
+> Adicionar o dog na parte de fora 1 […] o cachorro não vê se o player estiver passando atrás do carrinho […] quero tudo do jogo em inglês.
+
+O pedido introduziu a vigilância do cão durante a ronda e animações de susto, raiva e corrida para ambos os perseguidores. A captura passou a reiniciar o pátio e os textos do jogo e do portal foram uniformizados em inglês.

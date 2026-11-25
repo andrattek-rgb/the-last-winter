@@ -12,10 +12,7 @@
 [ext_resource type="Script" uid="uid://l13rq4sdtr01" path="res://scripts/room_camera.gd" id="10"]
 [ext_resource type="Shader" uid="uid://d3egfrec26" path="res://effects/old_film.gdshader" id="11"]
 [ext_resource type="PackedScene" path="res://scenes/ui/kitchen_interaction.tscn" id="12"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlhyq"]
-resource_local_to_scene = true
-size = Vector2(100, 29)
+[ext_resource type="Texture2D" uid="uid://oks2tjdwfmjw" path="res://assets/modelos/cozinha/mesa_vazia.png" id="13_mesa_vazia"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_714v7"]
 resource_local_to_scene = true
@@ -27,9 +24,16 @@ size = Vector2(100, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_avos5"]
 resource_local_to_scene = true
-size = Vector2(282, 66)
+size = Vector2(100, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33dcn"]
+resource_local_to_scene = true
+size = Vector2(282, 66)
+
+[sub_resource type="RectangleShape2D" id="Rectangle_mesa_vazia"]
+size = Vector2(210, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kniln"]
 resource_local_to_scene = true
 size = Vector2(235, 42)
 
@@ -75,7 +79,7 @@ scale = Vector2(0.8964845, 0.9227017)
 scale = Vector2(0.8964845, 0.9227017)
 
 [node name="ColisaoFogao" parent="EmCena/Caldeirao01" index="2"]
-shape = SubResource("RectangleShape2D_dlhyq")
+shape = SubResource("RectangleShape2D_714v7")
 
 [node name="PontoDeParagem" parent="EmCena/Caldeirao01" index="3"]
 position = Vector2(-96, 0)
@@ -93,7 +97,7 @@ scale = Vector2(0.89843744, 0.9124478)
 scale = Vector2(0.89843744, 0.9124478)
 
 [node name="ColisaoFogao" parent="EmCena/Caldeirao02" index="2"]
-shape = SubResource("RectangleShape2D_714v7")
+shape = SubResource("RectangleShape2D_sltsg")
 
 [node name="PontoDeParagem" parent="EmCena/Caldeirao02" index="3"]
 position = Vector2(-96, 0)
@@ -102,7 +106,8 @@ position = Vector2(-96, 0)
 position = Vector2(-96, 42)
 
 [node name="Caldeirao03" parent="EmCena" unique_id=1701717778 instance=ExtResource("4")]
-position = Vector2(916, 710)
+position = Vector2(947, 719)
+scale = Vector2(1.08, 1.04)
 
 [node name="Fogao" parent="EmCena/Caldeirao03" index="0"]
 scale = Vector2(0.85625, 0.88840806)
@@ -111,7 +116,7 @@ scale = Vector2(0.85625, 0.88840806)
 scale = Vector2(0.85625, 0.88840806)
 
 [node name="ColisaoFogao" parent="EmCena/Caldeirao03" index="2"]
-shape = SubResource("RectangleShape2D_sltsg")
+shape = SubResource("RectangleShape2D_avos5")
 
 [node name="PontoDeParagem" parent="EmCena/Caldeirao03" index="3"]
 position = Vector2(-92, 0)
@@ -129,18 +134,34 @@ position = Vector2(1468.1, 712.215)
 scale = Vector2(1.134, 1.098)
 
 [node name="Servidor" parent="EmCena/Balcao" index="0"]
-position = Vector2(9.469641, 1.2030528)
-scale = Vector2(0.53710914, 0.5163272)
+position = Vector2(-9.327891, 1.2030528)
+scale = Vector2(0.5718752, 0.56372386)
 
 [node name="Alcance" parent="EmCena/Balcao/Interacao" index="0"]
-shape = SubResource("RectangleShape2D_avos5")
+shape = SubResource("RectangleShape2D_33dcn")
 
 [node name="MesaComensal" parent="EmCena" unique_id=166461299 instance=ExtResource("7")]
-position = Vector2(635, 887)
+position = Vector2(710.00006, 907.99994)
 scale = Vector2(1.3748708, 1.2988735)
 
+[node name="ColisaoMesa" parent="EmCena/MesaComensal" index="1"]
+position = Vector2(-4.4393375e-05, -17.70767)
+
+[node name="MesaVazia" type="StaticBody2D" parent="EmCena" unique_id=1047557964]
+position = Vector2(299, 907.99994)
+scale = Vector2(1.57554, 1.2061008)
+
+[node name="Sprite" type="Sprite2D" parent="EmCena/MesaVazia" unique_id=622438437]
+scale = Vector2(0.185, 0.185)
+texture = ExtResource("13_mesa_vazia")
+offset = Vector2(0, -461)
+
+[node name="ColisaoMesa" type="CollisionShape2D" parent="EmCena/MesaVazia" unique_id=2076338088]
+position = Vector2(0, -17.5)
+shape = SubResource("Rectangle_mesa_vazia")
+
 [node name="MesaDupla" parent="EmCena" unique_id=809371118 instance=ExtResource("8")]
-position = Vector2(1105.0001, 877)
+position = Vector2(1151.0001, 908)
 scale = Vector2(1.3535252, 1.4399977)
 
 [node name="Sprite" parent="EmCena/MesaDupla" index="0"]
@@ -148,7 +169,7 @@ scale = Vector2(0.54765624, 0.6182813)
 
 [node name="ColisaoMesa" parent="EmCena/MesaDupla" index="1"]
 position = Vector2(4.8, -18.285467)
-shape = SubResource("RectangleShape2D_33dcn")
+shape = SubResource("RectangleShape2D_kniln")
 
 [node name="Player" parent="EmCena" unique_id=1019784721 instance=ExtResource("9")]
 position = Vector2(128, 775)
@@ -162,13 +183,13 @@ position = Vector2(-14, 5)
 build_mode = 1
 polygon = PackedVector2Array(16, 695, 1656, 695, 1656, 925, 16, 925)
 
-[node name="SaidaParaExterior" type="Area2D" parent="."]
+[node name="SaidaParaExterior" type="Area2D" parent="." unique_id=1387832051]
 position = Vector2(1633, 815)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="ZonaDaSaida" type="CollisionShape2D" parent="SaidaParaExterior"]
+[node name="ZonaDaSaida" type="CollisionShape2D" parent="SaidaParaExterior" unique_id=1957775860]
 shape = SubResource("Rectangle_saida")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=2031117302 node_paths=PackedStringArray("target")]
@@ -219,6 +240,8 @@ horizontal_alignment = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 999.0
+offset_bottom = 999.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

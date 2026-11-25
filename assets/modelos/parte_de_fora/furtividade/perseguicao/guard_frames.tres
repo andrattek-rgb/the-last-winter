@@ -1,0 +1,269 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://c4ss0bo5rae6f"]
+
+[ext_resource type="Texture2D" uid="uid://b0ujy6j2eox0j" path="res://assets/modelos/parte_de_fora/furtividade/perseguicao/guard_atlas.png" id="1"]
+
+[sub_resource type="AtlasTexture" id="angry_0"]
+atlas = ExtResource("1")
+region = Rect2(1710, 2, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="angry_3"]
+atlas = ExtResource("1")
+region = Rect2(2, 286, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="angry_6"]
+atlas = ExtResource("1")
+region = Rect2(246, 286, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="angry_9"]
+atlas = ExtResource("1")
+region = Rect2(490, 286, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="angry_12"]
+atlas = ExtResource("1")
+region = Rect2(734, 286, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="angry_15"]
+atlas = ExtResource("1")
+region = Rect2(978, 286, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="angry_18"]
+atlas = ExtResource("1")
+region = Rect2(1222, 286, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="angry_21"]
+atlas = ExtResource("1")
+region = Rect2(1466, 286, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="run_0"]
+atlas = ExtResource("1")
+region = Rect2(1710, 286, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="run_1"]
+atlas = ExtResource("1")
+region = Rect2(2, 570, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="run_2"]
+atlas = ExtResource("1")
+region = Rect2(246, 570, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="run_3"]
+atlas = ExtResource("1")
+region = Rect2(490, 570, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="run_4"]
+atlas = ExtResource("1")
+region = Rect2(734, 570, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="run_5"]
+atlas = ExtResource("1")
+region = Rect2(978, 570, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="run_6"]
+atlas = ExtResource("1")
+region = Rect2(1222, 570, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="run_7"]
+atlas = ExtResource("1")
+region = Rect2(1466, 570, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="run_8"]
+atlas = ExtResource("1")
+region = Rect2(1710, 570, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="run_9"]
+atlas = ExtResource("1")
+region = Rect2(2, 854, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="run_10"]
+atlas = ExtResource("1")
+region = Rect2(246, 854, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="run_11"]
+atlas = ExtResource("1")
+region = Rect2(490, 854, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="run_12"]
+atlas = ExtResource("1")
+region = Rect2(734, 854, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="run_13"]
+atlas = ExtResource("1")
+region = Rect2(978, 854, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="run_14"]
+atlas = ExtResource("1")
+region = Rect2(1222, 854, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="run_15"]
+atlas = ExtResource("1")
+region = Rect2(1466, 854, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="startled_1"]
+atlas = ExtResource("1")
+region = Rect2(2, 2, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="startled_3"]
+atlas = ExtResource("1")
+region = Rect2(246, 2, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="startled_4"]
+atlas = ExtResource("1")
+region = Rect2(490, 2, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="startled_6"]
+atlas = ExtResource("1")
+region = Rect2(734, 2, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="startled_9"]
+atlas = ExtResource("1")
+region = Rect2(978, 2, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="startled_12"]
+atlas = ExtResource("1")
+region = Rect2(1222, 2, 240, 280)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="startled_15"]
+atlas = ExtResource("1")
+region = Rect2(1466, 2, 240, 280)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("angry_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("angry_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("angry_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("angry_9")
+}, {
+"duration": 1.0,
+"texture": SubResource("angry_12")
+}, {
+"duration": 1.0,
+"texture": SubResource("angry_15")
+}, {
+"duration": 1.0,
+"texture": SubResource("angry_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("angry_21")
+}],
+"loop": 0,
+"name": &"angry",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("run_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("run_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("run_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("run_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("run_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("run_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("run_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("run_7")
+}, {
+"duration": 1.0,
+"texture": SubResource("run_8")
+}, {
+"duration": 1.0,
+"texture": SubResource("run_9")
+}, {
+"duration": 1.0,
+"texture": SubResource("run_10")
+}, {
+"duration": 1.0,
+"texture": SubResource("run_11")
+}, {
+"duration": 1.0,
+"texture": SubResource("run_12")
+}, {
+"duration": 1.0,
+"texture": SubResource("run_13")
+}, {
+"duration": 1.0,
+"texture": SubResource("run_14")
+}, {
+"duration": 1.0,
+"texture": SubResource("run_15")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("startled_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("startled_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("startled_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("startled_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("startled_9")
+}, {
+"duration": 1.0,
+"texture": SubResource("startled_12")
+}, {
+"duration": 1.0,
+"texture": SubResource("startled_15")
+}],
+"loop": 0,
+"name": &"startled",
+"speed": 14.0
+}]

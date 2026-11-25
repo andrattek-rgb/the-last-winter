@@ -1,9 +1,10 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://by8gbg5cjo3ob"]
 
-[ext_resource type="Texture2D" uid="uid://duwplrv5o7ye7" path="res://assets/modelos/cozinha/animacoes/transicoes/cozinheiro_idle_1.png" id="Atlas1"]
-[ext_resource type="Texture2D" uid="uid://diwhf8pagkgrm" path="res://assets/modelos/cozinha/animacoes/transicoes/cozinheiro_idle_2.png" id="Atlas2"]
-[ext_resource type="Texture2D" uid="uid://v2p200gsot61" path="res://assets/modelos/cozinha/animacoes/transicoes/cozinheiro_idle_3.png" id="Atlas3"]
-[ext_resource type="Texture2D" uid="uid://d1n35vpk86dfg" path="res://assets/modelos/cozinha/animacoes/transicoes/cozinheiro_idle_4.png" id="Atlas4"]
+[ext_resource type="Texture2D" uid="uid://csafyb5peqrbr" path="res://assets/modelos/cozinha/animacoes/atlas_atualizados/idle_cozinheiro_idle_1.png" id="Atlas1"]
+[ext_resource type="Texture2D" uid="uid://dx82awyi41i4r" path="res://assets/modelos/cozinha/animacoes/atlas_atualizados/idle_cozinheiro_idle_2.png" id="Atlas2"]
+[ext_resource type="Texture2D" uid="uid://drdqvtlihtaxl" path="res://assets/modelos/cozinha/animacoes/atlas_atualizados/idle_cozinheiro_idle_3.png" id="Atlas3"]
+[ext_resource type="Texture2D" uid="uid://v367atv2cdlp" path="res://assets/modelos/cozinha/animacoes/atlas_atualizados/idle_cozinheiro_idle_4.png" id="Atlas4"]
+[ext_resource type="Texture2D" uid="uid://dxygvjwapj7h5" path="res://assets/modelos/cozinha/animacoes/atlas_atualizados/idle_cozinheiro_idle_5.png" id="Atlas5"]
 
 [sub_resource type="AtlasTexture" id="Frame_00"]
 atlas = ExtResource("Atlas1")
@@ -245,6 +246,21 @@ atlas = ExtResource("Atlas4")
 region = Rect2(1290, 1364, 640, 450)
 filter_clip = true
 
+[sub_resource type="AtlasTexture" id="Frame_48"]
+atlas = ExtResource("Atlas5")
+region = Rect2(2, 2, 640, 450)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_49"]
+atlas = ExtResource("Atlas5")
+region = Rect2(646, 2, 640, 450)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_50"]
+atlas = ExtResource("Atlas5")
+region = Rect2(1290, 2, 640, 450)
+filter_clip = true
+
 [resource]
 animations = [{
 "frames": [{
@@ -391,8 +407,17 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("Frame_47")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_48")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_49")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_50")
 }],
 "loop": 1,
 "name": &"idle",
-"speed": 16.0
+"speed": 17.0
 }]

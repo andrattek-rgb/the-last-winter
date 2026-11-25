@@ -8,6 +8,7 @@ extends Node2D
 @export var spot_radius := Vector2(266, 205)
 @export_range(30.0, 900.0) var sweep_speed := 540.0
 @export_range(0.0, 5.0, 0.05) var box_pause_seconds := 1.0
+@export_range(0.0, 1.0, 0.05) var box_pause_variation := 0.30
 @export_range(0.05, 3.0) var detection_seconds := 0.32
 @export var player: CharacterBody2D
 @export var spawn: Marker2D
@@ -19,8 +20,9 @@ extends Node2D
 @onready var lamp_glow: Sprite2D = $BrilhoDaLampada
 @onready var spot_material: ShaderMaterial = spot.material
 
-var destination := 1
-var sweep_direction := 1
+var destination := -1
+var remaining_stops: Array[int] = []
+var random := RandomNumberGenerator.new()
 var spot_center := Vector2.ZERO
 var hold_remaining := 0.0
 var exposure := 0.0
@@ -29,6 +31,10 @@ var footprints: Array[Rect2] = []
 
 
 func _ready() -> void:
+	if sweep_points.is_empty():
+		hide()
+		set_physics_process(false)
+		return
 	var shader_rects := PackedVector4Array()
 	for footprint in crate_footprints:
 		var shape := footprint.shape as RectangleShape2D
@@ -42,6 +48,7 @@ func _ready() -> void:
 	spot_material.set_shader_parameter("spot_radius", spot_radius)
 	spot_center = sweep_points[0].global_position
 	hold_remaining = box_pause_seconds
+	_choose_next_stop(0)
 	lamp_glow.global_position = emitter.global_position
 	lamp_glow.show()
 	_update_visuals()
@@ -85,18 +92,30 @@ func is_in_shadow(point: Vector2) -> bool:
 
 
 func _advance_sweep(delta: float) -> void:
+	if destination < 0:
+		return
 	var travel_time := delta - hold_remaining
 	hold_remaining = maxf(0.0, hold_remaining - delta)
 	if travel_time <= 0.000001:
 		return
-	var last := sweep_points.size() - 1
 	var goal := sweep_points[destination].global_position
 	spot_center = spot_center.move_toward(goal, sweep_speed * travel_time)
 	if spot_center == goal:
-		hold_remaining = box_pause_seconds
-		if destination == 0 or destination == last:
-			sweep_direction = -sweep_direction
-		destination += sweep_direction
+		hold_remaining = random.randf_range(maxf(0.0, box_pause_seconds - box_pause_variation),
+			box_pause_seconds + box_pause_variation)
+		_choose_next_stop(destination)
+
+
+func _choose_next_stop(current: int) -> void:
+	if remaining_stops.is_empty():
+		for index in sweep_points.size():
+			if index != current:
+				remaining_stops.append(index)
+	if remaining_stops.is_empty():
+		return
+	var choice := random.randi_range(0, remaining_stops.size() - 1)
+	destination = remaining_stops[choice]
+	remaining_stops.remove_at(choice)
 
 
 func _update_visuals() -> void:

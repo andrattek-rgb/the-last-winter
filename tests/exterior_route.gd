@@ -13,6 +13,9 @@ func _test_route() -> void:
 	var game := MAIN.instantiate()
 	root.add_child(game)
 	var room := game.get_node("Room01")
+	var indoor_film: ColorRect = room.get_node("FilmEffect/Filter")
+	_check(indoor_film.get_global_rect().is_equal_approx(root.get_visible_rect()),
+		"O filtro da Sala 1 começa na origem e cobre todo o ecrã.")
 	var inside_player: CharacterBody2D = room.get_node("Characters/Player")
 	_check(inside_player.position.x < 250.0, "O jogo começa no barracão.")
 
@@ -28,7 +31,11 @@ func _test_route() -> void:
 	var outside := game.get_node_or_null("ParteDeFora")
 	_check(outside != null and not game.has_node("Room01"), "Atravessar o extremo direito abre o exterior uma vez.")
 	if outside != null:
+		var outdoor_film: ColorRect = outside.get_node("FilmeAntigo/Filtro")
+		_check(outdoor_film.get_global_rect().is_equal_approx(root.get_visible_rect()),
+			"O filtro do primeiro pátio começa na origem e cobre todo o ecrã.")
 		outside.get_node("Desafio/VisaoDoGuarda").sight_range = 0.0
+		outside.dog_sight_range = 0.0
 		var player: CharacterBody2D = outside.get_node("Personagens/Player")
 		var arrival: Marker2D = outside.get_node("ChegadaDoBarracao")
 		_check(is_zero_approx(player.global_rotation) and is_zero_approx(player.global_skew),
@@ -49,7 +56,11 @@ func _test_route() -> void:
 		await _hold(&"move_forward", 22)
 		_check(not player.test_move(player.global_transform, Vector2(510, 0)),
 			"É possível atravessar o chão onde ficava a poça central.")
-		await _hold(&"move_forward", 40)
+		var crate_base: CollisionShape2D = outside.get_node("Personagens/Caixa01/Corpo/BaseDaCaixa")
+		var crate_shape := crate_base.shape as RectangleShape2D
+		var crate_front := (crate_base.global_transform * Rect2(-crate_shape.size * 0.5, crate_shape.size)).end.y
+		var clearance := maxf(0.0, crate_front + 25.0 - player.global_position.y)
+		await _hold(&"move_forward", ceili(clearance * 60.0 / float(player.get("depth_speed"))))
 		await _hold(&"move_right", 248)
 		_check(not outside.get("entering"), "Mover para a direita não ativa a porta aberta.")
 		Input.action_press(&"move_back")

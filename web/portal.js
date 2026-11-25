@@ -29,9 +29,9 @@ let gameStarting = false;
 
 function stateMessage(state) {
   saveStatus.textContent = {
-    saving: "A guardar progresso…",
-    saved: "Progresso guardado",
-    error: "O progresso ainda não foi guardado.",
+    saving: "Saving progress…",
+    saved: "Progress saved",
+    error: "Your progress has not been saved yet.",
   }[state];
   retry.hidden = state !== "error";
   logout.disabled = state === "saving";
@@ -56,11 +56,11 @@ async function showAccount(session) {
       quitToPortal: () => location.reload(),
     };
     document.querySelector("#checkpoint").textContent = checkpoint === null
-      ? "O jogo começa na Sala 1."
-      : `Último ponto de controlo · ${checkpoints[checkpoint]}`;
+      ? "The game starts in the barracks."
+      : `Last checkpoint · ${checkpoints[checkpoint]}`;
     profile.hidden = false;
   } catch {
-    notice.textContent = "Não foi possível carregar o progresso. Recarrega a página para tentar de novo.";
+    notice.textContent = "Could not load your progress. Reload the page to try again.";
   }
 }
 
@@ -69,12 +69,12 @@ form.addEventListener("submit", async (event) => {
   const registering = event.submitter?.value === "register";
   const { email, password } = Object.fromEntries(new FormData(form));
   if (registering && password.length < 8) {
-    notice.textContent = "Escolhe uma palavra-passe com pelo menos oito caracteres.";
+    notice.textContent = "Choose a password with at least eight characters.";
     return;
   }
   const buttons = form.querySelectorAll("button");
   buttons.forEach((button) => { button.disabled = true; });
-  notice.textContent = registering ? "A criar conta…" : "A iniciar sessão…";
+  notice.textContent = registering ? "Creating your account…" : "Signing in…";
   try {
     const credentials = { email: email.trim(), password };
     const { data, error } = registering
@@ -85,19 +85,19 @@ form.addEventListener("submit", async (event) => {
       : await client.auth.signInWithPassword(credentials);
     if (error) {
       const messages = {
-        invalid_credentials: "Verifica o email e a palavra-passe.",
-        email_not_confirmed: "Confirma o email antes de entrares.",
-        over_email_send_rate_limit: "Atingiste o limite de envio. Tenta mais tarde.",
-        weak_password: "Escolhe uma palavra-passe mais forte.",
+        invalid_credentials: "Check your email and password.",
+        email_not_confirmed: "Confirm your email before signing in.",
+        over_email_send_rate_limit: "Too many emails were sent. Try again later.",
+        weak_password: "Choose a stronger password.",
       };
-      notice.textContent = messages[error.code] ?? "O pedido falhou. Tenta novamente.";
+      notice.textContent = messages[error.code] ?? "The request failed. Try again.";
       return;
     }
     form.reset();
     if (data.session) await showAccount(data.session);
-    else notice.textContent = "Verifica a caixa de correio para confirmares a conta, depois entra.";
+    else notice.textContent = "Check your inbox to confirm your account, then sign in.";
   } catch {
-    notice.textContent = "Sem ligação ao servidor. Tenta novamente.";
+    notice.textContent = "Could not connect to the server. Try again.";
   } finally {
     buttons.forEach((button) => { button.disabled = false; });
   }
@@ -126,7 +126,7 @@ play.addEventListener("click", async () => {
   } catch {
     game.hidden = true;
     account.hidden = false;
-    notice.textContent = "Não foi possível iniciar o jogo. Confirma o suporte a WebGL 2 e recarrega a página.";
+    notice.textContent = "Could not start the game. Check for WebGL 2 support and reload the page.";
   }
 });
 
@@ -146,7 +146,7 @@ logout.addEventListener("click", async () => {
     location.reload();
   } catch {
     logout.disabled = false;
-    saveStatus.textContent = "Não foi possível terminar a sessão. Tenta novamente.";
+    saveStatus.textContent = "Could not sign out. Try again.";
   }
 });
 
@@ -161,5 +161,5 @@ try {
   if (error) throw error;
   await showAccount(data.session);
 } catch {
-  notice.textContent = "Não foi possível verificar a sessão. Recarrega a página para tentar novamente.";
+  notice.textContent = "Could not check your session. Reload the page to try again.";
 }

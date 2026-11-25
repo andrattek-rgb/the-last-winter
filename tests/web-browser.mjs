@@ -96,18 +96,18 @@ test("registo, login e progresso após reabrir o jogo Web", { timeout: 90000 }, 
   const origin = `http://127.0.0.1:${server.address().port}`;
   await page.goto(origin);
   const email = "jogador@example.com";
-  const password = "Palavra-passe de teste";
+  const password = "Password de teste";
   async function submit(address, secret, action) {
     await page.getByLabel("Email").fill(address);
-    await page.getByLabel("Palavra-passe").fill(secret);
+    await page.getByLabel("Password").fill(secret);
     await page.getByRole("button", { name: action, exact: true }).click();
   }
-  await submit(email, password, "Criar conta");
-  await page.getByRole("button", { name: "Jogar", exact: true }).click();
+  await submit(email, password, "Create account");
+  await page.getByRole("button", { name: "Play", exact: true }).click();
   await page.locator("#download").waitFor({ state: "hidden", timeout: 30000 });
   await page.keyboard.press("Enter");
   await page.keyboard.press("Enter");
-  await page.getByText("Progresso guardado", { exact: true }).waitFor({ timeout: 30000 }).catch(async (error) => {
+  await page.getByText("Progress saved", { exact: true }).waitFor({ timeout: 30000 }).catch(async (error) => {
     t.diagnostic(await page.locator("body").innerText());
     throw error;
   });
@@ -120,12 +120,12 @@ test("registo, login e progresso após reabrir o jogo Web", { timeout: 90000 }, 
       && request.postDataJSON().reached_checkpoint === 1 && response.ok();
   }, { timeout: 30000 });
   await page.keyboard.up("d");
-  await page.getByText("Progresso guardado", { exact: true }).waitFor();
+  await page.getByText("Progress saved", { exact: true }).waitFor();
 
   await page.close();
   const reopened = await context.newPage();
   await reopened.goto(origin);
-  await reopened.getByText("Último ponto de controlo · Primeiro pátio").waitFor();
+  await reopened.getByText("Last checkpoint · First courtyard").waitFor();
   await reopened.evaluate(() => {
     const original = window.winterProgress.checkpointReached;
     window.winterProgress.checkpointReached = (checkpoint) => {
@@ -133,26 +133,26 @@ test("registo, login e progresso após reabrir o jogo Web", { timeout: 90000 }, 
       original(checkpoint);
     };
   });
-  await reopened.getByRole("button", { name: "Jogar", exact: true }).click();
+  await reopened.getByRole("button", { name: "Play", exact: true }).click();
   await reopened.locator("#download").waitFor({ state: "hidden", timeout: 30000 });
   await reopened.keyboard.press("ArrowDown");
   await reopened.keyboard.press("Enter");
   await reopened.keyboard.press("Enter");
   await reopened.keyboard.press("Enter");
   await reopened.waitForFunction(() => window.resumedCheckpoint === 1, undefined, { timeout: 30000 });
-  await reopened.getByRole("button", { name: "Terminar sessão" }).click();
-  await reopened.getByRole("button", { name: "Entrar", exact: true }).waitFor();
+  await reopened.getByRole("button", { name: "Sign out" }).click();
+  await reopened.getByRole("button", { name: "Sign in", exact: true }).waitFor();
   await reopened.getByLabel("Email").fill(email);
-  await reopened.getByLabel("Palavra-passe").fill("palavra-passe incorreta");
-  await reopened.getByRole("button", { name: "Entrar", exact: true }).click();
-  await reopened.getByText("Verifica o email e a palavra-passe.").waitFor();
-  await reopened.getByLabel("Palavra-passe").fill(password);
-  await reopened.getByRole("button", { name: "Entrar", exact: true }).click();
-  await reopened.getByRole("button", { name: "Jogar", exact: true }).waitFor();
-  await reopened.getByRole("button", { name: "Terminar sessão" }).click();
+  await reopened.getByLabel("Password").fill("palavra-passe incorreta");
+  await reopened.getByRole("button", { name: "Sign in", exact: true }).click();
+  await reopened.getByText("Check your email and password.").waitFor();
+  await reopened.getByLabel("Password").fill(password);
+  await reopened.getByRole("button", { name: "Sign in", exact: true }).click();
+  await reopened.getByRole("button", { name: "Play", exact: true }).waitFor();
+  await reopened.getByRole("button", { name: "Sign out" }).click();
   await reopened.getByLabel("Email").fill("outra@example.com");
-  await reopened.getByLabel("Palavra-passe").fill(password);
-  await reopened.getByRole("button", { name: "Criar conta", exact: true }).click();
-  await reopened.getByText("O jogo começa na Sala 1.").waitFor();
+  await reopened.getByLabel("Password").fill(password);
+  await reopened.getByRole("button", { name: "Create account", exact: true }).click();
+  await reopened.getByText("The game starts in the barracks.").waitFor();
   assert.deepEqual(reported, [0, 1]);
 });

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,27 +14,27 @@
       <form id="auth-form" hidden>
         <label for="email">Email</label>
         <input id="email" name="email" type="email" autocomplete="email" required>
-        <label for="password">Palavra-passe</label>
+        <label for="password">Password</label>
         <input id="password" name="password" type="password" autocomplete="current-password" required>
         <div class="actions">
-          <button type="submit" name="action" value="login">Entrar</button>
-          <button class="secondary" type="submit" name="action" value="register">Criar conta</button>
+          <button type="submit" name="action" value="login">Sign in</button>
+          <button class="secondary" type="submit" name="action" value="register">Create account</button>
         </div>
       </form>
       <div id="profile" hidden>
         <p id="checkpoint"></p>
-        <button id="play" type="button">Jogar</button>
+        <button id="play" type="button">Play</button>
       </div>
-      <p id="notice" role="status" aria-live="polite">A verificar a sessão…</p>
+      <p id="notice" role="status" aria-live="polite">Checking your session…</p>
     </section>
-    <section id="game" class="game" aria-label="Jogo" hidden>
-      <canvas id="canvas" width="1280" height="720" tabindex="0">O browser precisa de suportar WebGL 2.</canvas>
-      <progress id="download" aria-label="Carregamento do jogo"></progress>
+    <section id="game" class="game" aria-label="Game" hidden>
+      <canvas id="canvas" width="1280" height="720" tabindex="0">Your browser must support WebGL 2.</canvas>
+      <progress id="download" aria-label="Loading the game"></progress>
     </section>
     <footer id="session-controls" hidden>
       <small id="save-status" role="status" aria-live="polite"></small>
-      <button id="retry" class="secondary" type="button" hidden>Tentar guardar</button>
-      <button id="logout" class="secondary" type="button">Terminar sessão</button>
+      <button id="retry" class="secondary" type="button" hidden>Retry save</button>
+      <button id="logout" class="secondary" type="button">Sign out</button>
     </footer>
   </main>
   <script src="$GODOT_URL"></script>

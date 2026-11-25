@@ -24,17 +24,17 @@ func _run() -> void:
 	_check(diner.sprite_frames.get_frame_count(&"comer") == 16
 		and is_equal_approx(diner.sprite_frames.get_animation_speed(&"comer"), 2.192),
 		"O comensal sozinho usa os fotogramas e o ritmo originais.")
-	_check(pair.sprite_frames.get_frame_count(&"comer") == 48,
-		"A mesa dupla mantém os fotogramas intermédios.")
-	_check(server.is_playing() and server.animation == &"idle" and server.sprite_frames.get_frame_count(&"idle") == 48,
-		"O novo idle do balcão arranca automaticamente.")
+	_check(pair.sprite_frames.get_frame_count(&"comer") == 62,
+		"A mesa dupla usa os 62 fotogramas do spritesheet novo.")
+	_check(server.is_playing() and server.animation == &"idle" and server.sprite_frames.get_frame_count(&"idle") == 51,
+		"O novo idle do balcão usa 51 fotogramas e arranca automaticamente.")
 	var camera: Camera2D = kitchen.get_node("Camera")
 	var idle_size := server.sprite_frames.get_frame_texture(&"idle", 0).get_size()
 	var right_edge := server.to_global(server.offset + Vector2(idle_size.x * 0.5, 0.0)).x
 	_check(right_edge <= camera.limit_right + 2.0, "O limite da câmara não corta visivelmente o balcão.")
 	_check(walk.sprite_frames.get_frame_count(&"caminhar") == 16
-		and is_equal_approx(walk.sprite_frames.get_animation_speed(&"caminhar"), 3.582),
-		"A caminhada do mexedor usa os fotogramas e o ritmo originais.")
+		and is_equal_approx(walk.sprite_frames.get_animation_speed(&"caminhar"), 12.0),
+		"A caminhada do mexedor usa o spritesheet novo a 12 FPS.")
 	_check(stirrer.stations.size() == 3, "Há três caldeirões no percurso editável.")
 	_check(kitchen.get_node("EmCena").y_sort_enabled, "A profundidade segue a posição no chão.")
 
@@ -42,10 +42,15 @@ func _run() -> void:
 	_check(kitchen.get_node("Filme/Filtro").size == root.get_visible_rect().size
 		and kitchen.arrival_fade.size == root.get_visible_rect().size,
 		"O filtro e a transição cobrem o enquadramento inteiro.")
-	for fixture in ["Caldeirao01", "Caldeirao02", "Caldeirao03", "MesaComensal", "MesaDupla"]:
+	for fixture in ["Caldeirao01", "Caldeirao02", "Caldeirao03", "MesaVazia", "MesaComensal", "MesaDupla"]:
 		var body: StaticBody2D = kitchen.get_node("EmCena/" + fixture)
 		var feet := body.global_position
+		var table_shape := body.get_node_or_null("ColisaoMesa") as CollisionShape2D
 		var query := PhysicsRayQueryParameters2D.create(feet + Vector2(0, 30), feet + Vector2(0, -15), 1)
+		if table_shape != null:
+			var center := table_shape.global_position
+			query.from = center - Vector2(0, 48)
+			query.to = center
 		var hit := body.get_world_2d().direct_space_state.intersect_ray(query)
 		_check(hit.get("collider") == body, "Tem colisão: " + fixture)
 	await _interact()
@@ -108,9 +113,9 @@ func _run() -> void:
 			_check(stirrer.global_position.is_equal_approx(station.station.global_position)
 				and station.stirring.is_playing() and not station.stove.visible,
 				"O mexedor usa a marca editável e o caldeirão certo.")
-			_check(station.stirring.sprite_frames.get_frame_count(&"mexer") == 16
-				and is_equal_approx(station.stirring.sprite_frames.get_animation_speed(&"mexer"), 3.582),
-				"O mexedor usa a animação original no caldeirão.")
+			_check(station.stirring.sprite_frames.get_frame_count(&"mexer") == 19
+				and is_equal_approx(station.stirring.sprite_frames.get_animation_speed(&"mexer"), 10.0),
+				"O mexedor usa os 19 fotogramas novos no caldeirão.")
 			visited.append(index)
 			if visited.size() == 4:
 				break

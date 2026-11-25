@@ -18,6 +18,7 @@ func _run() -> void:
 	var convoy: LaundryConvoy = scene.get_node("Desafio")
 	var vision: GuardVision = scene.get_node("Desafio/VisaoDoGuarda")
 	var player: CharacterBody2D = scene.get_node("Personagens/Player")
+	_check_guard_scales(scene.guard_chase.art)
 	convoy.set_physics_process(false)
 	scene.set_physics_process(false)
 	var start := convoy.worker.global_position
@@ -193,30 +194,93 @@ func _run() -> void:
 		"O tamanho de carregamento não acumula a cada ciclo.")
 
 	player.global_position = Vector2(720, 820)
+	convoy.set_physics_process(true)
 	scene.set_physics_process(true)
 	await _ticks(43)
-	_check(scene.get("caught"), "A exposição contínua deteta o jogador.")
-	await _ticks(65)
-	_check(not scene.get("caught") and player.global_position.distance_to(Vector2(255, 765)) < 2.0,
-		"Uma deteção permite recomeçar junto ao primeiro barracão.")
+	_check(scene.pursuer == scene.guard_chase and scene.guard_chase.art.animation == &"startled"
+		and not convoy.guard.visible, "O guarda reage à exposição contínua antes de perseguir.")
+	_check(convoy.is_physics_processing() and convoy.worker.is_playing() and convoy.elapsed > 0.6,
+		"O trabalhador continua a animar e a carregar roupa quando o guarda vê o jogador.")
+	await _check_capture(scene, scene.guard_chase)
+	convoy.set_physics_process(false)
 
-	convoy._physics_process(convoy.load_seconds + approach_seconds + convoy.idle_seconds + convoy.stop_seconds
-		+ route_length / convoy.pull_speed * 0.88)
+	var dog: YardPursuer = scene.dog
+	_check(dog.art.sprite_frames.get_frame_count(&"startled") == 7
+		and dog.art.sprite_frames.get_frame_count(&"angry") == 7
+		and scene.guard_chase.art.sprite_frames.get_frame_count(&"run") == 16,
+		"As animações de reação usam os novos spritesheets.")
+	var exposed_to_dog := Vector2(dog.global_position.x - 145.0, scene.dog_chase_ground_y + 38.0)
+	_check(dog.art.animation == &"sleep" and not scene._dog_can_see(exposed_to_dog),
+		"O cão dorme e não vigia enquanto o guarda está no posto.")
+	convoy._physics_process(convoy.idle_seconds * 2.0 + convoy.load_seconds + approach_seconds
+		+ (convoy._follow_distance + 20.0) / convoy.pull_speed)
+	var guard_range := vision.sight_range
+	vision.sight_range = 0.0
+	player.global_position = convoy.cart.cover.to_global(Vector2(0, 25))
+	_check(dog.global_position.distance_to(player.global_position) < scene.dog_sight_range
+		and convoy.guard_is_escorting() and not scene._dog_can_see(player.global_position),
+		"O carrinho protege o jogador mesmo com o cão perto e o guarda fora do posto.")
+	await _ticks(40)
+	_check(scene.pursuer == null and dog.art.animation == &"sleep",
+		"O cão continua a dormir quando o jogador acompanha o carrinho pelo lado protegido.")
+	player.global_position = exposed_to_dog
+	_check(scene._dog_can_see(exposed_to_dog), "O cão vigia quando o guarda acompanha o carrinho.")
+	var cart_before_dog := convoy.cart.global_position
+	convoy.set_physics_process(true)
+	await _ticks(27)
+	_check(scene.pursuer == dog and dog.art.animation == &"startled",
+		"Avançar fora da cobertura acorda o cão.")
+	_check(convoy.guard.visible and convoy.worker.is_playing() and convoy.cart.wheels.is_playing()
+		and convoy.cart.global_position.distance_to(cart_before_dog) > 16.0,
+		"Durante a perseguição do cão, guarda, trabalhador e carrinho continuam a ronda.")
+	await _check_capture(scene, dog)
+	convoy.set_physics_process(false)
+	_check(dog.global_position.is_equal_approx(scene.dog_home) and dog.art.animation == &"sleep",
+		"Depois de apanhar o jogador, o cão volta ao posto e adormece.")
+
+	convoy._physics_process(convoy.idle_seconds * 2.0 + convoy.load_seconds + approach_seconds
+		+ (convoy._follow_distance + 20.0) / convoy.pull_speed)
+	player.global_position = exposed_to_dog
+	for tick in 150:
+		if dog.art.animation == &"run" and dog.global_position.x < scene.dog_home.x - 16.0:
+			break
+		await physics_frame
+	_check(scene.pursuer == dog and dog.global_position.y >= scene.dog_chase_ground_y,
+		"O cão sai do posto acima do perímetro e entra na zona caminhável.")
+	player.global_position = convoy.cart.cover.to_global(Vector2(0, 44))
+	await _ticks(70)
+	_check(scene.pursuer == null and not scene.caught and not scene.dog_returning
+		and dog.global_position.is_equal_approx(scene.dog_home) and dog.art.animation == &"sleep",
+		"A cobertura interrompe a perseguição e o cão regressa ao posto sem capturar o jogador.")
+
+	player.global_position = Vector2(1550, 822)
+	dog.global_position = Vector2(1320, 822)
+	scene._begin_pursuit(dog)
+	await _check_capture(scene, dog)
+
+	vision.sight_range = guard_range
+	await _check_crate_cover(scene, convoy, vision)
+	convoy.restart_at_pile()
 	convoy.set_physics_process(true)
 	Input.action_press(&"move_forward")
-	await _ticks(36)
+	await _ticks(37)
 	Input.action_release(&"move_forward")
-	Input.action_press(&"move_right")
-	for tick in range(380):
-		await physics_frame
-		if player.global_position.x >= 1600.0:
+	Input.action_press(&"crouch")
+	for tick in 2500:
+		if scene.pursuer != null or player.global_position.x >= 1575.0:
 			break
+		if player.global_position.x < convoy.cart.cover.global_position.x:
+			Input.action_press(&"move_right")
+		else:
+			Input.action_release(&"move_right")
+		await physics_frame
 	Input.action_release(&"move_right")
 	Input.action_press(&"move_back")
-	await _ticks(100)
+	await _ticks(74)
 	Input.action_release(&"move_back")
-	_check(scene.get("entering") and not player.visible,
-		"É possível aproveitar a passagem do conjunto para alcançar a porta sem deteção.")
+	Input.action_release(&"crouch")
+	_check(scene.entering and not player.visible,
+		"É possível acompanhar o carrinho, contornar a caixa e entrar na cozinha com os dois vigilantes ativos.")
 
 	for failure in failures:
 		push_error(failure)
@@ -241,6 +305,87 @@ func _check_frames(convoy: LaundryConvoy) -> void:
 				var atlas: AtlasTexture = sprite.sprite_frames.get_frame_texture(animation, frame)
 				_check(Rect2(Vector2.ZERO, atlas.atlas.get_size()).encloses(atlas.region),
 					"O recorte %s/%d pertence à folha importada." % [animation, frame])
+
+
+func _check_capture(scene: Node2D, actor: YardPursuer) -> void:
+	var origin := actor.global_position
+	var angry := false
+	var runs := false
+	for tick in 210:
+		if scene.caught:
+			break
+		angry = angry or actor.art.animation == &"angry"
+		runs = runs or actor.art.animation == &"run"
+		await physics_frame
+	_check(angry and runs and actor.global_position.distance_to(origin) > 35.0 and scene.caught,
+		"O perseguidor fica furioso, corre e só captura ao chegar ao jogador.")
+	await _ticks(40)
+	_check(not scene.caught and scene.pursuer == null and scene.player.is_physics_processing()
+		and scene.player.global_position.is_equal_approx(scene.arrival.global_position)
+		and scene.vision.convoy.phase == PHASE.WAITING_TO_LOAD,
+		"A captura reinicia o jogador e o percurso junto ao primeiro barracão.")
+
+
+func _check_guard_scales(art: AnimatedSprite2D) -> void:
+	var original_animation := art.animation
+	var fields := ["startled_scale", "angry_scale", "running_scale"]
+	var original_scales: Array[Vector2] = []
+	for property in fields:
+		original_scales.append(art.get(property))
+	_check(art.position.length() < 15.0, "A arte da perseguição está alinhada com o guarda que a carrega.")
+	art.animation = &"startled"
+	art.set("startled_scale", Vector2(0.7, 0.72))
+	art.set("angry_scale", Vector2(0.8, 0.82))
+	art.set("running_scale", Vector2(0.9, 0.92))
+	_check(art.scale.is_equal_approx(Vector2(0.7, 0.72)), "Editar a escala do susto atualiza a pose visível.")
+	art.play(&"angry")
+	_check(art.scale.is_equal_approx(Vector2(0.8, 0.82)), "A raiva usa a sua própria escala.")
+	art.play(&"run")
+	_check(art.scale.is_equal_approx(Vector2(0.9, 0.92)), "A corrida usa a sua própria escala.")
+	for index in fields.size():
+		art.set(fields[index], original_scales[index])
+	art.stop()
+	art.animation = original_animation
+
+
+func _check_crate_cover(scene: Node2D, convoy: LaundryConvoy, vision: GuardVision) -> void:
+	var crate := vision.crate_cover
+	var refuge := crate.to_global(Vector2(250, 20))
+	var front := Vector2(refuge.x, 860.0)
+	var crate_edge := crate.to_global(Vector2(-crate.size.x * 0.5, 0.0)).x
+	convoy.distance = convoy._distance_at_x(crate_edge - 5.0)
+	convoy._place_trip(false)
+	_check(not vision.is_in_crate_cover(refuge) and vision.can_see(refuge, false),
+		"A caixa ainda não esconde o jogador antes de o carrinho chegar.")
+	convoy.distance = convoy._distance_at_x(crate_edge + 15.0)
+	convoy._place_trip(false)
+	_check(vision.cover_at(refuge) == crate and not vision.can_see(refuge, false)
+		and not vision.can_see(refuge, true) and vision.can_see(front, false),
+		"Quando o carrinho chega, só o lado atrás da caixa protege o jogador.")
+	var crate_art := crate.get_parent() as Sprite2D
+	_check(crate_art.get_parent() == scene.player.get_parent() and crate_art.get_parent().y_sort_enabled
+		and refuge.y < crate_art.global_position.y and front.y > crate_art.global_position.y,
+		"A caixa tapa o jogador atrás e permite que passe visualmente à frente.")
+
+	scene.player.global_position = front
+	convoy._stopped_at_barrack = true
+	convoy._start_trip(false)
+	convoy.set_physics_process(true)
+	var departure := convoy.cart.global_position
+	scene._begin_pursuit(scene.guard_chase)
+	await _ticks(72)
+	_check(scene.guard_chase.art.animation == &"run" and not convoy.guard.visible
+		and convoy.worker.is_playing() and convoy.cart.wheels.is_playing()
+		and convoy.cart.global_position.distance_to(departure) > 45.0,
+		"O prisioneiro e o carrinho continuam a animação e o percurso durante a corrida do guarda.")
+	scene.player.global_position = refuge
+	await _ticks(1)
+	_check(scene.pursuer == null and scene.guard_returning and not scene.caught,
+		"Entrar na cobertura da caixa interrompe a perseguição do guarda.")
+	await _ticks(108)
+	_check(not scene.guard_returning and not convoy.guard_detached and not scene.guard_chase.visible,
+		"O guarda volta ao percurso em movimento após perder o jogador de vista.")
+	scene.player.global_position = scene.arrival.global_position
 
 
 func _ticks(count: int) -> void:
