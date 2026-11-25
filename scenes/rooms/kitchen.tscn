@@ -212,7 +212,7 @@ offset_bottom = -38.0
 theme_override_colors/font_outline_color = Color(0.06, 0.06, 0.06, 1)
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 22
-text = "[E] Interagir"
+text = "[E] Interact"
 horizontal_alignment = 1
 
 [node name="Chegada" type="ColorRect" parent="Avisos" unique_id=112582381]

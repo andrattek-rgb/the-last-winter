@@ -7,6 +7,10 @@
 [ext_resource type="AudioStream" path="res://assets/modelos/cozinha/video/idle.ogg" id="5"]
 [ext_resource type="AudioStream" path="res://assets/modelos/cozinha/video/pao.ogg" id="6"]
 [ext_resource type="AudioStream" path="res://assets/modelos/cozinha/video/sopa.ogg" id="7"]
+[ext_resource type="Shader" path="res://effects/old_film.gdshader" id="8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_Film"]
+shader = ExtResource("8")
 
 [node name="KitchenInteraction" type="CanvasLayer"]
 layer = 9
@@ -37,6 +41,15 @@ layout_mode = 2
 mouse_filter = 2
 expand = true
 
+[node name="FilmBuffer" type="BackBufferCopy" parent="Quadro"]
+copy_mode = 2
+
+[node name="Film" type="ColorRect" parent="Quadro"]
+material = SubResource("ShaderMaterial_Film")
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
 [node name="Escolhas" type="HBoxContainer" parent="Quadro"]
 anchor_left = 0.5
 anchor_right = 0.5
@@ -53,11 +66,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_right = NodePath("../Sopa")
 theme_override_font_sizes/font_size = 24
-text = "PÃO"
+text = "BREAD"
 
 [node name="Sopa" type="Button" parent="Quadro/Escolhas"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_left = NodePath("../Pao")
 theme_override_font_sizes/font_size = 24
-text = "SOPA"
+text = "SOUP"

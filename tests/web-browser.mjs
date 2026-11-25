@@ -6,7 +6,7 @@ import { extname } from "node:path";
 import { test } from "node:test";
 import { chromium } from "playwright";
 
-const api = "https://test-winter.supabase.co";
+const api = process.env.TEST_SUPABASE_URL ?? "https://test-winter.supabase.co";
 const files = new URL("../dist/", import.meta.url);
 const mime = {
   ".html": "text/html",
@@ -104,6 +104,9 @@ test("registo, login e progresso após reabrir o jogo Web", { timeout: 90000 }, 
   }
   await submit(email, password, "Criar conta");
   await page.getByRole("button", { name: "Jogar", exact: true }).click();
+  await page.locator("#download").waitFor({ state: "hidden", timeout: 30000 });
+  await page.keyboard.press("Enter");
+  await page.keyboard.press("Enter");
   await page.getByText("Progresso guardado", { exact: true }).waitFor({ timeout: 30000 }).catch(async (error) => {
     t.diagnostic(await page.locator("body").innerText());
     throw error;
@@ -130,7 +133,12 @@ test("registo, login e progresso após reabrir o jogo Web", { timeout: 90000 }, 
       original(checkpoint);
     };
   });
-  await reopened.getByRole("button", { name: "Continuar", exact: true }).click();
+  await reopened.getByRole("button", { name: "Jogar", exact: true }).click();
+  await reopened.locator("#download").waitFor({ state: "hidden", timeout: 30000 });
+  await reopened.keyboard.press("ArrowDown");
+  await reopened.keyboard.press("Enter");
+  await reopened.keyboard.press("Enter");
+  await reopened.keyboard.press("Enter");
   await reopened.waitForFunction(() => window.resumedCheckpoint === 1, undefined, { timeout: 30000 });
   await reopened.getByRole("button", { name: "Terminar sessão" }).click();
   await reopened.getByRole("button", { name: "Entrar", exact: true }).waitFor();
@@ -140,7 +148,7 @@ test("registo, login e progresso após reabrir o jogo Web", { timeout: 90000 }, 
   await reopened.getByText("Verifica o email e a palavra-passe.").waitFor();
   await reopened.getByLabel("Palavra-passe").fill(password);
   await reopened.getByRole("button", { name: "Entrar", exact: true }).click();
-  await reopened.getByRole("button", { name: "Continuar", exact: true }).waitFor();
+  await reopened.getByRole("button", { name: "Jogar", exact: true }).waitFor();
   await reopened.getByRole("button", { name: "Terminar sessão" }).click();
   await reopened.getByLabel("Email").fill("outra@example.com");
   await reopened.getByLabel("Palavra-passe").fill(password);

@@ -115,3 +115,7 @@ O pedido especificou o contraste entre a deslocação rápida e as pausas e um h
 > Agora vamos fazer o que falta, deve ser o login e a database, pode começar a fazer isso.
 
 O pedido fechou a fase de alterações ao conteúdo do jogo e iniciou a implementação de contas e progresso persistente no Supabase. O enunciado da Mindera foi consultado para confirmar os requisitos de autenticação, persistência entre sessões e testes automáticos.
+
+> Esse vai ser o menu do jogo […] New Game, Credits, Quit […] quando a pessoa já tem um progresso, aparece mais uma opção Continue.
+
+O pedido forneceu a arte do menu, a referência tipográfica e a dos cartões, o texto integral do aviso e a assinatura dos créditos. Também pediu cinco relatos reais em páginas separadas e o filtro de película no menu e na cutscene da sopa.

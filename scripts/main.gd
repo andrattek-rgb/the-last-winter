@@ -22,17 +22,22 @@ var room: Node2D
 var exit_area: Area2D
 var inside_player: CharacterBody2D
 var web_progress: JavaScriptObject
+var starting_checkpoint := Checkpoint.ROOM
+var save_slot := 0
+var save_path := ""
+
+
+func configure_start(checkpoint: int, slot: int, path: String) -> void:
+	if CHECKPOINT_SCENES.has(checkpoint):
+		starting_checkpoint = checkpoint as Checkpoint
+	save_slot = slot
+	save_path = path
 
 
 func _ready() -> void:
-	var checkpoint := Checkpoint.ROOM
-	if OS.has_feature("web"):
+	if OS.has_feature("web") and save_slot == 0:
 		web_progress = JavaScriptBridge.get_interface("winterProgress")
-		if web_progress != null:
-			var saved := int(web_progress.startingCheckpoint)
-			if CHECKPOINT_SCENES.has(saved):
-				checkpoint = saved as Checkpoint
-	_mount_checkpoint(load(CHECKPOINT_SCENES[checkpoint]) as PackedScene, checkpoint)
+	_mount_checkpoint(load(CHECKPOINT_SCENES[starting_checkpoint]) as PackedScene, starting_checkpoint)
 
 
 func _mount_checkpoint(packed: PackedScene, checkpoint: Checkpoint) -> Node2D:
@@ -52,6 +57,12 @@ func _mount_checkpoint(packed: PackedScene, checkpoint: Checkpoint) -> Node2D:
 			zone.outside_requested.connect(_enter_outside_2.bind(zone), CONNECT_ONE_SHOT)
 	if web_progress != null:
 		web_progress.checkpointReached(int(checkpoint))
+	elif not save_path.is_empty():
+		var saves := ConfigFile.new()
+		saves.load(save_path)
+		saves.set_value("checkpoints", str(save_slot), int(checkpoint))
+		if saves.save(save_path) != OK:
+			push_warning("Could not save game slot %d." % save_slot)
 	return zone
 
 

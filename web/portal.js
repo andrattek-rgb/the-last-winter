@@ -49,13 +49,15 @@ async function showAccount(session) {
     const checkpoint = await readCheckpoint(client, userId);
     progress = createProgressQueue(client, userId, checkpoint, stateMessage);
     window.winterProgress = {
+      accountId: userId,
+      hasProgress: checkpoint !== null,
       startingCheckpoint: checkpoint ?? 0,
       checkpointReached: (value) => progress.reach(value),
+      quitToPortal: () => location.reload(),
     };
     document.querySelector("#checkpoint").textContent = checkpoint === null
       ? "O jogo começa na Sala 1."
       : `Último ponto de controlo · ${checkpoints[checkpoint]}`;
-    play.textContent = checkpoint > 0 ? "Continuar" : "Jogar";
     profile.hidden = false;
   } catch {
     notice.textContent = "Não foi possível carregar o progresso. Recarrega a página para tentar de novo.";

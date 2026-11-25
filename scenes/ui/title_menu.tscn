@@ -1,0 +1,413 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/title_menu.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/menu/spotlight_cap.png" id="2"]
+[ext_resource type="Shader" path="res://effects/old_film.gdshader" id="3"]
+[ext_resource type="FontFile" path="res://assets/menu/ArchivoBlack-Regular.ttf" id="4"]
+
+[sub_resource type="ShaderMaterial" id="Film"]
+shader = ExtResource("3")
+shader_parameter/exposure = 0.91
+shader_parameter/grain = 0.028
+shader_parameter/vignette = 0.18
+
+[sub_resource type="StyleBoxFlat" id="ButtonNormal"]
+content_margin_left = 16.0
+content_margin_top = 9.0
+content_margin_right = 16.0
+content_margin_bottom = 9.0
+bg_color = Color(0.12, 0.12, 0.12, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.40, 0.40, 0.40, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_left = 3
+corner_radius_bottom_right = 3
+
+[sub_resource type="StyleBoxFlat" id="ButtonHover"]
+content_margin_left = 16.0
+content_margin_top = 9.0
+content_margin_right = 16.0
+content_margin_bottom = 9.0
+bg_color = Color(0.26, 0.26, 0.26, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.78, 0.78, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_left = 3
+corner_radius_bottom_right = 3
+
+[sub_resource type="StyleBoxFlat" id="ButtonFocus"]
+content_margin_left = 16.0
+content_margin_top = 9.0
+content_margin_right = 16.0
+content_margin_bottom = 9.0
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.93, 0.93, 0.93, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_left = 3
+corner_radius_bottom_right = 3
+
+[sub_resource type="StyleBoxFlat" id="CardNormal"]
+content_margin_left = 16.0
+content_margin_top = 9.0
+content_margin_right = 16.0
+content_margin_bottom = 9.0
+bg_color = Color(0.78, 0.78, 0.78, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.40, 0.40, 0.40, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_left = 3
+corner_radius_bottom_right = 3
+
+[sub_resource type="StyleBoxFlat" id="CardHover"]
+content_margin_left = 16.0
+content_margin_top = 9.0
+content_margin_right = 16.0
+content_margin_bottom = 9.0
+bg_color = Color(0.97, 0.97, 0.97, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.58, 0.58, 0.58, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_left = 3
+corner_radius_bottom_right = 3
+
+[sub_resource type="Theme" id="MenuTheme"]
+default_font_size = 24
+Button/styles/normal = SubResource("ButtonNormal")
+Button/styles/hover = SubResource("ButtonHover")
+Button/styles/pressed = SubResource("ButtonHover")
+Button/styles/focus = SubResource("ButtonFocus")
+
+[node name="TitleMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource("MenuTheme")
+script = ExtResource("1")
+
+[node name="Picture" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Film" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+material = SubResource("Film")
+
+[node name="Actions" type="VBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 65.0
+offset_top = -132.0
+offset_right = 314.0
+offset_bottom = 132.0
+alignment = 1
+theme_override_constants/separation = 8
+
+[node name="NewGame" type="Button" parent="Actions"]
+layout_mode = 2
+text = "NEW GAME"
+custom_minimum_size = Vector2(0, 52)
+flat = true
+theme_override_fonts/font = ExtResource("4")
+theme_override_font_sizes/font_size = 32
+theme_override_colors/font_color = Color(0.70, 0.70, 0.70, 1)
+theme_override_colors/font_focus_color = Color(0.98, 0.98, 0.98, 1)
+theme_override_colors/font_hover_color = Color(0.98, 0.98, 0.98, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+alignment = 0
+
+[node name="Continue" type="Button" parent="Actions"]
+layout_mode = 2
+text = "CONTINUE"
+custom_minimum_size = Vector2(0, 52)
+flat = true
+theme_override_fonts/font = ExtResource("4")
+theme_override_font_sizes/font_size = 32
+theme_override_colors/font_color = Color(0.70, 0.70, 0.70, 1)
+theme_override_colors/font_focus_color = Color(0.98, 0.98, 0.98, 1)
+theme_override_colors/font_hover_color = Color(0.98, 0.98, 0.98, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+alignment = 0
+
+[node name="Credits" type="Button" parent="Actions"]
+layout_mode = 2
+text = "CREDITS"
+custom_minimum_size = Vector2(0, 52)
+flat = true
+theme_override_fonts/font = ExtResource("4")
+theme_override_font_sizes/font_size = 32
+theme_override_colors/font_color = Color(0.70, 0.70, 0.70, 1)
+theme_override_colors/font_focus_color = Color(0.98, 0.98, 0.98, 1)
+theme_override_colors/font_hover_color = Color(0.98, 0.98, 0.98, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+alignment = 0
+
+[node name="Quit" type="Button" parent="Actions"]
+layout_mode = 2
+text = "QUIT"
+custom_minimum_size = Vector2(0, 52)
+flat = true
+theme_override_fonts/font = ExtResource("4")
+theme_override_font_sizes/font_size = 32
+theme_override_colors/font_color = Color(0.70, 0.70, 0.70, 1)
+theme_override_colors/font_focus_color = Color(0.98, 0.98, 0.98, 1)
+theme_override_colors/font_hover_color = Color(0.98, 0.98, 0.98, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+alignment = 0
+
+[node name="Slots" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.045, 0.045, 0.045, 0.97)
+
+[node name="Content" type="VBoxContainer" parent="Slots"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -248.0
+offset_right = 310.0
+offset_bottom = 248.0
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Slots/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "CONTINUE"
+horizontal_alignment = 1
+theme_override_fonts/font = ExtResource("4")
+
+[node name="Original" type="Button" parent="Slots/Content"]
+layout_mode = 2
+text = "Original save"
+[node name="Cards" type="VBoxContainer" parent="Slots/Content"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Slot1" type="Button" parent="Slots/Content/Cards"]
+layout_mode = 2
+text = "SLOT 01   ·   Empty"
+custom_minimum_size = Vector2(0, 64)
+theme_override_fonts/font = ExtResource("4")
+theme_override_colors/font_color = Color(0.09, 0.09, 0.09, 1)
+theme_override_colors/font_hover_color = Color(0.09, 0.09, 0.09, 1)
+theme_override_colors/font_pressed_color = Color(0.09, 0.09, 0.09, 1)
+theme_override_colors/font_focus_color = Color(0.09, 0.09, 0.09, 1)
+theme_override_styles/normal = SubResource("CardNormal")
+theme_override_styles/hover = SubResource("CardHover")
+theme_override_styles/pressed = SubResource("CardHover")
+
+[node name="Slot2" type="Button" parent="Slots/Content/Cards"]
+layout_mode = 2
+text = "SLOT 02   ·   Empty"
+custom_minimum_size = Vector2(0, 64)
+theme_override_fonts/font = ExtResource("4")
+theme_override_colors/font_color = Color(0.09, 0.09, 0.09, 1)
+theme_override_colors/font_hover_color = Color(0.09, 0.09, 0.09, 1)
+theme_override_colors/font_pressed_color = Color(0.09, 0.09, 0.09, 1)
+theme_override_colors/font_focus_color = Color(0.09, 0.09, 0.09, 1)
+theme_override_styles/normal = SubResource("CardNormal")
+theme_override_styles/hover = SubResource("CardHover")
+theme_override_styles/pressed = SubResource("CardHover")
+
+[node name="Slot3" type="Button" parent="Slots/Content/Cards"]
+layout_mode = 2
+text = "SLOT 03   ·   Empty"
+custom_minimum_size = Vector2(0, 64)
+theme_override_fonts/font = ExtResource("4")
+theme_override_colors/font_color = Color(0.09, 0.09, 0.09, 1)
+theme_override_colors/font_hover_color = Color(0.09, 0.09, 0.09, 1)
+theme_override_colors/font_pressed_color = Color(0.09, 0.09, 0.09, 1)
+theme_override_colors/font_focus_color = Color(0.09, 0.09, 0.09, 1)
+theme_override_styles/normal = SubResource("CardNormal")
+theme_override_styles/hover = SubResource("CardHover")
+theme_override_styles/pressed = SubResource("CardHover")
+
+[node name="Back" type="Button" parent="Slots/Content"]
+layout_mode = 2
+text = "Back"
+size_flags_horizontal = 4
+
+[node name="Credits" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.045, 0.045, 0.045, 0.97)
+
+[node name="Content" type="VBoxContainer" parent="Credits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -240.0
+offset_right = 440.0
+offset_bottom = 240.0
+theme_override_constants/separation = 14
+
+[node name="Heading" type="Label" parent="Credits/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "CREDITS"
+horizontal_alignment = 1
+theme_override_fonts/font = ExtResource("4")
+
+[node name="Title" type="Label" parent="Credits/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+size_flags_vertical = 3
+vertical_alignment = 1
+theme_override_fonts/font = ExtResource("4")
+
+[node name="Story" type="Label" parent="Credits/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+custom_minimum_size = Vector2(0, 150)
+autowrap_mode = 3
+vertical_alignment = 1
+
+[node name="Source" type="Button" parent="Credits/Content"]
+layout_mode = 2
+text = "Source"
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+[node name="Navigation" type="HBoxContainer" parent="Credits/Content"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="Previous" type="Button" parent="Credits/Content/Navigation"]
+layout_mode = 2
+text = "Previous"
+
+[node name="Count" type="Label" parent="Credits/Content/Navigation"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "1 / 6"
+horizontal_alignment = 1
+
+[node name="Next" type="Button" parent="Credits/Content/Navigation"]
+layout_mode = 2
+text = "Next"
+
+[node name="Back" type="Button" parent="Credits/Content"]
+layout_mode = 2
+text = "Back"
+size_flags_horizontal = 4
+
+[node name="Disclaimer" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.045, 0.045, 0.045, 0.97)
+
+[node name="Content" type="VBoxContainer" parent="Disclaimer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -277.0
+offset_right = 450.0
+offset_bottom = 277.0
+theme_override_constants/separation = 14
+
+[node name="Warning" type="Control" parent="Disclaimer/Content"]
+layout_mode = 2
+custom_minimum_size = Vector2(46, 49)
+size_flags_horizontal = 4
+mouse_filter = 2
+
+[node name="Triangle" type="Polygon2D" parent="Disclaimer/Content/Warning"]
+polygon = PackedVector2Array(23, 3, 45, 43, 1, 43)
+color = Color(0.94, 0.94, 0.94, 1)
+
+[node name="Inset" type="Polygon2D" parent="Disclaimer/Content/Warning"]
+polygon = PackedVector2Array(23, 10, 39, 39, 7, 39)
+color = Color(0.045, 0.045, 0.045, 1)
+
+[node name="Mark" type="Polygon2D" parent="Disclaimer/Content/Warning"]
+polygon = PackedVector2Array(20.5, 19, 25.5, 19, 24.5, 30, 21.5, 30)
+color = Color(0.94, 0.94, 0.94, 1)
+
+[node name="Dot" type="Polygon2D" parent="Disclaimer/Content/Warning"]
+polygon = PackedVector2Array(21, 33, 25, 33, 25, 37, 21, 37)
+color = Color(0.94, 0.94, 0.94, 1)
+
+[node name="Heading" type="Label" parent="Disclaimer/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "DISCLAIMER"
+horizontal_alignment = 1
+theme_override_fonts/font = ExtResource("4")
+
+[node name="Message" type="Label" parent="Disclaimer/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "NOWHERE is a work of fiction inspired by real historical events.\n\nDespite its cartoon art style, this game is not intended to trivialize, ridicule, or diminish the suffering of the victims of the Holocaust.\n\nIts purpose is to tell a story of loss, survival, and hope, encouraging reflection on one of the darkest chapters in human history.\n\nDedicated to the memory of all victims of the Holocaust."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Closing" type="Label" parent="Disclaimer/Content"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4")
+theme_override_font_sizes/font_size = 21
+text = "May the past never be forgotten."
+horizontal_alignment = 1
+
+[node name="Proceed" type="Button" parent="Disclaimer/Content"]
+layout_mode = 2
+text = "Continue"
+size_flags_horizontal = 4
+[node name="ReplaceDialog" type="ConfirmationDialog" parent="."]
+title = "New Game"
+ok_button_text = "Restart"
+
+[connection signal="pressed" from="Actions/NewGame" to="." method="_new_game"]
+[connection signal="pressed" from="Actions/Continue" to="." method="_show_slots"]
+[connection signal="pressed" from="Actions/Credits" to="." method="_show_credits"]
+[connection signal="pressed" from="Actions/Quit" to="." method="_quit"]
+[connection signal="pressed" from="Slots/Content/Original" to="." method="_resume_original"]
+[connection signal="pressed" from="Slots/Content/Cards/Slot1" to="." method="_choose_slot" binds=[1]]
+[connection signal="pressed" from="Slots/Content/Cards/Slot2" to="." method="_choose_slot" binds=[2]]
+[connection signal="pressed" from="Slots/Content/Cards/Slot3" to="." method="_choose_slot" binds=[3]]
+[connection signal="pressed" from="Slots/Content/Back" to="." method="_back_home"]
+[connection signal="pressed" from="Credits/Content/Source" to="." method="_open_source"]
+[connection signal="pressed" from="Credits/Content/Navigation/Previous" to="." method="_turn_page" binds=[-1]]
+[connection signal="pressed" from="Credits/Content/Navigation/Next" to="." method="_turn_page" binds=[1]]
+[connection signal="pressed" from="Credits/Content/Back" to="." method="_back_home"]
+[connection signal="pressed" from="Disclaimer/Content/Proceed" to="." method="_start_game"]
+[connection signal="confirmed" from="ReplaceDialog" to="." method="_restart_selected_slot"]

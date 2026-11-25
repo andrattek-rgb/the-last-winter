@@ -5,7 +5,7 @@ Jogo narrativo 2D de exploração e furtividade. Durante a Segunda Guerra Mundia
 ## Executar localmente
 
 1. Abre `project.godot` no [Godot 4.7.2 standard](https://godotengine.org/download/windows/). O renderer Compatibility está configurado.
-2. Carrega em **F5** para começar na Sala 1. Segue para a direita até ao fim das beliches para sair junto à porta fechada do pátio. Atravessa o pátio e carrega em **W** ou **↑** em frente à porta aberta para entrar. Usa **F6** com `scenes/rooms/parte_de_fora.tscn` aberta para testar diretamente o exterior.
+2. Carrega em **F5** para abrir o menu. Escolhe **New Game** e confirma o aviso para começar na Sala 1. Segue para a direita até ao fim das beliches para sair junto à porta fechada do pátio. Atravessa o pátio e carrega em **W** ou **↑** em frente à porta aberta para entrar. Usa **F6** com `scenes/rooms/parte_de_fora.tscn` aberta para testar diretamente o exterior.
 3. Para confirmar o arranque sem interface gráfica, corre os comandos abaixo na raiz do projeto. Em Windows, `godot` pode ser substituído pelo caminho do executável com sufixo `_console.exe`.
 
 ```powershell
@@ -14,6 +14,7 @@ godot --headless --path . --quit-after 2
 godot --headless --path . --fixed-fps 60 --script res://tests/exterior_route.gd
 godot --headless --path . --fixed-fps 60 --script res://tests/laundry_stealth.gd
 godot --headless --path . --fixed-fps 60 --script res://tests/kitchen.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/title_menu.gd
 ```
 
 Na máquina de desenvolvimento, o editor portátil está em `../../work/godot-4.7.2/` a partir da raiz do projeto. Essa cópia já tem os modelos Web e pode ser executada sem instalar o editor no sistema.
@@ -53,7 +54,7 @@ Em `Neve`, a propriedade **Amount** controla a quantidade de flocos. O filtro de
 
 ## Contas e progresso
 
-Na versão Web, cria uma conta com email e palavra-passe ou carrega em **Entrar**. Ao entrar numa zona, o jogo guarda automaticamente o ponto de controlo no Supabase. **Continuar** abre a entrada da última zona alcançada. Os pontos disponíveis são Sala 1, primeiro pátio, cozinha e segundo pátio. O progresso fica associado à conta. O Godot no editor continua a abrir diretamente o jogo para testes.
+Na versão Web, cria uma conta com email e palavra-passe ou carrega em **Entrar**. Ao entrar numa zona na partida principal, o jogo guarda automaticamente o ponto de controlo no Supabase. No menu, **Continue → Original save** abre a entrada da última zona alcançada. Os pontos disponíveis são Sala 1, primeiro pátio, cozinha e segundo pátio. Os três cartões adicionais começam vazios e guardam partidas separadas no armazenamento local do browser, por conta. No Godot, todos os cartões usam o armazenamento local.
 
 1. No projeto Supabase, aplica `supabase/migrations/202611240001_player_progress.sql` no **SQL Editor** e ativa o provider **Email** em **Authentication**. A migração limita a leitura ao dono do registo. A função de gravação valida a conta e só avança o ponto de controlo.
 2. Em **Authentication → URL Configuration**, configura o **Site URL** e os URLs de redirecionamento para os endereços que vão servir o jogo. Para disponibilizar confirmação de conta a jogadores externos, configura SMTP próprio. [Autenticação por palavra-passe](https://supabase.com/docs/guides/auth/passwords) · [SMTP do Supabase](https://supabase.com/docs/guides/auth/auth-smtp)
@@ -103,9 +104,11 @@ Prazo em Portugal continental: **26 de novembro de 2026, às 23h59**. Preparar o
 
 Os PNGs de cenário e os spritesheets de personagens foram fornecidos pelo responsável do projeto no pacote Last Winter. O ficheiro `Três beliches em madeira e tecido.png` foi importado como `room1_foreground_bunks.png`. Os spritesheets ativos do varredor estão em `assets/modelos/characters/sweeper/`, com a caminhada ligada a `npc_velho_walk_spritesheet_v2.png`. Os PNGs copiados são idênticos aos originais. O Godot prepara texturas de trabalho e seleciona os fotogramas das animações por região. Registar aqui a autoria, as licenças e as fontes históricas conforme forem confirmadas.
 
+O menu usa a imagem **Boné às Riscas sob o Holofote**, fornecida pelo autor, e a fonte **Archivo Black** sob a licença OFL incluída em `assets/menu/`. Os créditos apontam para as fontes de cada relato. [Anne Frank House](https://www.annefrank.org/en/anne-frank/who-was-anne-frank/) · [Elie Wiesel](https://encyclopedia.ushmm.org/content/en/article/elie-wiesel) · [Gerda Weissmann Klein](https://encyclopedia.ushmm.org/content/en/id-card/gerda-weissmann) · [Janusz Korczak](https://encyclopedia.ushmm.org/content/en/article/janusz-korczak-1) · [Irena Sendler](https://encyclopedia.ushmm.org/content/en/oral-history/irena-sendler-describes-how-she-was-arrested-and-tortured-by-the-gestapo)
+
 ## Cozinha e refeitório
 
-A porta aberta do Barracão 2 leva à cozinha. Para testar diretamente no editor, abre `scenes/rooms/kitchen.tscn` e usa **F6**. Aproxima-te da frente do balcão e carrega em **E**. Escolhe **PÃO** ou **SOPA** com o rato ou com **←/→** e **Enter**. O controlo volta quando a entrega termina. As escolhas concluídas ficam na lista `received_food` da sessão da cozinha.
+A porta aberta do Barracão 2 leva à cozinha. Para testar diretamente no editor, abre `scenes/rooms/kitchen.tscn` e usa **F6**. Aproxima-te da frente do balcão até aparecer **[E] Interact** e carrega em **E**. Escolhe **BREAD** ou **SOUP** com o rato ou com **←/→** e **Enter**. O controlo volta quando a entrega termina. As escolhas concluídas ficam na lista `received_food` da sessão da cozinha.
 
 - Em **EmCena**, podes mover as mesas, os três caldeirões, o mexedor e o balcão. Usa a propriedade **Z Index** para um ajuste manual de profundidade. A ordenação por Y está ativa.
 - Abre os filhos de cada caldeirão para mover **PontoDoCorredor** e **PontoDeParagem**. Mudar a posição do caldeirão move os dois pontos com ele. Em **Mexedor**, edita a lista de estações, **Walking Speed** e **Stir Seconds**.

@@ -261,3 +261,11 @@
 - A exportação Web abriu no Chromium com a API Supabase simulada. O teste criou uma conta, jogou até ao primeiro pátio, fechou a página e retomou o pátio ao reabrir. Também verificou palavra-passe incorreta, novo login e uma segunda conta sem o progresso da primeira.
 - Apliquei a migração no projeto gratuito do Supabase criado pelo responsável e exportei o jogo com a configuração publicável real. A API confirmou que o registo por email está ativo e devolveu 401 às tentativas de leitura e gravação sem sessão. No Chromium, o formulário chamou o Supabase real e apresentou a mensagem esperada para credenciais inválidas.
 - A versão Web ficou disponível localmente na porta 3000. A confirmação de email, o login com uma conta real e a recuperação do progresso no projeto alojado ainda aguardam o teste do responsável.
+
+## 25 de novembro de 2026 — Menu, aviso e créditos
+
+- Montei o menu com a imagem do boné fornecida pelo autor, a fonte Archivo Black e o filtro de película. O aviso em inglês aparece antes de começar ou retomar uma partida.
+- Mantive a gravação da partida principal no Supabase e acrescentei três partidas independentes com gravação local. Os créditos incluem cinco relatos históricos com fontes consultáveis e uma sexta página de autoria.
+- Apliquei o filtro de película ao vídeo da interação da cozinha, deixando os botões de escolha legíveis. Os testes locais do menu, da cozinha, do percurso, da furtividade, do holofote e da base de dados passaram.
+- No Chromium, inspecionei o menu, os cartões, o aviso e os créditos. O teste da exportação Web com a API simulada passou, incluindo iniciar pelo menu e retomar o primeiro pátio pelo aviso.
+- Traduzi a interação do balcão para `[E] Interact`, `BREAD` e `SOUP`. O teste da cozinha passou.
