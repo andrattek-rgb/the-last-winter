@@ -127,3 +127,19 @@ O pedido ajustou a dificuldade do segundo pátio, com uma sequência menos previ
 > Adicionar o dog na parte de fora 1 […] o cachorro não vê se o player estiver passando atrás do carrinho […] quero tudo do jogo em inglês.
 
 O pedido introduziu a vigilância do cão durante a ronda e animações de susto, raiva e corrida para ambos os perseguidores. A captura passou a reiniciar o pátio e os textos do jogo e do portal foram uniformizados em inglês.
+
+> Agora vamos adaptar para também funcionar no telemóvel, e depois atualizar no Netlify de novo.
+
+O pedido acrescentou suporte ao toque à versão Web existente e autorizou a atualização do site público.
+
+> Coloque com analógico, melhor que setas.
+
+O pedido trocou os botões direcionais por um analógico virtual para controlar a direção e a intensidade do movimento com um dedo.
+
+> O guarda não pode ver da marcação vermelha pra frente.
+
+A imagem situou o limite na borda esquerda da caixa junto à entrada da cozinha. Essa marca permite terminar a travessia mesmo quando o guarda já começou a perseguir o jogador.
+
+> Login: email, password. Create account: email, password, confirm password. Depois a pessoa recebe um email para confirmar a conta.
+
+O pedido separou o formulário de registo do de login e pediu uma única confirmação por conta.

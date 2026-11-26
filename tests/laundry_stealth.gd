@@ -275,10 +275,10 @@ func _run() -> void:
 			Input.action_release(&"move_right")
 		await physics_frame
 	Input.action_release(&"move_right")
+	Input.action_release(&"crouch")
 	Input.action_press(&"move_back")
 	await _ticks(74)
 	Input.action_release(&"move_back")
-	Input.action_release(&"crouch")
 	_check(scene.entering and not player.visible,
 		"É possível acompanhar o carrinho, contornar a caixa e entrar na cozinha com os dois vigilantes ativos.")
 
@@ -352,22 +352,31 @@ func _check_crate_cover(scene: Node2D, convoy: LaundryConvoy, vision: GuardVisio
 	var crate := vision.crate_cover
 	var refuge := crate.to_global(Vector2(250, 20))
 	var front := Vector2(refuge.x, 860.0)
+	var limit := vision.sight_end.global_position.x
+	var before_limit := Vector2(limit - 24.0, front.y)
 	var crate_edge := crate.to_global(Vector2(-crate.size.x * 0.5, 0.0)).x
 	convoy.distance = convoy._distance_at_x(crate_edge - 5.0)
 	convoy._place_trip(false)
-	_check(not vision.is_in_crate_cover(refuge) and vision.can_see(refuge, false),
-		"A caixa ainda não esconde o jogador antes de o carrinho chegar.")
+	_check(not vision.is_in_crate_cover(refuge) and not vision.can_see(refuge, false),
+		"O limite protege o jogador antes de o carrinho chegar à caixa.")
+	_check(not vision.is_past_sight_end(before_limit) and vision.is_past_sight_end(Vector2(limit, front.y)),
+		"A zona segura começa na linha marcada e estende-se até à porta.")
+	_check(vision.can_see(Vector2(before_limit.x, convoy.cart.cover.global_position.y - 8.0), false),
+		"O guarda continua a ver o jogador exposto antes da linha.")
+	vision.exposure = vision.detection_seconds
+	_check(not vision.update_exposure(1.0 / 60.0, Vector2(limit, front.y), false)
+		and is_zero_approx(vision.exposure), "Cruzar a linha limpa a exposição acumulada.")
 	convoy.distance = convoy._distance_at_x(crate_edge + 15.0)
 	convoy._place_trip(false)
 	_check(vision.cover_at(refuge) == crate and not vision.can_see(refuge, false)
-		and not vision.can_see(refuge, true) and vision.can_see(front, false),
-		"Quando o carrinho chega, só o lado atrás da caixa protege o jogador.")
+		and not vision.can_see(refuge, true) and not vision.can_see(front, false),
+		"O guarda não vê o jogador de nenhum dos lados da caixa após a linha.")
 	var crate_art := crate.get_parent() as Sprite2D
 	_check(crate_art.get_parent() == scene.player.get_parent() and crate_art.get_parent().y_sort_enabled
 		and refuge.y < crate_art.global_position.y and front.y > crate_art.global_position.y,
 		"A caixa tapa o jogador atrás e permite que passe visualmente à frente.")
 
-	scene.player.global_position = front
+	scene.player.global_position = before_limit
 	convoy._stopped_at_barrack = true
 	convoy._start_trip(false)
 	convoy.set_physics_process(true)
@@ -378,10 +387,10 @@ func _check_crate_cover(scene: Node2D, convoy: LaundryConvoy, vision: GuardVisio
 		and convoy.worker.is_playing() and convoy.cart.wheels.is_playing()
 		and convoy.cart.global_position.distance_to(departure) > 45.0,
 		"O prisioneiro e o carrinho continuam a animação e o percurso durante a corrida do guarda.")
-	scene.player.global_position = refuge
+	scene.player.global_position = Vector2(limit + 1.0, front.y)
 	await _ticks(1)
 	_check(scene.pursuer == null and scene.guard_returning and not scene.caught,
-		"Entrar na cobertura da caixa interrompe a perseguição do guarda.")
+		"Cruzar a linha à frente da caixa interrompe a perseguição do guarda sem exigir agachamento.")
 	await _ticks(108)
 	_check(not scene.guard_returning and not convoy.guard_detached and not scene.guard_chase.visible,
 		"O guarda volta ao percurso em movimento após perder o jogador de vista.")

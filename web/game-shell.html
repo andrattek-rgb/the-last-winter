@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>The Last Winter</title>
   <link rel="stylesheet" href="portal.css">
   $GODOT_HEAD_INCLUDE
@@ -11,14 +11,28 @@
   <main class="portal">
     <section class="account" id="account" aria-labelledby="title">
       <h1 id="title">The Last Winter</h1>
-      <form id="auth-form" hidden>
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" autocomplete="email" required>
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" autocomplete="current-password" required>
+      <form id="login-form" aria-labelledby="login-heading" hidden>
+        <h2 id="login-heading">Sign in</h2>
+        <label for="login-email">Email</label>
+        <input id="login-email" name="email" type="email" autocomplete="email" autocapitalize="none" required>
+        <label for="login-password">Password</label>
+        <input id="login-password" name="password" type="password" autocomplete="current-password" required>
         <div class="actions">
-          <button type="submit" name="action" value="login">Sign in</button>
-          <button class="secondary" type="submit" name="action" value="register">Create account</button>
+          <button type="submit">Sign in</button>
+          <button id="show-register" class="secondary" type="button">Create account</button>
+        </div>
+      </form>
+      <form id="register-form" aria-labelledby="register-heading" hidden>
+        <h2 id="register-heading">Create account</h2>
+        <label for="register-email">Email</label>
+        <input id="register-email" name="email" type="email" autocomplete="email" autocapitalize="none" required>
+        <label for="register-password">Password</label>
+        <input id="register-password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+        <label for="confirm-password">Confirm password</label>
+        <input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" required>
+        <div class="actions">
+          <button type="submit">Create account</button>
+          <button id="show-login" class="secondary" type="button">Back to sign in</button>
         </div>
       </form>
       <div id="profile" hidden>
@@ -30,6 +44,17 @@
     <section id="game" class="game" aria-label="Game" hidden>
       <canvas id="canvas" width="1280" height="720" tabindex="0">Your browser must support WebGL 2.</canvas>
       <progress id="download" aria-label="Loading the game"></progress>
+      <button id="game-fullscreen" class="secondary" type="button" aria-pressed="false" hidden>Fullscreen</button>
+      <p class="rotate-hint">Turn your phone sideways for a larger view.</p>
+      <div id="touch-controls" role="group" aria-label="Touch controls" hidden>
+        <div id="touch-stick" role="group" aria-label="Movement joystick">
+          <span class="stick-thumb" aria-hidden="true"></span>
+        </div>
+        <div class="touch-actions">
+          <button type="button" data-action="interact" hidden>Interact</button>
+          <button type="button" data-action="crouch" hidden>Crouch</button>
+        </div>
+      </div>
     </section>
     <footer id="session-controls" hidden>
       <small id="save-status" role="status" aria-live="polite"></small>

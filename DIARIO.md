@@ -308,3 +308,43 @@
 
 - Validei a exportação com o posto do cão e a posição da caixa editados pelo autor. O teste do cão posiciona agora o protagonista dentro do pátio mesmo quando o posto fica mais afastado da zona caminhável.
 - Reuni as alterações de furtividade, cozinha, filtros e interface em inglês para atualizar a demo pública.
+- Enviei o commit `9d194f6` para o GitHub e publiquei a atualização no Netlify. Os cinco testes do Godot, os dois testes da base de dados e o teste do browser passaram. Confirmei no site público o portal e os ficheiros da nova exportação.
+
+### Controlos para telemóvel
+
+- Adaptei o enquadramento Web a retrato e paisagem e acrescentei setas táteis, **Crouch** e **Interact**. Os controlos só aparecem durante o jogo e respeitam os bloqueios de movimento das transições e cutscenes. Em ecrãs táteis, o jogo usa 960 × 540 para reduzir o trabalho de renderização.
+- Os cinco testes Godot e os dois testes Node passaram. Em Chromium, validei o fluxo desktop e simulei um telemóvel com dois dedos em simultâneo, toque no menu, aproximação ao balcão, reprodução da entrega da sopa e recuperação dos controlos.
+- Publiquei a adaptação no Netlify e confirmei no endereço público o portal móvel, o CSS, o ficheiro WASM e amostras do pacote do jogo.
+
+### Ecrã inteiro no telemóvel
+
+- Retirei as margens do jogo em paisagem e acrescentei o botão **Fullscreen**. Quando o navegador não permite ecrã inteiro, o botão expande o jogo dentro da área visível da página.
+- Testei em Chromium com um telemóvel simulado. O jogo aproveitou toda a altura em paisagem, entrou e saiu do ecrã inteiro nativo e manteve os controlos e a interação na cozinha no modo expandido.
+- Publiquei a correção no Netlify e conferi o HTML, o JavaScript e o CSS do endereço público com a exportação testada.
+
+### Analógico virtual
+
+- Troquei as setas por um analógico virtual com direção contínua e intensidade proporcional ao arrasto. Ao soltar, o comando regressa ao centro. Mantive os botões **Crouch** e **Interact**.
+- Os testes do Godot e do Node passaram. Em Chromium com toque simulado, validei o movimento diagonal parcial, a libertação do comando, o uso de dois dedos e a interação na cozinha em ecrã inteiro.
+- Publiquei a versão no Netlify e conferi o portal, o CSS e amostras do pacote do jogo no endereço público.
+
+### Limite da visão do guarda junto à cozinha
+
+- Coloquei um marcador editável na borda esquerda da caixa da saída do primeiro pátio. A partir desse ponto, o guarda perde de vista o jogador e abandona a perseguição, mesmo que o jogador esteja de pé ou que o carrinho ainda não tenha chegado.
+- Os testes de furtividade e de percurso passaram. Confirmei a deteção antes da marca, o fim da perseguição ao cruzá-la e a entrada na cozinha com os dois vigilantes ativos.
+
+### Registo e login separados
+
+- Separei os formulários e acrescentei a confirmação da palavra-passe no registo. O portal indica que deve ser usado o link do email e aceita a sessão gerada por esse link.
+- Confirmei pela API do projeto Supabase que o registo está ativo e a confirmação por email é obrigatória. No Chromium, com a API simulada, verifiquei o bloqueio antes da confirmação, a entrada pelo link e um novo login só com email e palavra-passe. Os testes Node também passaram. A entrega de mensagens a endereços externos ainda está por validar.
+- Publiquei a atualização no Netlify e confirmei no site público que **Sign in** tem dois campos e **Create account** abre um formulário separado com a confirmação da palavra-passe.
+
+### Envio de emails de confirmação
+
+- Confirmei no painel que o projeto usava o serviço padrão quando o registo mostrou o erro de limite de envio. Preparei a integração SMTP e o responsável introduziu as credenciais diretamente no Supabase.
+- Reabri as definições e confirmei que o projeto guardou e ativou o SMTP do Gmail. A entrega de um email de confirmação real ficou por testar.
+- Os testes reais de registo devolveram `535 BadCredentials` do Gmail. Com autorização do responsável, desativei temporariamente a confirmação por email para desbloquear a criação de contas. Verifiquei na API pública que o registo continua ativo e os novos utilizadores são confirmados automaticamente.
+
+## 26 de novembro de 2026
+
+- Atualizei o README com o funcionamento da demo e acrescentei ao teste de browser o registo com entrada imediata, seguido de um novo login com a mesma conta. O teste usa uma API Supabase simulada. Corri `npm test`, `npm run test:browser` e os testes do Godot indicados no README. Todos passaram.

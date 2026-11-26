@@ -57,10 +57,10 @@ Em `Neve`, a propriedade **Amount** controla a quantidade de flocos. O filtro de
 
 ## Contas e progresso
 
-Na versão Web, cria uma conta com email e palavra-passe ou carrega em **Entrar**. Ao entrar numa zona na partida principal, o jogo guarda automaticamente o ponto de controlo no Supabase. No menu, **Continue → Original save** abre a entrada da última zona alcançada. Os pontos disponíveis são Sala 1, primeiro pátio, cozinha e segundo pátio. Os três cartões adicionais começam vazios e guardam partidas separadas no armazenamento local do browser, por conta. No Godot, todos os cartões usam o armazenamento local.
+Na demo Web, usa **Create account** para criares uma conta com email e palavra-passe. A sessão inicia-se logo após o registo. Para voltar, usa **Sign in** com os mesmos dados. Ao entrar numa zona na partida principal, o jogo guarda automaticamente o ponto de controlo no Supabase. No menu, **Continue → Original save** abre a entrada da última zona alcançada. Os pontos disponíveis são Sala 1, primeiro pátio, cozinha e segundo pátio. Os três cartões adicionais começam vazios e guardam partidas separadas no armazenamento local do browser, por conta. No Godot, todos os cartões usam o armazenamento local.
 
 1. No projeto Supabase, aplica `supabase/migrations/202611240001_player_progress.sql` no **SQL Editor** e ativa o provider **Email** em **Authentication**. A migração limita a leitura ao dono do registo. A função de gravação valida a conta e só avança o ponto de controlo.
-2. Em **Authentication → URL Configuration**, configura o **Site URL** e os URLs de redirecionamento para os endereços que vão servir o jogo. Para disponibilizar confirmação de conta a jogadores externos, configura SMTP próprio. [Autenticação por palavra-passe](https://supabase.com/docs/guides/auth/passwords) · [SMTP do Supabase](https://supabase.com/docs/guides/auth/auth-smtp)
+2. Em **Authentication → URL Configuration**, configura o **Site URL** e os URLs de redirecionamento para os endereços que vão servir o jogo. A demo tem **Confirm email** desligado, pelo que a pessoa entra após o registo e o Supabase aceita o endereço sem verificar a sua titularidade. Para exigir a confirmação a jogadores externos, configura um SMTP funcional e ativa **Confirm email**. Nessa configuração, o link confirma a conta e abre o portal com sessão iniciada. [Autenticação por palavra-passe](https://supabase.com/docs/guides/auth/passwords) · [SMTP do Supabase](https://supabase.com/docs/guides/auth/auth-smtp)
 3. Copia `.env.example` para `.env` e preenche o URL do projeto e a chave **Publishable**. Define `GODOT_BIN` caso o executável Godot não esteja no PATH. [Chaves do Supabase](https://supabase.com/docs/guides/getting-started/api-keys)
 
 ## Exportar e testar no browser
@@ -75,6 +75,8 @@ python -m http.server 8000 --directory dist
 ```
 
 Abre `http://localhost:8000` no browser. A exportação usa o renderer Compatibility e uma única thread. Com autorização, publica o conteúdo de `dist/` no Netlify e verifica o registo, login e progresso com duas contas. [Exportação Web do Godot](https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_web.html) · [Deploy manual do Netlify](https://docs.netlify.com/deploy/create-deploys/)
+
+No telemóvel, vira o ecrã de lado e toca em **Fullscreen** para aproveitar toda a altura disponível. Se o navegador mantiver as suas barras visíveis, o jogo ocupa a área visível da página. Arrasta o analógico virtual para andar e mantém **Crouch** premido com outro dedo para te agachares enquanto andas. Toca em **Interact** junto ao balcão. O teste de browser verifica o ecrã inteiro, o movimento em diagonal, os controlos em simultâneo e a escolha de sopa na cozinha.
 
 O teste de browser usa a exportação real e uma API Supabase simulada. Para o executar, usa estas variáveis apenas no terminal de teste e volta a exportar com a configuração real antes de publicar:
 

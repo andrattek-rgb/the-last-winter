@@ -45,7 +45,8 @@ func _physics_process(delta: float) -> void:
 	if guard_returning:
 		_return_guard_to_convoy(delta)
 	if pursuer != null:
-		if pursuer == guard_chase and vision.is_in_crate_cover(player.global_position):
+		if pursuer == guard_chase and (vision.is_past_sight_end(player.global_position)
+			or vision.is_in_crate_cover(player.global_position)):
 			guard_chase.begin_return()
 			guard_returning = true
 			vision.exposure = 0.0

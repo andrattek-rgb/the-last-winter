@@ -210,6 +210,9 @@ position = Vector2(0, -365)
 script = ExtResource("11_cover")
 size = Vector2(680, 300)
 
+[node name="LimiteVisaoDoGuarda" type="Marker2D" parent="Personagens/Caixa01"]
+position = Vector2(-410, -130)
+
 [node name="Desafio" type="Node2D" parent="." unique_id=74460049 node_paths=PackedStringArray("worker", "guard", "cart", "route", "pile", "building", "guard_stop")]
 script = ExtResource("9_convoy")
 worker = NodePath("../Personagens/PrisioneiroTrabalhador")
@@ -227,10 +230,11 @@ position = Vector2(1195, 724)
 position = Vector2(527, 810)
 curve = SubResource("Curve_laundry")
 
-[node name="VisaoDoGuarda" type="Node" parent="Desafio" unique_id=606736990 node_paths=PackedStringArray("convoy", "crate_cover")]
+[node name="VisaoDoGuarda" type="Node" parent="Desafio" unique_id=606736990 node_paths=PackedStringArray("convoy", "crate_cover", "sight_end")]
 script = ExtResource("10_vision")
 convoy = NodePath("..")
 crate_cover = NodePath("../../Personagens/Caixa01/Cobertura")
+sight_end = NodePath("../../Personagens/Caixa01/LimiteVisaoDoGuarda")
 sight_range = 470.0
 
 [node name="LimitesDoPatio" type="StaticBody2D" parent="." unique_id=277100759]
